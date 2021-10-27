@@ -1,3 +1,6 @@
+/* global document */
+/* eslint no-undef: "error" */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
