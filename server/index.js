@@ -7,8 +7,6 @@ app.use(express.static('./client'));
 app.use(express.json());
 app.use(cors())
 
-
-
 app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
-})
+  // console.log('Server listening on port:', `${PORT}`);
+});
