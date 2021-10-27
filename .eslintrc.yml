@@ -1,2 +1,14 @@
+env:
+  browser: true
+  es2021: true
 extends:
-   - "airbnb"
+  - 'plugin:react/recommended'
+  - airbnb
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 6
+  sourceType: module
+plugins:
+  - react
+rules: {}

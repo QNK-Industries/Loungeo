@@ -5,15 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "eslint": "^8.1.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^1.7.0",
     "express": "^4.17.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "nodemon server/index.js",
@@ -30,12 +25,18 @@
   },
   "homepage": "https://github.com/QNK-Industries/Loungeo#readme",
   "devDependencies": {
-    "nodemon": "^2.0.14",
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.14",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^4.4.0"
