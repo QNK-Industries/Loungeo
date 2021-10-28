@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack -d --watch"
+    "build": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -37,8 +37,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.14",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0"
   }
 }
