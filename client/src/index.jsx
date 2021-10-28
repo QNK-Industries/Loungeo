@@ -1,4 +1,4 @@
-/* global document */
+/* glob document */
 /* eslint no-undef: "error" */
 
 import React from 'react';
