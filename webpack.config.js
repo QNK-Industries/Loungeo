@@ -8,6 +8,8 @@ module.exports = {
     path: path.resolve(__dirname, 'client', 'dist'),
   },
 
+  mode: 'production',
+
   module: {
     rules: [
       {
@@ -19,11 +21,5 @@ module.exports = {
         },
       },
     ],
-  },
-
-  externals: {
-    'react/addons': true, // important!!
-    'react/lib/ReactContext': true,
-    'react/lib/ExecutionEnvironment': true,
   },
 };
