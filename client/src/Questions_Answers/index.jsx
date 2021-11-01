@@ -5,6 +5,10 @@ import Questions from './components/Questions.jsx';
 class QuestionsAnswers extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      placeholder: true;
+    }
   }
 
   render() {
