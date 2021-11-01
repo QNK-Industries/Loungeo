@@ -9,6 +9,11 @@ class QuestionsAnswers extends React.Component {
     this.state = {
       placeholder: true;
     }
+    this.showModal = this.showModal.bind(this)
+  }
+
+  showModal() {
+    console.log('This is clicking')
   }
 
   render() {
@@ -18,9 +23,6 @@ class QuestionsAnswers extends React.Component {
         <Search />
         <Questions />
       </div>
-
-
-
     )
   }
 }
