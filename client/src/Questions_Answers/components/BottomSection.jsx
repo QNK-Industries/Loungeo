@@ -6,6 +6,6 @@ const BottomSection = () => (
     <br />
     Add an answer +
   </div>
-)
+);
 
 export default BottomSection;
