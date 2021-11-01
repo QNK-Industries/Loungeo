@@ -1,14 +1,10 @@
 import React from 'react';
-import Search from './components/Search';
-import Questions from './components/Questions';
+import Search from './components/Search.jsx';
+import Questions from './components/Questions.jsx';
 
 class QuestionsAnswers extends React.Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      placeholder: true;
-    };
+    super(props)
   }
 
   render() {
@@ -18,8 +14,12 @@ class QuestionsAnswers extends React.Component {
         <Search />
         <Questions />
       </div>
-    );
+
+
+
+    )
   }
 }
+
 
 export default QuestionsAnswers;

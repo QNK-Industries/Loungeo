@@ -8,6 +8,6 @@ const Answers = () => (
     <br />
     By User, Date | Placeholder | Report
   </div>
-);
+)
 
 export default Answers;

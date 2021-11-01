@@ -1,6 +1,7 @@
 import React from 'react';
-import Answers from './Answers';
-import BottomSection from './BottomSection';
+import Answers from './Answers.jsx';
+import BottomSection from './BottomSection.jsx'
+
 
 const Questions = () => (
   <div>
@@ -8,6 +9,6 @@ const Questions = () => (
     <Answers />
     <BottomSection />
   </div>
-);
+)
 
 export default Questions;

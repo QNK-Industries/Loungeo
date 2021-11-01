@@ -3,6 +3,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import QuestionsAnswers from './Questions_Answers/index';
+import QuestionsAnswers from './Questions_Answers/index.jsx'
 
 ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
