@@ -48,7 +48,7 @@ class QuestionsAnswers extends React.Component {
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-        <Questions question_body={question.question_body} answers={question.answers} />
+        <Questions question_body={question.question_body} answers={question.answers} showModal={this.showModal}/>
         )}
       </div>
     );

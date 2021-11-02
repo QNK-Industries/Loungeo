@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Answers = (props) => (
+const Answers = ({ showModal, body }) => (
   <div>
     Placeholder |
-    <button type="button" onClick={props.showModal}>Add Answer</button>
+    <button type="button" onClick={showModal}>Add Answer</button>
     <br />
-    A. {props.body}
+    A. {body}
     <br />
     By User, Date | Placeholder | Report
   </div>
