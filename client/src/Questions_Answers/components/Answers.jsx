@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Answers = ({ showModal }) => (
   <div>
     Placeholder |
-    <span onClick={showModal}>Add Answer</span>
+    <button type="button" onClick={showModal}>Add Answer</button>
     <br />
     A. This is an answer dawg
     <br />

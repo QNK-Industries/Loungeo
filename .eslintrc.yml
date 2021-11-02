@@ -12,7 +12,7 @@ parserOptions:
 plugins:
   - react
 rules: {
-    "react/jsx-one-expression-per-line": [1, { "allow": "single-child" }]
+    "react/jsx-one-expression-per-line": [0],
     "react/prop-types": [0],
     "import/extensions": [2, "ignorePackages"]
 }
