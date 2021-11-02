@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 export default function StarRating() {
   const [rating, setRating] = useState(0);
@@ -8,16 +9,23 @@ export default function StarRating() {
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (
-          <button
-            type="button"
-            key={index}
-            className={index <= (hover || rating) ? 'on' : 'off'}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
+          // <button
+          //   type="button"
+          //   key={index}
+          //   className={index <= (hover || rating) ? 'on' : 'off'}
+          //   onClick={() => setRating(index)}
+          //   onMouseEnter={() => setHover(index)}
+          //   onMouseLeave={() => setHover(rating)}
+          // >
+          <>
+            <div style={{ position: 'relative', display: 'inline-block', width: '5px' }} className="star">
+              <img src="https://img.icons8.com/ios-filled/50/000000/star--v1.png" alt="star" />
+            </div>
+            {/* <div style={{ position: 'relative', display: 'inline-block', width: '5px' }} className="star">
+              <img src="https://img.icons8.com/ios-filled/50/000000/star-half-empty.png" alt="filled star" />
+            </div> */}
+          </>
+          // </button>
         );
       })}
     </div>
