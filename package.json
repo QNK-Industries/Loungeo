@@ -4,6 +4,7 @@
   "description": "Model ecommerce webapp.",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.24.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "react": "^17.0.2",
@@ -18,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/QNK-Industries/Loungeo.git"
   },
-  "author": "",
+  "author": "Quinton Maki, Noah Lehman, Khai Tran",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/QNK-Industries/Loungeo/issues"
