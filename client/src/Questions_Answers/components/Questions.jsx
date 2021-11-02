@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Answers from './Answers.jsx';
 import BottomSection from './BottomSection.jsx';
 
-const Questions = (props) => (
+const Questions = ({ question_body, answers, showModal }) => (
   <div>
-    <h2>Q. {props.question_body}</h2>
+    <h2>Q. {question_body}</h2>
     {/* <Answers showModal={props.showModal} /> */}
-    {Object.keys(props.answers).map((answer) => <Answers showModal={props.showModal} body={answer.body}/>)}
+    {Object.keys(answers).map((answer) => <Answers showModal={showModal} body={answers[answer].body} />)}
     <BottomSection />
   </div>
 );
