@@ -54,7 +54,7 @@ export default function Overview() {
 
   return (
     <div>
-      <ProductInfo item={item} style={currentStyle} rating={rating} />
+      <ProductInfo item={item} style={currentStyle} rating={rating} data-testid="product-info" />
     </div>
   );
 }
