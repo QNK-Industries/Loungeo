@@ -105,3 +105,6 @@ dist
 
 # Tokens
 tokens.js
+
+# Current Module Rendering
+client/src/index.jsx
