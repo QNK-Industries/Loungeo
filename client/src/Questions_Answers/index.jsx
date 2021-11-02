@@ -47,11 +47,9 @@ class QuestionsAnswers extends React.Component {
         <h1>Hello World</h1>
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
-        {this.state.questions.map((question) => {
-          return (
-            <Questions question_body={question.question_body} />
-          );
-        })}
+        {this.state.questions.map((question) =>
+        <Questions question_body={question.question_body} answers={question.answers} />
+        )}
       </div>
     );
   }

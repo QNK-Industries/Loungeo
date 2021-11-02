@@ -6,7 +6,8 @@ import BottomSection from './BottomSection.jsx';
 const Questions = (props) => (
   <div>
     <h2>Q. {props.question_body}</h2>
-    <Answers showModal={props.showModal} />
+    {/* <Answers showModal={props.showModal} /> */}
+    {Object.keys(props.answers).map((answer) => <Answers showModal={props.showModal} body={answer.body}/>)}
     <BottomSection />
   </div>
 );

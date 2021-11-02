@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Answers = ({ showModal }) => (
+const Answers = (props) => (
   <div>
     Placeholder |
-    <button type="button" onClick={showModal}>Add Answer</button>
+    <button type="button" onClick={props.showModal}>Add Answer</button>
     <br />
-    A. This is an answer dawg
+    A. {props.body}
     <br />
     By User, Date | Placeholder | Report
   </div>
 );
-
-Answers.propTypes = {
-  showModal: PropTypes.func.isRequired,
-};
 
 export default Answers;
