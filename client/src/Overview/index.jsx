@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductInfo from './productInfo.jsx';
 
-// const GH_TOKEN = require('../../../tokens.js');
-const GH_TOKEN = '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';
+const GH_TOKEN = require('../../../tokens.js');
+
 const productUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575';
 const styleUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575/styles';
 const ratingUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=61575';
