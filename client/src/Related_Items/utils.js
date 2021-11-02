@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 
-const TOKEN = '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';
-const headers = { headers: { Authorization: TOKEN } };
+const GH_TOKEN = require('../../../tokens.js');
+
+const headers = { headers: { Authorization: GH_TOKEN.GH_TOKEN } };
 
 const getRelatedProducts = (id, callback) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}/related`, headers).then((results) => {
