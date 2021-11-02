@@ -22,7 +22,7 @@ class QuestionsAnswers extends React.Component {
   getQuestions() {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
       headers: {
-        Authorization: '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',
+        Authorization: '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',
       },
     })
 
@@ -46,7 +46,12 @@ class QuestionsAnswers extends React.Component {
         <button type="button" onClick={this.getQuestions}>Click Me</button>
         <h1>Hello World</h1>
         <Search />
-        <Questions showModal={this.showModal} />
+        {/* <Questions showModal={this.showModal} state={this.state} /> */}
+        {this.state.questions.map((question) => {
+          return (
+            <Questions question_body={question.question_body} />
+          );
+        })}
       </div>
     );
   }

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Answers from './Answers.jsx';
 import BottomSection from './BottomSection.jsx';
 
-const Questions = ({ showModal }) => (
+const Questions = (props) => (
   <div>
-    <h2>Q. This is a question fam</h2>
-    <Answers showModal={showModal} />
+    <h2>Q. {props.question_body}</h2>
+    <Answers showModal={props.showModal} />
     <BottomSection />
   </div>
 );
