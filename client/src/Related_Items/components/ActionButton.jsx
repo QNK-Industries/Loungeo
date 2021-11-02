@@ -8,10 +8,10 @@ const StyledButtonWrapper = styled.button`
   border-radius: 0 10px 0 0;
 `;
 
-const ActionButton = ({ type, product, modalOn }) => {
-  const icon = type === 'RELATED' ? '☆' : '+';
+const ActionButton = ({ type, product, actionFunc }) => {
+  const icon = type === 'RELATED' ? '☆' : 'X';
   return (
-    <StyledButtonWrapper onClick={type === 'RELATED' ? () => modalOn(product) : () => null}>
+    <StyledButtonWrapper onClick={() => actionFunc(product)}>
       <span>{icon}</span>
     </StyledButtonWrapper>
 

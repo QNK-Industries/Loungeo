@@ -36,4 +36,4 @@ const staticItem = {
     },
   ],
 };
-ReactDOM.render(<RelatedItemsModule product={staticItem} />, document.getElementById('root'));
+ReactDOM.render(<RelatedItemsModule mainProduct={staticItem} />, document.getElementById('root'));
