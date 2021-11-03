@@ -2,11 +2,11 @@ import React from 'react';
 // import styled from 'styled-components';
 
 const starShapes = [
-  "./images/empty star.png",
-  "./images/quarter star.png",
-  "./images/half star.png",
-  "./images/three quarter star.png",
-  "./images/filled star.png",
+  "./dist/images/empty star.png",
+  "./dist/images/quarter star.png",
+  "./dist/images/half star.png",
+  "./dist/images/three quarter star.png",
+  "./dist/images/filled star.png",
 ]
 
 export default function StarRating({ratingObj}) {
