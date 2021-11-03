@@ -1,6 +1,6 @@
 import React from 'react';
-import StarRating from '../Shared/StarRating.jsx';
-import starAverage from '../Shared/StarAverage.jsx';
+import StarRating from '../../Shared/StarRating.jsx';
+import starAverage from '../../Shared/StarAverage.jsx';
 
 // const GH_TOKEN = require('../../../tokens.js');
 
