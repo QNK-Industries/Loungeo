@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import StyleSelector from './StyleSelector.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -38,8 +39,8 @@ export default function Overview() {
   function getRating() {
     axios.get(ratingUrl, { headers: { Authorization: GH_TOKEN } })
       .then((res) => {
-        setStyle(res.data.results);
-        setRating(res.data);
+        // setStyle(res.data.results);
+        setRating(res.data.ratings);
       })
       .catch((error) => {
         console.error(error);
@@ -54,7 +55,8 @@ export default function Overview() {
 
   return (
     <div>
-      <ProductInfo item={item} style={currentStyle} rating={rating} data-testid="product-info" />
+      <ProductInfo item={item} style={currentStyle} rating={rating} />
+      <StyleSelector item={item} style={currentStyle} rating={rating} />
     </div>
   );
 }
