@@ -14,6 +14,7 @@ export default function Overview() {
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [rating, setRating] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
   function getItem() {
     axios.get(productUrl, { headers: { Authorization: GH_TOKEN } })
@@ -51,12 +52,14 @@ export default function Overview() {
     getItem();
     getStyle();
     getRating();
+    setLoading(false);
   }, []);
 
   return (
+    isLoading ? <div>Loading</div> :
     <div>
       <ProductInfo item={item} style={currentStyle} rating={rating} />
-      <StyleSelector item={item} styles={styles} rating={rating} />
+      <StyleSelector item={item} styles={styles} currentStyle={currentStyle} rating={rating} setCurrentStyle ={setCurrentStyle} />
     </div>
   );
 }
