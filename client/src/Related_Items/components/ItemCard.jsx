@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import utils from '../utils.js';
-// eslint-disable-next-line import/extensions
 import ActionButton from './ActionButton.jsx';
 
 const $cardHeight = '300px';
@@ -62,7 +61,7 @@ const ItemCard = (props) => {
   if (product.id) {
     return (
       <StyledItemCard>
-        <ActionButton type={props.type} product={product} modalOn={props.modalOn} />
+        <ActionButton type={props.type} product={product} actionFunc={props.action} />
         <ItemCardBackground url={getDefaultImageUrl()} />
         <ItemCardInfo>
           <span>{product.category}</span>
