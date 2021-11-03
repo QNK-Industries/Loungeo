@@ -1,6 +1,7 @@
 env:
   browser: true
   es2021: true
+  jest/globals: true
 extends:
   - 'plugin:react/recommended'
   - airbnb
@@ -11,6 +12,7 @@ parserOptions:
   sourceType: module
 plugins:
   - react
+  - jest
 rules: {
   "react/jsx-one-expression-per-line": [0],
   "react/prop-types": [0],
