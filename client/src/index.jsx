@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
 // import Overview from './Overview/index.jsx';
 import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
 
@@ -37,3 +38,8 @@ const staticItem = {
   ],
 };
 ReactDOM.render(<RelatedItemsModule mainProduct={staticItem} />, document.getElementById('root'));
+=======
+import QuestionsAnswers from './Questions_Answers/index.jsx'
+
+ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
+>>>>>>> modal-test
