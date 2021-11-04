@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Answers = ({ showModal, body }) => (
+const Answers = ({ showModal, body, asker }) => (
   <div>
     Placeholder |
     <button type="button" onClick={showModal}>Add Answer</button>
     <br />
     A. {body}
     <br />
-    By User, Date | Placeholder | Report
+    By {asker}, Date | Placeholder | Report
   </div>
 );
 
