@@ -68,6 +68,7 @@ export default function Overview() {
             rating={rating}
             setCurrentStyle={setCurrentStyle}
           />
+          {/* <div>Select Size:</div> */}
           <AddToCart item={item} currentStyle={currentStyle} />
         </div>
       )

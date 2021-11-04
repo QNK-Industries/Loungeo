@@ -10,8 +10,9 @@ export default function Style({ style, currentStyle, setCurrentStyle }) {
             alt=""
             style={{
               width: '50px', height: '50px', padding: '10px', position: 'relative',
-            }}/>
-            <div style={{
+            }}
+          />
+          <div style={{
             position: 'absolute', left: '80%', top: '20%', transform: 'translate(-50%,-50%)', zIndex: 1, color: 'red',
           }}
           >&#10003;
