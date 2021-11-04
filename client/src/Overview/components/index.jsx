@@ -57,11 +57,19 @@ export default function Overview() {
   }, []);
 
   return (
-    isLoading ? <div>Loading</div> :
-    <div>
-      <ProductInfo item={item} style={currentStyle} rating={rating} />
-      <StyleSelector item={item} styles={styles} currentStyle={currentStyle} rating={rating} setCurrentStyle ={setCurrentStyle} />
-      <AddToCart item={item} currentStyle={currentStyle}/>
-    </div>
+    isLoading ? <div>Loading</div>
+      : (
+        <div>
+          <ProductInfo item={item} style={currentStyle} rating={rating} />
+          <StyleSelector
+            item={item}
+            styles={styles}
+            currentStyle={currentStyle}
+            rating={rating}
+            setCurrentStyle={setCurrentStyle}
+          />
+          <AddToCart item={item} currentStyle={currentStyle} />
+        </div>
+      )
   );
 }
