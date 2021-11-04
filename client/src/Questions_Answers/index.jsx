@@ -22,7 +22,7 @@ class QuestionsAnswers extends React.Component {
   getQuestions() {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
       headers: {
-        Authorization: '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',
+        Authorization: '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',
       },
     })
 
