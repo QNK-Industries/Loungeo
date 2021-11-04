@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import StyleSelector from './StyleSelector.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -10,7 +11,7 @@ const ratingUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/m
 
 export default function Overview() {
   const [item, setItem] = useState({});
-  const [style, setStyle] = useState([]);
+  const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [rating, setRating] = useState({});
 
@@ -27,7 +28,7 @@ export default function Overview() {
   function getStyle() {
     axios.get(styleUrl, { headers: { Authorization: GH_TOKEN } })
       .then((res) => {
-        setStyle(res.data.results);
+        setStyles(res.data.results);
         setCurrentStyle(res.data.results[0]);
       })
       .catch((error) => {
@@ -38,8 +39,8 @@ export default function Overview() {
   function getRating() {
     axios.get(ratingUrl, { headers: { Authorization: GH_TOKEN } })
       .then((res) => {
-        setStyle(res.data.results);
-        setRating(res.data);
+        // setStyle(res.data.results);
+        setRating(res.data.ratings);
       })
       .catch((error) => {
         console.error(error);
@@ -54,7 +55,8 @@ export default function Overview() {
 
   return (
     <div>
-      <ProductInfo item={item} style={currentStyle} rating={rating} data-testid="product-info" />
+      <ProductInfo item={item} style={currentStyle} rating={rating} />
+      <StyleSelector item={item} styles={styles} rating={rating} />
     </div>
   );
 }

@@ -9,7 +9,8 @@ const starShapes = [
   "./dist/images/filled star.png",
 ]
 
-export default function StarRating({rating}) {
+export default function StarRating({ratingObj}) {
+  var rating = ratingObj.average;
   const stars = [];
   while(stars.length < 5) {
     switch(true) {
