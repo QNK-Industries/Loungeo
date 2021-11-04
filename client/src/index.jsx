@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Overview from './Overview/components/index.jsx';
+// import Overview from './Overview/index.jsx';
+// import Overview from './Overview/components/index.jsx';
+
+import QuestionsAnswers from './Questions_Answers/index.jsx'
+
+ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
+
+// import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
+
 //import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
 
 // Noah Testing
-ReactDOM.render(<Overview />, document.getElementById('root'));
+// ReactDOM.render(<Overview />, document.getElementById('root'));
 
 // Quinton Testing
+
 // const staticItem = {
 //   id: 61579,
 //   campus: 'hr-sfo',
