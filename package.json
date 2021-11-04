@@ -55,8 +55,10 @@
       "@babel/preset-react"
     ]
   },
-  "jest":{
+  "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/client/src/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/client/src/setupTests.js"
+    ]
   }
 }

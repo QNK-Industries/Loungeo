@@ -2,20 +2,23 @@ import React from 'react';
 import StarRating from '../../Shared/StarRating.jsx';
 import starAverage from '../../Shared/StarAverage.jsx';
 
-// const GH_TOKEN = require('../../../tokens.js');
-
 export default function ProductInfo({ item, style, rating }) {
-  // const currentStarAverage = starAverage(rating.ratings);
-  const currentStarAverage = 3.25;
-  const price = style.sale_price ? `red ${style.sale_price} strike ${style.original_price}` : style.original_price;
+  const ratingObj = starAverage(rating);
   return (
     style.length === 0 ? <div />
       : (
         <>
           <div>{item.category}</div>
           <div>{item.name}</div>
-          <div>${price}</div>
-          <StarRating rating={currentStarAverage} />
+          {style.sale_price  ?
+            <div>
+              <span style={{textDecoration: 'line-through'}}>${style.original_price}</span>
+              <span style={{color: 'red'}}>${style.sale_price}</span>
+            </div>:
+            <div>${style.original_price}</div>}
+          <StarRating ratingObj={ratingObj} />
+          <div>{ratingObj.total} Reviews</div>
+          <div>{item.name}</div>
           <div>{item.description}</div>
         </>
       )
