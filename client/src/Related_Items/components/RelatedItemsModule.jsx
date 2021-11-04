@@ -1,16 +1,8 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import utils from '../utils.js';
-import ItemCard from './ItemCard.jsx';
-import AddToOutfitCard from './AddToOutfitCard.jsx';
+import Carousel from './Carousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
-
-const Carousel = styled.section`
-  display: flex;
-  width: 100%;
-  height: 500px;
-`;
 
 const RelatedItems = ({ mainProduct }) => {
   const [data, setData] = useState([]);
@@ -53,16 +45,11 @@ const RelatedItems = ({ mainProduct }) => {
       <section>
         {displayModal()}
         <h4>RELATED PRODUCTS</h4>
-        <Carousel>
-          {data.map((product) => <ItemCard type="RELATED" key={product} item={product} action={(selectedProduct) => turnOnModal(selectedProduct)} />)}
-        </Carousel>
+        <Carousel type="RELATED" key="RELATED" action={(selectedProduct) => turnOnModal(selectedProduct)} data={data} />
       </section>
       <section>
         <h4>YOUR OUTFIT</h4>
-        <Carousel>
-          {outfit.map((product) => <ItemCard type="OUTFIT" key={product} item={product} action={(selectedProduct) => removeOutfit(selectedProduct)} />)}
-          <AddToOutfitCard addOutfit={(addToOutfit) => addOutfit(addToOutfit)} product={mainProduct} />
-        </Carousel>
+        <Carousel type="OUTFIT" key="OUTFIT" action={(selectedProduct) => removeOutfit(selectedProduct)} outfit={outfit} mainProduct={mainProduct} addOutfit={(addToOutfit) => addOutfit(addToOutfit)} />
       </section>
     </section>
   );
