@@ -12,6 +12,7 @@ class QuestionsAnswers extends React.Component {
 
     this.state = {
       questions: [],
+      product_id: '',
     };
 
     this.showModal = this.showModal.bind(this);
@@ -46,8 +47,10 @@ class QuestionsAnswers extends React.Component {
     return (
       <div>
         {console.log(this.state)}
-        <button type="button" onClick={this.getQuestions}>Click Me</button>
-        <h1>Hello World</h1>
+        <h1>{this.state.product_id
+          ? 'Product something'
+          : 'Hello World'}
+        </h1>
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>

@@ -7,7 +7,7 @@ const AnswerStyle = {
 };
 
 const Answers = ({
-  showModal, body, asker, date,
+  body, asker, date,
 }) => (
   <div style={AnswerStyle}>
     <br />
