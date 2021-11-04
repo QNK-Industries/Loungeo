@@ -4,7 +4,7 @@ const BottomSection = () => (
   <div>
     Load more questions
     <br />
-    Add an answer +
+    Add a question +
   </div>
 );
 
