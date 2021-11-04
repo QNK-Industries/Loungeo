@@ -1,25 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import styled from 'styled-components';
 
-export default function StarRating() {
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
+const starShapes = [
+  "./dist/images/empty star.png",
+  "./dist/images/quarter star.png",
+  "./dist/images/half star.png",
+  "./dist/images/three quarter star.png",
+  "./dist/images/filled star.png",
+]
+
+export default function StarRating({rating}) {
+  const stars = [];
+  while(stars.length < 5) {
+    switch(true) {
+      case (rating >= 1):
+        stars.push(starShapes[4]);
+        break;
+      case (rating === .75):
+        stars.push(starShapes[3]);
+        break;
+      case (rating === .5):
+        stars.push(starShapes[2]);
+        break;
+      case (rating === .25):
+        stars.push(starShapes[1]);
+        break;
+      case (rating <= 0):
+        stars.push(starShapes[0]);
+        break;
+    }
+    rating -= 1;
+  }
   return (
-    <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
+    <span className="star-rating">
+      {stars.map((star) => {
         return (
-          <button
-            type="button"
-            key={index}
-            className={index <= (hover || rating) ? 'on' : 'off'}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
+            <div style={{display: 'inline-block', position: 'relative' }} className="star">
+              <img src={star} alt="filled star" style={{width: '15px'}} />
+            </div>
         );
       })}
-    </div>
+    </span>
   );
 }
+

@@ -8,7 +8,7 @@ export default function starAverage(obj) {
       ratingsTotal += (Number(obj[rating]) * Number(rating));
       ratingsCount += Number(obj[rating]);
     });
-    result = Math.random(4 * (ratingsTotal / ratingsCount)) / 4;
+    result = Math.round(4 * (ratingsTotal / ratingsCount)) / 4;
   }
   return result;
 }
