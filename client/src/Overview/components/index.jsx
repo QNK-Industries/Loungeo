@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import AddToCart from './AddToCart.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -60,6 +61,7 @@ export default function Overview() {
     <div>
       <ProductInfo item={item} style={currentStyle} rating={rating} />
       <StyleSelector item={item} styles={styles} currentStyle={currentStyle} rating={rating} setCurrentStyle ={setCurrentStyle} />
+      <AddToCart item={item} currentStyle={currentStyle}/>
     </div>
   );
 }
