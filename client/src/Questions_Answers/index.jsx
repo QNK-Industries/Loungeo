@@ -3,6 +3,8 @@ import axios from 'axios';
 import Search from './components/Search.jsx';
 import Questions from './components/Questions.jsx';
 
+const GH_TOKEN = require('../../../tokens.js');
+
 class QuestionsAnswers extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class QuestionsAnswers extends React.Component {
   getQuestions() {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
       headers: {
-        Authorization: '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',
+        Authorization: GH_TOKEN.GH_TOKEN,
       },
     })
 
@@ -48,7 +50,7 @@ class QuestionsAnswers extends React.Component {
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-        <Questions question_body={question.question_body} answers={question.answers} showModal={this.showModal}/>
+          <Questions question_body={question.question_body} answers={question.answers} showModal={this.showModal}/>
         )}
       </div>
     );
