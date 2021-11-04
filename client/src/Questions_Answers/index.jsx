@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './components/Search.jsx';
 import Questions from './components/Questions.jsx';
+import BottomSection from './components/BottomSection.jsx';
 
 const GH_TOKEN = require('../../../tokens.js');
 
@@ -38,7 +39,7 @@ class QuestionsAnswers extends React.Component {
   }
 
   showModal() {
-    console.log(this, 'this is being clicked');
+    console.log(this, 'add answer is being clicked');
   }
 
   render() {
@@ -52,6 +53,7 @@ class QuestionsAnswers extends React.Component {
         {this.state.questions.map((question) =>
           <Questions question_body={question.question_body} answers={question.answers} showModal={this.showModal}/>
         )}
+        <BottomSection />
       </div>
     );
   }

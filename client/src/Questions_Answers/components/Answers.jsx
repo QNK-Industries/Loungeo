@@ -1,16 +1,20 @@
 import React from 'react';
 import moment from 'moment';
 
+const AnswerStyle = {
+  border: '1px solid black',
+  marginTop: '15px',
+};
+
 const Answers = ({
   showModal, body, asker, date,
 }) => (
-  <div>
-    Placeholder |
-    <button type="button" onClick={showModal}>Add Answer</button>
+  <div style={AnswerStyle}>
     <br />
-    A. {body}
+    <strong>A</strong> {body}
     <br />
-    By {asker}, {moment(date).utc().format('MMMM D, YYYY')} | Placeholder | Report
+    <br />
+    By {asker}, {moment(date).utc().format('MMMM D, YYYY')} | Helpful? | Report
   </div>
 );
 
