@@ -20,7 +20,6 @@ export default function AddToCart({ currentStyle }) {
     currentStyle.skus[key].id = key;
     sizesNums.push(currentStyle.skus[key]);
   });
-  console.log(sizesNums);
 
   function postToCart(quantityObj) {
     console.log(quantityObj);

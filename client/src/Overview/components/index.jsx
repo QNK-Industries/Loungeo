@@ -3,13 +3,13 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import DefaultView from './DefaultView.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
 const productUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575';
 const styleUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575/styles';
 const ratingUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=61575';
-const cartURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart';
 
 export default function Overview() {
   const [item, setItem] = useState({});
@@ -50,17 +50,6 @@ export default function Overview() {
       });
   }
 
-  function postToCart(quantity) {
-    axios.post(cartURL, { headers: { Authorization: GH_TOKEN } })
-      .then((res) => {
-        // setStyle(res.data.results);
-        setRating(res.data.ratings);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   useEffect(() => {
     getItem();
     getStyle();
@@ -72,6 +61,7 @@ export default function Overview() {
     isLoading ? <div>Loading</div>
       : (
         <div>
+          <DefaultView currentStyle={currentStyle} />
           <ProductInfo item={item} style={currentStyle} rating={rating} />
           <StyleSelector
             item={item}
