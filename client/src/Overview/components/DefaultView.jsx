@@ -55,16 +55,44 @@ const ClickedThumbnail = styled.img`
   z-index: 10;
 `;
 
+const Button = styled.span`
+  margin: 5px 5px 5px 5px;
+  position: relative;
+  left: 0;
+  height: 10px;
+  width: 25px;
+  cursor: pointer;
+  z-index: 10;
+  color: grey;
+  font-size: 40px;
+  -webkit-text-stroke: 2px white;
+`;
+
 export default function DefaultView({ currentStyle }) {
+  let button = null;
   const [imageIndex, setImageIndex] = useState(0);
 
   if (Object.keys(currentStyle).length === 0) {
     return (<div>Loading Image</div>);
   }
 
+  if (imageIndex === 0) {
+    button = <Button type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</Button>;
+  } else if (imageIndex === currentStyle.photos.length - 1) {
+    button = <Button type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</Button>;
+  } else {
+    button = (
+      <>
+        <Button type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</Button>
+        <Button type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</Button>
+      </>
+    );
+  }
+
   return (
     <>
       <Div>
+        {button}
         <Img src={currentStyle.photos[imageIndex].url} alt="" />
         {currentStyle.photos.map((image, index) => {
           const thumbnail = image.thumbnail_url;

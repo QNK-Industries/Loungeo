@@ -22,7 +22,6 @@ export default function AddToCart({ currentStyle }) {
   });
 
   function postToCart(quantityObj) {
-    console.log(quantityObj);
     axios.post(cartURL, quantityObj, { headers: { Authorization: GH_TOKEN } })
       .catch((error) => {
         console.error(error);
