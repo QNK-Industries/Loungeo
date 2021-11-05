@@ -25,12 +25,12 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   }
 
   return (
-    <section className="ratings-module">
-      <div className="ratings-left-section">
-        <h2>
+    <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'space-around' }}>
+      <div className="ratings-left-section" style={{ width: '400px' }}>
+        <h2 style={{ 'font-size': '16px' }}>
           RATINGS & REVIEWS
         </h2>
-        <RatingsTable />
+        <RatingsTable mainProduct={mainProduct} />
         <RatingsSlideBar />
         <div className="review-button-container">
           <ReviewButton type="ADD" action={() => console.log('add review')} />

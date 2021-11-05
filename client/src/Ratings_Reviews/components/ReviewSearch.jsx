@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewSearch = () => (
   <div>
-    Test
+    <input placeholder="Search Reviews" />
   </div>
 );
 
