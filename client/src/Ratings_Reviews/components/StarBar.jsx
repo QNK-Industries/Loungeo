@@ -11,10 +11,11 @@ const IndividualStarBar = styled.div`
   width: 400px;
   height: 20px;
   align-items: center;
-  background-color: ${(props) => (props.selected ? 'lightgrey' : 'white')};
+  cursor: pointer;
+  background-color: ${(props) => (props.selected ? 'yellow' : 'white')};
 
   & :hover {
-    background-color: ${$highlightColor};
+    background-color: ${(props) => (props.selected ? 'darkgrey' : `${$highlightColor}`)};
   }
 `;
 
@@ -35,8 +36,8 @@ width: 50px;
 margin 0 auto;
 `;
 
-const StarBar = ({ stars, amount, total, selected }) => (
-  <IndividualStarBar selected={selected}>
+const StarBar = ({ stars, amount, total, selected, toggleSelected }) => (
+  <IndividualStarBar selected={selected} onClick={() => toggleSelected(stars)}>
     <TextSegment>
       {stars === 1 ? '1 star' : `${stars} stars`}
     </TextSegment>

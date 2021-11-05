@@ -1,3 +1,5 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import starAverage from '../../Shared/StarAverage.jsx';
@@ -26,6 +28,7 @@ const ReveiwScoreHeader = styled.div`
 const RatingsTable = ({ mainProduct }) => {
   const [ratingData, setRatingData] = useState({});
   const [starAverageData, setStarAverageData] = useState({});
+  const [selectedStar, setSelectedStar] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false });
 
   useEffect(() => utils.getRating(mainProduct.id, (results) => {
     setRatingData(results);
@@ -36,12 +39,22 @@ const RatingsTable = ({ mainProduct }) => {
     return Math.floor((Number(ratingData.recommended.true) / starAverageData.total) * 100);
   }
 
+  function isSelected(star) {
+    return selectedStar[star];
+  }
+
+  function toggleSelected(star) {
+    const stateCopy = { ...selectedStar };
+    stateCopy[star] = !selectedStar[star];
+    setSelectedStar(stateCopy);
+  }
+
   function displayStarBars() {
     const bars = [];
     for (let i = 5; i > 0; i -= 1) {
       let ratingCount = 0;
       if (ratingData.ratings[i]) ratingCount = ratingData.ratings[i];
-      bars.push(<StarBar key={i} stars={i} amount={ratingCount} total={starAverageData.total} />);
+      bars.push(<StarBar key={i} stars={i} amount={ratingCount} total={starAverageData.total} selected={isSelected(i)} toggleSelected={(star) => toggleSelected(star)} />);
     }
     return bars;
   }
