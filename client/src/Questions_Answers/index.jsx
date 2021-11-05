@@ -40,10 +40,11 @@ class QuestionsAnswers extends React.Component {
       .catch((error) => { console.log(error); });
   }
 
-  showModal() {
-    this.setState({
-      showModal: !this.state.showModal,
-    });
+  showModal(e) {
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+    }));
+    console.log(e);
   }
 
   render() {
@@ -57,7 +58,7 @@ class QuestionsAnswers extends React.Component {
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-          <Questions question_body={question.question_body} answers={question.answers} showModal={this.showModal}/>
+          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal}/>
         )}
         <BottomSection />
       </div>
