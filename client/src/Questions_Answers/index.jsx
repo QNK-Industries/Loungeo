@@ -13,6 +13,7 @@ class QuestionsAnswers extends React.Component {
     this.state = {
       questions: [],
       product_id: '',
+      showModal: false,
     };
 
     this.showModal = this.showModal.bind(this);
@@ -40,7 +41,9 @@ class QuestionsAnswers extends React.Component {
   }
 
   showModal() {
-    console.log(this, 'add answer is being clicked');
+    this.setState({
+      showModal: !this.state.showModal,
+    });
   }
 
   render() {

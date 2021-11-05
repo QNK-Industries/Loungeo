@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import Overview from './Overview/index.jsx';
 // import Overview from './Overview/components/index.jsx';
 
-import QuestionsAnswers from './Questions_Answers/index.jsx'
+import QuestionsAnswers from './Questions_Answers/index.jsx';
 
 ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
 

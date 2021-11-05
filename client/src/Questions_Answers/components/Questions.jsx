@@ -13,7 +13,7 @@ const Questions = ({ question_body, answers, showModal }) => (
     </div>
     <h2>Q. {question_body}</h2>
     {/* <Answers showModal={props.showModal} /> */}
-    {Object.keys(answers).map((answer) => <Answers showModal={showModal} body={answers[answer].body} asker={answers[answer].answerer_name} date={answers[answer].date} />)}
+    {Object.keys(answers).map((answer) => <Answers showModal={showModal} body={answers[answer].body} asker={answers[answer].answerer_name} date=   {answers[answer].date} />)}
 
   </div>
 );
