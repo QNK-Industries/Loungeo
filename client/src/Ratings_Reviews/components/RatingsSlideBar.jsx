@@ -3,8 +3,8 @@ import React from 'react';
 import IndividualSlider from './IndividualSlider.jsx';
 
 const RatingsSlideBar = ({ characteristics, characteristicList }) => (
-  <div>
-    {Object.keys(characteristics).map((char) => <IndividualSlider characteristic={char} rating={characteristicList[char]} />)}
+  <div style={{ width: '300px', margin: '0 auto' }}>
+    {Object.keys(characteristics).map((char) => <IndividualSlider characteristic={char} characteristicDetails={characteristicList[char]} rating={characteristics[char]} />)}
   </div>
 );
 

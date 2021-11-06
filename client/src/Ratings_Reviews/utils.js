@@ -12,4 +12,10 @@ const getRating = (id, callback) => {
   });
 };
 
-export default { getRating };
+const getReviews = (id, page, sortBy, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?page=${page}&count=100&sort=${sortBy}&product_id=${id}`, headers).then((results) => {
+    callback(results.data);
+  });
+};
+
+export default { getRating, getReviews };

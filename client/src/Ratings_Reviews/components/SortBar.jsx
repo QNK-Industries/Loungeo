@@ -1,18 +1,18 @@
 import React from 'react';
 
-const SortBar = () => (
-  <div>
-    <h4>
+const SortBar = ({ changeSorting }) => (
+  <div style={{ display: 'flex' }}>
+    <h4 style={{ margin: '0 5px' }}>
       Sort by
     </h4>
-    <select name="sort" id="sort">
-      <option value="RELEVANT">
+    <select name="sort" id="sort" onChange={(event) => changeSorting(event.target.value)}>
+      <option value="relevant">
         Relevant
       </option>
-      <option value="HELPFUL">
+      <option value="helpful">
         Helpful
       </option>
-      <option value="NEWEST">
+      <option value="newest">
         Newest
       </option>
     </select>

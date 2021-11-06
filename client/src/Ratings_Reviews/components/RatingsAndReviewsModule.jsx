@@ -56,57 +56,69 @@ const characteristicList = {
 };
 
 const RatingsAndReviewsModule = ({ mainProduct }) => {
+  const [reviewData, setReviewData] = useState([]);
   const [ratingData, setRatingData] = useState({});
   const [starAverageData, setStarAverageData] = useState({});
+  const [apiReviewPage, setApiReviewPage] = useState(1);
   const [shownReviews, setShownReviews] = useState(2);
   const [writingReview, setWritingReview] = useState(false);
-  const [sortBy, setSortBy] = useState('RELEVANCE');
+  const [sortBy, setSortBy] = useState('relevant');
   const [searchConstraint, setSearchConstraint] = useState('');
+
+  // ensure all reviews are stored in reviewData bucket
+  useEffect(() => utils.getReviews(mainProduct.id, apiReviewPage, sortBy, (results) => {
+    setReviewData([...reviewData, ...results.results]);
+    if (reviewData.length === apiReviewPage * 100) {
+      setApiReviewPage(apiReviewPage + 1);
+    }
+  }), [apiReviewPage]);
 
   useEffect(() => utils.getRating(mainProduct.id, (results) => {
     setRatingData(results);
     setStarAverageData(starAverage(results.ratings));
   }), []);
 
-  function displayAddReview() {
+  function displayReviewModal() {
     if (writingReview) {
       return <ReviewModal mainProduct={mainProduct} modalOff={() => setWritingReview(false)} />;
     }
     return null;
   }
 
-  /*   function displayData() {
-    console.log('rating data');
-    console.log(ratingData);
-    console.log('star average data');
-    console.log(starAverageData);
-  } */
-
-  function changeSorting(type) {
+  function changeSort(type) {
     setSortBy(type);
+    setShownReviews(1);
+  }
+
+  function checkIfMoreReviews() {
+    if (shownReviews < reviewData.length) {
+      return <ReviewButton type="MORE REVIEWS" action={() => setShownReviews(shownReviews + 2)} />;
+    }
+    return null;
   }
 
   if (starAverageData.total) {
     return (
-      <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'space-around' }}>
+      <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'center' }}>
+        {console.log(shownReviews)}
         <div className="ratings-left-section" style={{ width: '400px' }}>
           <h2 style={{ 'font-size': '16px' }}>
             RATINGS & REVIEWS
           </h2>
           <RatingsTable ratingData={ratingData} starAverageData={starAverageData} />
           <RatingsSlideBar characteristics={ratingData.characteristics} characteristicList={characteristicList} />
-          <div className="review-button-container">
-            <ReviewButton type="ADD" action={() => console.log('add review')} />
-            <ReviewButton type="MORE" action={() => setShownReviews(shownReviews + 2)} />
+          <div className="review-button-container" style={{ display: 'flex', 'justify-content': 'space-evenly' }}>
+            <ReviewButton type="ADD A REVIEW +" action={() => setWritingReview(true)} />
+            {checkIfMoreReviews()}
           </div>
         </div>
-        <div className="ratings-right-section">
-          <div className="reviews-nav-bar">
-            <SortBar changeSorting={(type) => changeSorting(type)} />
+        <div className="ratings-right-section" style={{ width: '800px', border: 'solid 1px red' }}>
+          <div className="reviews-nav-bar" style={{ display: 'flex', 'justify-content': 'space-between', 'margin-bottom': '10px' }}>
+            <SortBar changeSorting={(type) => changeSort(type)} />
             <ReviewSearch search={(query) => setSearchConstraint(query)} />
           </div>
-          {displayAddReview()}
-          <ReviewsContainer totalReviews={shownReviews} sortBy={sortBy} search={searchConstraint} />
+          {displayReviewModal()}
+          <ReviewsContainer reviews={reviewData} totalReviews={shownReviews} sortBy={sortBy} search={searchConstraint} />
         </div>
       </section>
     );
