@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewButton = () => (
   <div>
-    Test
+    Review Button Placeholder
   </div>
 );
 

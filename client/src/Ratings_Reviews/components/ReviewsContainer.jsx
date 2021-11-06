@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewsContainer = () => (
   <div>
-    Test
+    Review Container Placeholder
   </div>
 );
 
