@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 
@@ -44,15 +44,22 @@ const formStyle = {
   zIndex: '3000',
 };
 
-const Modal = ({ modal, showModal, qBody, questionID }) =>
+const Modal = ({ modal, showModal, qBody, questionID, getQuestions }) =>
 {
 const [answerBody, setAnswerBody] = useState('');
 const [nickname, setNickname] = useState('');
 const [email, setEmail] = useState('');
 
+useEffect(() =>
+axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
+  headers: {
+    Authorization: GH_TOKEN.GH_TOKEN,
+  },
+}))
+
 
 const handleSubmit = (e) => {
-  e.preventDefault();
+  e.preventDefault()
   if (formCheck()) {
     const newAnswer = {
       body: answerBody,
@@ -62,19 +69,13 @@ const handleSubmit = (e) => {
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer,  {
       headers: {
         Authorization: GH_TOKEN.GH_TOKEN,
-      },
+      }
     })
     .then((res) => {
       console.log('You did it dawg:', res.data)
-      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
-        headers: {
-          Authorization: GH_TOKEN.GH_TOKEN,
-        },
-      })
-      .then(() => {
-        showModal()
-      })
     })
+    .then(() => getQuestions())
+    .then(() =>  showModal())
     .catch(console.log)
   }
 }

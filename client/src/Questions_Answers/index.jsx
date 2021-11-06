@@ -58,7 +58,7 @@ class QuestionsAnswers extends React.Component {
           : 'Hello World'}
         </h1>
         {this.state.showModal
-          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} />
+          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions}/>
           : <h1>Not Working</h1>}
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
