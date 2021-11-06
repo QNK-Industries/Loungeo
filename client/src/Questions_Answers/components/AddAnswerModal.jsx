@@ -50,6 +50,22 @@ const [email, setEmail] = useState('');
 
 
 
+const formCheck = () => {
+  if (!answerBody) {
+    alert('Please Provide Your Answer');
+    return false;
+  } else if (!nickname) {
+    alert('Please Provide Your Nickname')
+    return false;
+  } else if (!email) {
+    alert('Please Provide Your Email')
+    return false
+  } else {
+    return true;
+  }
+}
+
+
 return (
 modal ? ReactDOM.createPortal(
   <React.Fragment>
@@ -62,12 +78,15 @@ modal ? ReactDOM.createPortal(
         <div style={formStyle}>
           <h1>Submit Your Answer</h1>
           <h2>{qBody}</h2>
-          <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID)}>CLICK CLICK CLICK</button>
+          <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID, 'nickname ', nickname, 'email ', email, 'answerbody ', answerBody)}>CLICK CLICK CLICK</button>
        <form>
        <label>
           Nickname:
           <br />
-         <input placeholder="“Example: jack543!”"></input>
+         <input
+         placeholder="Example: jack543!"
+         onChange={(e) => setNickname(e.target.value)}
+         ></input>
          <br />
          “For privacy reasons, do not use your full name or email address"
        </label>
@@ -75,7 +94,10 @@ modal ? ReactDOM.createPortal(
        <label>
          Email:
           <br />
-         <input placeholder="Example: jack543!@noev.cam"></input>
+         <input
+         placeholder="Example: jack543!@noev.cam"
+         onChange={(e) => setEmail(e.target.value)}
+         ></input>
          <br/>
          “For authentication reasons, you will not be emailed”
        </label>
@@ -83,7 +105,9 @@ modal ? ReactDOM.createPortal(
        <label>
          Answer Body
          <br />
-         <textarea width='200px'/>
+         <textarea
+          onChange={(e) => setAnswerBody(e.target.value)}
+         width='200px'/>
        </label>
        <br />
        <button>Upload Photos</button> {' '}<button>Submit</button>
