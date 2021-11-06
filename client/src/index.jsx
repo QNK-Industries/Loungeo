@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import Overview from './Overview/components/index.jsx';
@@ -13,7 +14,7 @@ import RatingsAndReviewsModule from './Ratings_Reviews/components/RatingsAndRevi
 
 // Quinton Testing
 
-const staticItem = {
+/* const staticItem = {
   id: 61579,
   campus: 'hr-sfo',
   name: 'Heir Force Ones',
@@ -41,15 +42,14 @@ const staticItem = {
       value: 'Double Stitch',
     },
   ],
-};
+}; */
 
-/* const staticItem2 = {
+const staticItem2 = {
   id: 61618,
   campus: 'hr-sfo',
   name: 'Gerson Slacks',
   slogan: 'Sequi consequatur consequatur assumenda.',
-  description: 'Facilis dolor eaque esse voluptatem eum mollitia voluptatibus harum non.
-  Aut illo quo est. Excepturi quia blanditiis blanditiis quia aut quis.',
+  description: 'Facilis dolor eaque esse voluptatem eum mollitia voluptatibus harum non. Aut illo quo est. Excepturi quia blanditiis blanditiis quia aut quis.',
   category: 'Slacks',
   default_price: '286.00',
   created_at: '2021-10-28T19:58:55.070Z',
@@ -60,7 +60,7 @@ const staticItem = {
       value: null,
     },
   ],
-}; */
+};
 // ReactDOM.render(<RelatedItemsModule mainProduct={staticItem} />,document.getElementById('root'));
 
-ReactDOM.render(<RatingsAndReviewsModule mainProduct={staticItem} />, document.getElementById('root'));
+ReactDOM.render(<RatingsAndReviewsModule mainProduct={staticItem2} />, document.getElementById('root'));
