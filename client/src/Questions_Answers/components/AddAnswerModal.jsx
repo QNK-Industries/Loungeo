@@ -23,34 +23,61 @@ const modalWrapper = {
   overflowX: 'hidden',
   overflowY: 'auto',
   outline: '0',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 };
 
 const modalDiv = {
   zIndex: '1055',
+  backgroundColor: 'white',
+  width: '60%',
+  height: '350px',
+  border: '3px solid black',
 };
 
 const formStyle = {
   position: 'relative',
   textAlign: 'center',
-  border: '1px solid green',
   zIndex: '3000',
 };
 
 const Modal = ({ modal, showModal }) =>
 modal ? ReactDOM.createPortal(
   <React.Fragment>
-    <div style={overlay} />
+   <div style={overlay} />
     <div style={modalWrapper} onClick={showModal}>
       <div style={modalDiv}  onClick={e => {
           // Need to use this to be able to click on things inside Modal without closing
           e.stopPropagation();
         }}>
         <div style={formStyle}>
+          <h1>Submit Your Answer</h1>
+          <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID)}>CLICK CLICK CLICK</button>
        <form>
        <label>
-         Your Answer
-         <input placeholder="Your Answer"></input>
+          Nickname:
+          <br />
+         <input placeholder="“Example: jack543!”"></input>
+         <br />
+         “For privacy reasons, do not use your full name or email address"
        </label>
+       <br />
+       <label>
+         Email:
+          <br />
+         <input placeholder="Example: jack543!@noev.cam"></input>
+         <br/>
+         “For authentication reasons, you will not be emailed”
+       </label>
+       <br />
+       <label>
+         Answer Body
+         <br />
+         <textarea width='200px'/>
+       </label>
+       <br />
+       <button>Upload Photos</button> {' '}<button>Submit</button>
        </form>
        </div>
       </div>
