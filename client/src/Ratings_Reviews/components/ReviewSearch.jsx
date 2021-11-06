@@ -2,8 +2,11 @@ import React from 'react';
 
 const ReviewSearch = ({ search }) => {
   function searchFilter({ target }) {
-    if (target.value.length > 2) {
-      search(target.value);
+    const adjustedString = target.value.toLowerCase();
+    if (adjustedString.length > 2) {
+      search(adjustedString);
+    } else {
+      search('');
     }
   }
 
