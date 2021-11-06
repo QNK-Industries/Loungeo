@@ -42,7 +42,7 @@ const formStyle = {
   zIndex: '3000',
 };
 
-const Modal = ({ modal, showModal }) =>
+const Modal = ({ modal, showModal, qBody, questionID }) =>
 modal ? ReactDOM.createPortal(
   <React.Fragment>
    <div style={overlay} />
@@ -53,6 +53,7 @@ modal ? ReactDOM.createPortal(
         }}>
         <div style={formStyle}>
           <h1>Submit Your Answer</h1>
+          <h2>{qBody}</h2>
           <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID)}>CLICK CLICK CLICK</button>
        <form>
        <label>

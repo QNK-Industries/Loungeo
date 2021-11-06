@@ -41,11 +41,12 @@ class QuestionsAnswers extends React.Component {
       .catch((error) => { console.log(error); });
   }
 
-  showModal(e) {
+  showModal(id, qBody) {
     this.setState((prevState) => ({
       showModal: !prevState.showModal,
+      questionID: id,
+      questionBody: qBody,
     }));
-    console.log(e);
   }
 
   render() {
@@ -57,7 +58,7 @@ class QuestionsAnswers extends React.Component {
           : 'Hello World'}
         </h1>
         {this.state.showModal
-          ? <Modal modal={this.state.showModal} showModal={this.showModal} />
+          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} />
           : <h1>Not Working</h1>}
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}

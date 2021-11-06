@@ -13,7 +13,7 @@ const Questions = ({ modal, id, questionBody, answers, showModal }) => {
       <div style={RightBar}>
         <button onClick={() => console.log(modal)}>CLICK MEE</button>
         Helpful? |
-        <button type="button" onClick={showModal}>Add Answer</button>
+        <button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</button>
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
