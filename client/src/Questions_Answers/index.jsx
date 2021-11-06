@@ -3,6 +3,7 @@ import axios from 'axios';
 import Search from './components/Search.jsx';
 import Questions from './components/Questions.jsx';
 import BottomSection from './components/BottomSection.jsx';
+import Modal from './components/AddAnswerModal.jsx';
 
 const GH_TOKEN = require('../../../tokens.js');
 
@@ -55,6 +56,9 @@ class QuestionsAnswers extends React.Component {
           ? 'Product something'
           : 'Hello World'}
         </h1>
+        {this.state.showModal
+          ? <Modal modal={this.state.showModal} showModal={this.showModal} />
+          : <h1>Not Working</h1>}
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>

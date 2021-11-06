@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Answers from './Answers.jsx';
 
+
 const RightBar = {
   float: 'right',
 };
 
 const Questions = ({ modal, id, questionBody, answers, showModal }) => {
-  const [questionId, setId] = useState(id);
+  const [questionId] = useState(id);
   return (
     <div>
       <div style={RightBar}>
+        <button onClick={() => console.log(modal)}>CLICK MEE</button>
         Helpful? |
         <button type="button" onClick={showModal}>Add Answer</button>
       </div>
@@ -20,9 +22,6 @@ const Questions = ({ modal, id, questionBody, answers, showModal }) => {
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
         date={answers[answer].date} />)}
-        {modal
-        ? null
-        : <h1>MODAL!!!</h1>}
     </div>
   );
 };
