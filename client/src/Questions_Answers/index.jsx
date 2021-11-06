@@ -28,7 +28,7 @@ class QuestionsAnswers extends React.Component {
   }
 
   getQuestions() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=4', {
       headers: {
         Authorization: GH_TOKEN.GH_TOKEN,
       },

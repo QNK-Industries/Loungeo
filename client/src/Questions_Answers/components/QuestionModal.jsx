@@ -59,9 +59,10 @@ const handleSubmit = (e) => {
       email: email,
       product_id: productId
     };
+
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, newQuestion,  {
       headers: {
-        Authorization: GH_TOKEN.GH_TOKEN,
+        Authorization: GH_TOKEN.GH_TOKEN
       }
     })
     .then((res) => {
@@ -69,7 +70,11 @@ const handleSubmit = (e) => {
     })
     .then(() => getQuestions())
     .then(() =>  showQuestion())
-    .catch(console.log)
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response.data)
+      }
+    })
   }
 }
 

@@ -6,7 +6,7 @@ const RightBar = {
 };
 
 const Questions = ({ modal, id, questionBody, answers, showModal }) => {
-  const [questionId] = useState(id);
+  const [questionId, setQuestionId] = useState(id);
   return (
     <div>
       <div style={RightBar}>
@@ -16,11 +16,11 @@ const Questions = ({ modal, id, questionBody, answers, showModal }) => {
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
-      {Object.keys(answers).map((answer) => <Answers
+      {Object.keys(answers).slice(0, 2).map((answer) => <Answers
         showModal={showModal}
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
-        date={answers[answer].date} />)}
+        date={answers[answer].date} />).reverse()}
     </div>
   );
 };
