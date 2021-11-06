@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 
+const GH_TOKEN = require('../../../../tokens.js');
+
 const overlay = {
   position: 'fixed',
   top: '0',
@@ -49,6 +51,33 @@ const [nickname, setNickname] = useState('');
 const [email, setEmail] = useState('');
 
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (formCheck()) {
+    const newAnswer = {
+      body: answerBody,
+      name: nickname,
+      email: email,
+    };
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer,  {
+      headers: {
+        Authorization: GH_TOKEN.GH_TOKEN,
+      },
+    })
+    .then((res) => {
+      console.log('You did it dawg:', res.data)
+      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
+        headers: {
+          Authorization: GH_TOKEN.GH_TOKEN,
+        },
+      })
+      .then(() => {
+        showModal()
+      })
+    })
+    .catch(console.log)
+  }
+}
 
 const formCheck = () => {
   if (!answerBody) {
@@ -79,7 +108,7 @@ modal ? ReactDOM.createPortal(
           <h1>Submit Your Answer</h1>
           <h2>{qBody}</h2>
           <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID, 'nickname ', nickname, 'email ', email, 'answerbody ', answerBody)}>CLICK CLICK CLICK</button>
-       <form>
+       <form onSubmit={handleSubmit}>
        <label>
           Nickname:
           <br />
@@ -116,6 +145,6 @@ modal ? ReactDOM.createPortal(
       </div>
    </ div>
   </React.Fragment>, document.body,
-) : null);
+): null);
 };
 export default Modal;
