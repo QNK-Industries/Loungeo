@@ -1,20 +1,15 @@
 /* eslint-disable max-len */
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Overview from './Overview/components/index.jsx';
-// import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
+import Overview from './Overview/components/index.jsx';
+import QuestionsAnswers from './Questions_Answers/index.jsx';
+import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
 import RatingsAndReviewsModule from './Ratings_Reviews/components/RatingsAndReviewsModule.jsx';
-// import QuestionsAnswers from './Questions_Answers/index.jsx';
 
-// Khai testing
-// ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
+const tests = ['NOAH', 'KHAI', 'QUINTON1', 'QUINTON2'];
+const CURRENTLY_TESTING = tests[0];
 
-// Noah Testing
-// ReactDOM.render(<Overview />, document.getElementById('root'));
-
-// Quinton Testing
-
-/* const staticItem = {
+const staticItem = {
   id: 61579,
   campus: 'hr-sfo',
   name: 'Heir Force Ones',
@@ -42,7 +37,7 @@ import RatingsAndReviewsModule from './Ratings_Reviews/components/RatingsAndRevi
       value: 'Double Stitch',
     },
   ],
-}; */
+};
 
 const staticItem2 = {
   id: 61618,
@@ -61,6 +56,20 @@ const staticItem2 = {
     },
   ],
 };
-// ReactDOM.render(<RelatedItemsModule mainProduct={staticItem} />,document.getElementById('root'));
 
-ReactDOM.render(<RatingsAndReviewsModule mainProduct={staticItem2} />, document.getElementById('root'));
+switch (CURRENTLY_TESTING) {
+  case 'NOAH':
+    ReactDOM.render(<Overview />, document.getElementById('root'));
+    break;
+  case 'KHAI':
+    ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
+    break;
+  case 'QUINTON1':
+    ReactDOM.render(<RelatedItemsModule mainProduct={staticItem} />, document.getElementById('root'));
+    break;
+  case 'QUINTON2':
+    ReactDOM.render(<RatingsAndReviewsModule mainProduct={staticItem2} />, document.getElementById('root'));
+    break;
+  default:
+    ReactDOM.render(<h1>Please select a proper value for CURRENTLY_TESTING to display</h1>, document.getElementById('root'));
+}
