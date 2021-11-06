@@ -9,7 +9,7 @@ import RatingsAndReviewsModule from './Ratings_Reviews/components/RatingsAndRevi
 // ReactDOM.render(<QuestionsAnswers />, document.getElementById('root'));
 
 // Noah Testing
-// ReactDOM.render(<Overview />, document.getElementById('root'));
+ReactDOM.render(<Overview />, document.getElementById('root'));
 
 // Quinton Testing
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import DefaultView from './DefaultView.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -60,6 +61,7 @@ export default function Overview() {
     isLoading ? <div>Loading</div>
       : (
         <div>
+          <DefaultView currentStyle={currentStyle} />
           <ProductInfo item={item} style={currentStyle} rating={rating} />
           <StyleSelector
             item={item}

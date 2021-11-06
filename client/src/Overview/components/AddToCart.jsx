@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+const cartURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart';
+const GH_TOKEN = require('../../../../tokens.js');
 
 export default function AddToCart({ currentStyle }) {
   if (Object.keys(currentStyle).length === 0) {
@@ -8,13 +12,21 @@ export default function AddToCart({ currentStyle }) {
   }
   const [currentSize, setCurrentSize] = useState('');
   const [currentQuantity, setCurrentQuantity] = useState(null);
+  const [currentID, setCurrentID] = useState(null);
 
   const sizesNums = [];
   const skusKeys = Object.keys(currentStyle.skus);
   skusKeys.forEach((key) => {
+    currentStyle.skus[key].id = key;
     sizesNums.push(currentStyle.skus[key]);
   });
-  console.log(sizesNums);
+
+  function postToCart(quantityObj) {
+    axios.post(cartURL, quantityObj, { headers: { Authorization: GH_TOKEN } })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   return (
     <div>
       <div>
@@ -35,6 +47,7 @@ export default function AddToCart({ currentStyle }) {
               onClick={() => {
                 setCurrentSize(sizeNum.size);
                 setCurrentQuantity(sizeNum.quantity);
+                setCurrentID(Number(sizeNum.id));
               }}
               style={{ padding: '10px' }}
             >{sizeNum.size}
@@ -53,7 +66,7 @@ export default function AddToCart({ currentStyle }) {
                   <option>{quantity}</option>
                 ))}
               </select>
-              <button>Add to Cart</button>
+              <button onClick={() => postToCart({ count: currentQuantity, sku_id: currentID })}>Add to Cart</button>
             </>
           )
           : <button onClick={() => { alert('Please Select a Size'); }}>Add to Cart</button>}
