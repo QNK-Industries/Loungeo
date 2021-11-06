@@ -12,7 +12,6 @@ const Container = styled.div`
 const ReviewsContainer = ({ reviews, reviewLimit, search }) => {
   function displayReviews() {
     return reviews
-      .filter((review) => !search || review.body.toLowerCase().indexOf(search) !== -1 || review.summary.toLowerCase().indexOf(search) !== -1)
       .filter((review, index) => index < reviewLimit)
       .map((review) => <Review review={review} search={search} />);
   }

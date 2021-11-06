@@ -63,6 +63,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   const [writingReview, setWritingReview] = useState(false);
   const [starAverageData, setStarAverageData] = useState({});
   const [searchConstraint, setSearchConstraint] = useState('');
+  const [filteredReviewData, setFilteredReviewData] = useState([]);
 
   function displayReviewModal() {
     if (writingReview) {
@@ -72,7 +73,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   }
 
   function checkIfMoreReviews() {
-    if (reviewLimit < reviewData.length) {
+    if (reviewLimit < filteredReviewData.length) {
       return <ReviewButton type="MORE REVIEWS" action={() => setReviewLimit(reviewLimit + 2)} />;
     }
     return null;
@@ -106,6 +107,11 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
     fetchReviewData();
   }, []);
 
+  useEffect(() => {
+    setFilteredReviewData(reviewData
+      .filter((review) => !searchConstraint || review.body.toLowerCase().indexOf(searchConstraint) !== -1 || review.summary.toLowerCase().indexOf(searchConstraint) !== -1));
+  }, [searchConstraint, reviewData]);
+
   if (starAverageData.total) {
     return (
       <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'center' }}>
@@ -126,7 +132,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
             <ReviewSearch search={(query) => setSearchConstraint(query)} />
           </div>
           {displayReviewModal()}
-          <ReviewsContainer reviews={reviewData} reviewLimit={reviewLimit} search={searchConstraint} />
+          <ReviewsContainer reviews={filteredReviewData} reviewLimit={reviewLimit} search={searchConstraint} />
         </div>
       </section>
     );
