@@ -56,27 +56,13 @@ const characteristicList = {
 };
 
 const RatingsAndReviewsModule = ({ mainProduct }) => {
+  const [sortBy, setSortBy] = useState('relevant');
   const [reviewData, setReviewData] = useState([]);
   const [ratingData, setRatingData] = useState({});
-  const [starAverageData, setStarAverageData] = useState({});
-  const [apiReviewPage, setApiReviewPage] = useState(1);
-  const [shownReviews, setShownReviews] = useState(2);
+  const [reviewLimit, setReviewLimit] = useState(2);
   const [writingReview, setWritingReview] = useState(false);
-  const [sortBy, setSortBy] = useState('relevant');
+  const [starAverageData, setStarAverageData] = useState({});
   const [searchConstraint, setSearchConstraint] = useState('');
-
-  // ensure all reviews are stored in reviewData bucket
-  useEffect(() => utils.getReviews(mainProduct.id, apiReviewPage, sortBy, (results) => {
-    setReviewData([...reviewData, ...results.results]);
-    if (reviewData.length === apiReviewPage * 100) {
-      setApiReviewPage(apiReviewPage + 1);
-    }
-  }), [apiReviewPage]);
-
-  useEffect(() => utils.getRating(mainProduct.id, (results) => {
-    setRatingData(results);
-    setStarAverageData(starAverage(results.ratings));
-  }), []);
 
   function displayReviewModal() {
     if (writingReview) {
@@ -85,22 +71,44 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
     return null;
   }
 
-  function changeSort(type) {
-    setSortBy(type);
-    setShownReviews(1);
-  }
-
   function checkIfMoreReviews() {
-    if (shownReviews < reviewData.length) {
-      return <ReviewButton type="MORE REVIEWS" action={() => setShownReviews(shownReviews + 2)} />;
+    if (reviewLimit < reviewData.length) {
+      return <ReviewButton type="MORE REVIEWS" action={() => setReviewLimit(reviewLimit + 2)} />;
     }
     return null;
   }
 
+  function fetchReviewData(apiPage = 1, sort = sortBy, typeChange = false) {
+    utils.getReviews(mainProduct.id, apiPage, sort, (results) => {
+      if (typeChange) {
+        setReviewData(results.results);
+      } else {
+        setReviewData([...reviewData, ...results.results]);
+      }
+
+      if (reviewData.length === apiPage * 100) {
+        fetchReviewData(apiPage + 1, sort);
+      }
+    });
+  }
+
+  function changeSort(type) {
+    setSortBy(type);
+    setReviewLimit(2);
+    fetchReviewData(1, type, true);
+  }
+
+  useEffect(() => {
+    utils.getRating(mainProduct.id, (results) => {
+      setRatingData(results);
+      setStarAverageData(starAverage(results.ratings));
+    });
+    fetchReviewData();
+  }, []);
+
   if (starAverageData.total) {
     return (
       <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'center' }}>
-        {console.log(shownReviews)}
         <div className="ratings-left-section" style={{ width: '400px' }}>
           <h2 style={{ 'font-size': '16px' }}>
             RATINGS & REVIEWS
@@ -118,7 +126,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
             <ReviewSearch search={(query) => setSearchConstraint(query)} />
           </div>
           {displayReviewModal()}
-          <ReviewsContainer reviews={reviewData} totalReviews={shownReviews} sortBy={sortBy} search={searchConstraint} />
+          <ReviewsContainer reviews={reviewData} reviewLimit={reviewLimit} search={searchConstraint} />
         </div>
       </section>
     );
