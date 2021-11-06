@@ -1,11 +1,9 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import starAverage from '../../Shared/StarAverage.jsx';
 import StarBar from './StarBar.jsx';
 import StarRating from '../../Shared/StarRating.jsx';
-import utils from '../utils.js';
 
 const ReveiwScoreHeader = styled.div`
   width:100%;
@@ -25,15 +23,17 @@ const ReveiwScoreHeader = styled.div`
   }
 `;
 
-const RatingsTable = ({ mainProduct }) => {
-  const [ratingData, setRatingData] = useState({});
-  const [starAverageData, setStarAverageData] = useState({});
-  const [selectedStar, setSelectedStar] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false });
+const RemoveFilterBox = styled.div`
+  width: 150px;
+  height: 25px;
+  margin: 0 auto;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 5px;
+`;
 
-  useEffect(() => utils.getRating(mainProduct.id, (results) => {
-    setRatingData(results);
-    setStarAverageData(starAverage(results.ratings));
-  }), []);
+const RatingsTable = ({ ratingData, starAverageData }) => {
+  const [selectedStar, setSelectedStar] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false });
 
   function displayRecommendedPercent() {
     return Math.floor((Number(ratingData.recommended.true) / starAverageData.total) * 100);
@@ -49,6 +49,10 @@ const RatingsTable = ({ mainProduct }) => {
     setSelectedStar(stateCopy);
   }
 
+  function clearFilters() {
+    setSelectedStar({ 1: false, 2: false, 3: false, 4: false, 5: false });
+  }
+
   function displayStarBars() {
     const bars = [];
     for (let i = 5; i > 0; i -= 1) {
@@ -59,30 +63,39 @@ const RatingsTable = ({ mainProduct }) => {
     return bars;
   }
 
-  if (starAverageData.total) {
-    return (
-      <div>
-        <ReveiwScoreHeader>
-          <h1>
-            {starAverageData.average}
-          </h1>
-          <div className="review-star-header">
-            <StarRating ratingObj={starAverageData} />
-            <span>
-              {starAverageData.total === 1 ? '1 review' : `${starAverageData.total} reviews`}
-            </span>
-          </div>
-        </ReveiwScoreHeader>
-        <div className="rating-sorter">
-          {displayStarBars()}
-        </div>
-        <h4 style={{ 'text-align': 'center' }}>
-          {displayRecommendedPercent()}% of reviewers would recommend this product
-        </h4>
-      </div>
-    );
+  function removeAllFilters() {
+    if (Object.values(selectedStar).indexOf(true) !== -1) {
+      return (
+        <RemoveFilterBox onClick={() => clearFilters()}>
+          <span>Remove Filters X</span>
+        </RemoveFilterBox>
+      );
+    }
+    return <RemoveFilterBox />;
   }
-  return 'Loading';
+
+  return (
+    <div>
+      <ReveiwScoreHeader>
+        <h1>
+          {starAverageData.average}
+        </h1>
+        <div className="review-star-header">
+          <StarRating ratingObj={starAverageData} />
+          <span>
+            {starAverageData.total === 1 ? '1 review' : `${starAverageData.total} reviews`}
+          </span>
+        </div>
+      </ReveiwScoreHeader>
+      <div className="rating-sorter">
+        {displayStarBars()}
+        {removeAllFilters()}
+      </div>
+      <h4 style={{ 'text-align': 'center' }}>
+        {displayRecommendedPercent()}% of reviewers would recommend this product
+      </h4>
+    </div>
+  );
 };
 
 export default RatingsTable;
