@@ -43,6 +43,14 @@ const formStyle = {
 };
 
 const Modal = ({ modal, showModal, qBody, questionID }) =>
+{
+const [answerBody, setAnswerBody] = useState('');
+const [nickname, setNickname] = useState('');
+const [email, setEmail] = useState('');
+
+
+
+return (
 modal ? ReactDOM.createPortal(
   <React.Fragment>
    <div style={overlay} />
@@ -83,7 +91,7 @@ modal ? ReactDOM.createPortal(
        </div>
       </div>
    </ div>
-  </React.Fragment>, document.body
-) : null;
-
+  </React.Fragment>, document.body,
+) : null);
+};
 export default Modal;
