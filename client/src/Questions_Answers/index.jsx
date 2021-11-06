@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './components/Search.jsx';
 import Questions from './components/Questions.jsx';
-import BottomSection from './components/BottomSection.jsx';
+import QuestionModal from './components/QuestionModal.jsx';
 import Modal from './components/AddAnswerModal.jsx';
 
 const GH_TOKEN = require('../../../tokens.js');
@@ -15,10 +15,12 @@ class QuestionsAnswers extends React.Component {
       questions: [],
       product_id: '',
       showModal: false,
+      showQuestion: false,
     };
 
     this.showModal = this.showModal.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
+    this.addQuestion = this.addQuestion.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +51,12 @@ class QuestionsAnswers extends React.Component {
     }));
   }
 
+  addQuestion() {
+    this.setState((prevState) => ({
+      showQuestion: !prevState.showQuestion,
+    }));
+  }
+
   render() {
     return (
       <div>
@@ -58,14 +66,22 @@ class QuestionsAnswers extends React.Component {
           : 'Hello World'}
         </h1>
         {this.state.showModal
-          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions}/>
-          : <h1>Not Working</h1>}
+          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
+          : null}
+        {this.state.showQuestion
+         ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id}/>
+         : <h2>Question Modal False</h2>}
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal}/>
+          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} />
         )}
-        <BottomSection />
+        <div>
+          <button type="button">  Load more questions </button>
+          {' '}
+          {' '}
+          <button type="button" onClick={this.addQuestion}> Add a question + </button>
+        </div>
       </div>
     );
   }

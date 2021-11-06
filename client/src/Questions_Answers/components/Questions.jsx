@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Answers from './Answers.jsx';
 
-
 const RightBar = {
   float: 'right',
 };

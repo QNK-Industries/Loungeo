@@ -44,21 +44,22 @@ const formStyle = {
   zIndex: '3000',
 };
 
-const Modal = ({ modal, showModal, qBody, questionID, getQuestions }) =>
+const QuestionModal = ({ question, showQuestion, getQuestions,productId }) =>
 {
-const [answerBody, setAnswerBody] = useState('');
+const [questionBody, setQuestionBody] = useState('');
 const [nickname, setNickname] = useState('');
 const [email, setEmail] = useState('');
 
 const handleSubmit = (e) => {
   e.preventDefault()
   if (formCheck()) {
-    const newAnswer = {
-      body: answerBody,
+    const newQuestion = {
+      body: questionBody,
       name: nickname,
       email: email,
+      product_id: productId
     };
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer,  {
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, newQuestion,  {
       headers: {
         Authorization: GH_TOKEN.GH_TOKEN,
       }
@@ -67,14 +68,14 @@ const handleSubmit = (e) => {
       console.log('You did it dawg:', res.data)
     })
     .then(() => getQuestions())
-    .then(() =>  showModal())
+    .then(() =>  showQuestion())
     .catch(console.log)
   }
 }
 
 const formCheck = () => {
-  if (!answerBody) {
-    alert('Please Provide Your Answer');
+  if (!questionBody) {
+    alert('Please Provide Your Question');
     return false;
   } else if (!nickname) {
     alert('Please Provide Your Nickname')
@@ -89,18 +90,23 @@ const formCheck = () => {
 
 
 return (
-modal ? ReactDOM.createPortal(
+question ? ReactDOM.createPortal(
   <React.Fragment>
    <div style={overlay} />
-    <div style={modalWrapper} onClick={showModal}>
+    <div style={modalWrapper} onClick={showQuestion}>
       <div style={modalDiv}  onClick={e => {
           // Need to use this to be able to click on things inside Modal without closing
           e.stopPropagation();
         }}>
         <div style={formStyle}>
-          <h1>Submit Your Answer</h1>
-          <h2>{qBody}</h2>
-          <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID, 'nickname ', nickname, 'email ', email, 'answerbody ', answerBody)}>CLICK CLICK CLICK</button>
+          <h1>Submit Your Question</h1>
+          <button onClick={() => {
+            console.log(
+              'This is the nickname, ', nickname,
+              'This is the qBody ', questionBody,
+              'This is the email ', email,
+              'This is the product id ', productId,
+            )}}>Click</button>
        <form onSubmit={handleSubmit}>
        <label>
           Nickname:
@@ -125,14 +131,14 @@ modal ? ReactDOM.createPortal(
        </label>
        <br />
        <label>
-         Answer Body
+         Question Body
          <br />
          <textarea
-          onChange={(e) => setAnswerBody(e.target.value)}
+          onChange={(e) => setQuestionBody(e.target.value)}
          width='200px'/>
        </label>
        <br />
-       <button>Upload Photos</button> {' '}<button>Submit</button>
+        <button>Submit</button>
        </form>
        </div>
       </div>
@@ -140,4 +146,4 @@ modal ? ReactDOM.createPortal(
   </React.Fragment>, document.body,
 ): null);
 };
-export default Modal;
+export default QuestionModal;

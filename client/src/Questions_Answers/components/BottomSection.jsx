@@ -2,9 +2,9 @@ import React from 'react';
 
 const BottomSection = () => (
   <div>
-    Load more questions
-    <br />
-    Add a question +
+    <button type="button">  Load more questions </button>
+    {' '}
+    <button type="button"> Add a question + </button>
   </div>
 );
 
