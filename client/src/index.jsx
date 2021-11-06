@@ -7,6 +7,8 @@ import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.js
 import RatingsAndReviewsModule from './Ratings_Reviews/components/RatingsAndReviewsModule.jsx';
 
 const tests = ['NOAH', 'KHAI', 'QUINTON1', 'QUINTON2'];
+
+// Change array selection below to swap modules. Add props to your modules through switch block as needed.
 const CURRENTLY_TESTING = tests[0];
 
 const staticItem = {
