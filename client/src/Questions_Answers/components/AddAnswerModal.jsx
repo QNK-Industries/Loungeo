@@ -15,6 +15,9 @@ const overlay = {
 
 const modalWrapper = {
   position: 'fixed',
+  justifyContent: 'center',
+  alignItems: 'center',
+  display: 'flex',
   top: '0',
   left: '0',
   zIndex: '10',
@@ -47,6 +50,18 @@ modal ? ReactDOM.createPortal(
         }}>
         <div style={formStyle}>
        <form>
+       <label>
+         Your Answer
+         <input placeholder="Your Answer"></input>
+       </label>
+       <label>
+         Your Answer
+         <input placeholder="Your Answer"></input>
+       </label>
+       <label>
+         Your Answer
+         <input placeholder="Your Answer"></input>
+       </label>
        <label>
          Your Answer
          <input placeholder="Your Answer"></input>
