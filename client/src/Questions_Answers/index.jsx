@@ -37,7 +37,7 @@ class QuestionsAnswers extends React.Component {
       .then((response) => {
         this.setState({
           questions: response.data.results,
-          product_id: response.data.product_id,
+          product_id: parseInt(response.data.product_id, 10),
         });
       })
       .catch((error) => { console.log(error); });
@@ -65,6 +65,7 @@ class QuestionsAnswers extends React.Component {
           ? 'Product something'
           : 'Hello World'}
         </h1>
+        <button onClick={() => console.log(this.state)}>State Check</button>
         {this.state.showModal
           ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
           : null}

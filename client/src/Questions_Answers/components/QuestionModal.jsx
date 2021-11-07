@@ -57,7 +57,9 @@ const handleSubmit = (e) => {
       body: questionBody,
       name: nickname,
       email: email,
-      product_id: 61575,
+      //Doesn't work with productId being passed down.
+      //Hard coded for now.
+      product_id: product_id,
     };
 
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, newQuestion,  {
@@ -105,13 +107,8 @@ question ? ReactDOM.createPortal(
         }}>
         <div style={formStyle}>
           <h1>Submit Your Question</h1>
-          <button onClick={() => {
-            console.log(
-              'This is the nickname, ', nickname,
-              'This is the qBody ', questionBody,
-              'This is the email ', email,
-              'This is the product id ', productId,
-            )}}>Click</button>
+
+
        <form onSubmit={handleSubmit}>
        <label>
           Nickname:
