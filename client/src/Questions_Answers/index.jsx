@@ -65,13 +65,12 @@ class QuestionsAnswers extends React.Component {
           ? 'Product something'
           : 'Hello World'}
         </h1>
-        <button onClick={() => console.log(this.state)}>State Check</button>
         {this.state.showModal
           ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
           : null}
         {this.state.showQuestion
          ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id}/>
-         : <h2>Question Modal False</h2>}
+         : null}
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>

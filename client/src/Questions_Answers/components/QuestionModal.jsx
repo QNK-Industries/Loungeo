@@ -57,8 +57,6 @@ const handleSubmit = (e) => {
       body: questionBody,
       name: nickname,
       email: email,
-      //Doesn't work with productId being passed down.
-      //Hard coded for now.
       product_id: product_id,
     };
 

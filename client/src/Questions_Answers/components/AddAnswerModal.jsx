@@ -100,7 +100,6 @@ modal ? ReactDOM.createPortal(
         <div style={formStyle}>
           <h1>Submit Your Answer</h1>
           <h2>{qBody}</h2>
-          <button onClick={() => console.log('qbody ', qBody, 'question ID ', questionID, 'nickname ', nickname, 'email ', email, 'answerbody ', answerBody)}>CLICK CLICK CLICK</button>
        <form onSubmit={handleSubmit}>
        <label>
           Nickname:
