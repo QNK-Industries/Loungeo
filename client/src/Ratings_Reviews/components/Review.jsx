@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import StarRating from '../../Shared/StarRating.jsx';
+import HelpfulBar from './HelpfulBar.jsx';
 
 const StyledReview = styled.div`
   margin-bottom: 30px;
@@ -15,13 +16,31 @@ const StyledReview = styled.div`
 const ReviewBorder = styled.div`
   width: 95%;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 5px;
   border-bottom: solid 2px lightgrey;
 `;
 
 const ColumnDiv = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const SellerResponse = styled.div`
+  width: 80%;
+  padding: 5px 20px;
+  margin: 0 auto;
+  background-color: lightgreen;
+`;
+
+const ReviewPhotos = styled.div`
+  padding: 20px;
+  display: flex;
+
+  & img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 10px;
+  }
 `;
 
 const Review = ({ review, search }) => {
@@ -108,6 +127,22 @@ const Review = ({ review, search }) => {
     );
   }
 
+  function displaySellerResponse() {
+    if (review.response) {
+      return (
+        <SellerResponse>
+          <h4>
+            Response from seller:
+          </h4>
+          <p>
+            {review.response}
+          </p>
+        </SellerResponse>
+      );
+    }
+    return null;
+  }
+
   return (
     <StyledReview>
       <div style={{ display: 'flex', 'justify-content': 'space-between' }}>
@@ -117,6 +152,16 @@ const Review = ({ review, search }) => {
       {splitSummary()}
       <div>
         {displayBody()}
+      </div>
+      {displaySellerResponse()}
+      <ReviewPhotos>
+        {review.photos.map((photo) => <img alt="review submitted" src={photo.url} />)}
+      </ReviewPhotos>
+      <div style={{ display: 'flex', 'justify-content': 'space-between', 'margin-top': '10px' }}>
+        <span>
+          by {review.reviewer_name}
+        </span>
+        <HelpfulBar reviewId={review.review_id} helpfulness={review.helpfulness} />
       </div>
       <ReviewBorder />
     </StyledReview>
