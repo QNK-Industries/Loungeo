@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewModal = () => (
   <div>
-    Test
+    Review Modal Placeholder
   </div>
 );
 

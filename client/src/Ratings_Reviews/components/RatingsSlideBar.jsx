@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 import React from 'react';
+import IndividualSlider from './IndividualSlider.jsx';
 
-const RatingsSlideBar = () => (
-  <div>
-    Test
+const RatingsSlideBar = ({ characteristics, characteristicList }) => (
+  <div style={{ width: '300px', margin: '0 auto' }}>
+    {Object.keys(characteristics).map((char) => <IndividualSlider characteristic={char} characteristicDetails={characteristicList[char]} rating={characteristics[char]} />)}
   </div>
 );
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import AddToCart from './AddToCart.jsx';
+import DefaultView from './DefaultView.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -14,6 +16,7 @@ export default function Overview() {
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [rating, setRating] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
   function getItem() {
     axios.get(productUrl, { headers: { Authorization: GH_TOKEN } })
@@ -51,12 +54,25 @@ export default function Overview() {
     getItem();
     getStyle();
     getRating();
+    setLoading(false);
   }, []);
 
   return (
-    <div>
-      <ProductInfo item={item} style={currentStyle} rating={rating} />
-      <StyleSelector item={item} styles={styles} rating={rating} />
-    </div>
+    isLoading ? <div>Loading</div>
+      : (
+        <div>
+          <DefaultView currentStyle={currentStyle} />
+          <ProductInfo item={item} style={currentStyle} rating={rating} />
+          <StyleSelector
+            item={item}
+            styles={styles}
+            currentStyle={currentStyle}
+            rating={rating}
+            setCurrentStyle={setCurrentStyle}
+          />
+          {/* <div>Select Size:</div> */}
+          <AddToCart item={item} currentStyle={currentStyle} />
+        </div>
+      )
   );
 }
