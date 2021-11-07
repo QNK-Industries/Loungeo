@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import SortBar from './SortBar.jsx';
-import utils from '../utils.js';
-import ReviewModal from './ReviewModal.jsx';
-import RatingsTable from './RatingsTable.jsx';
-import ReviewButton from './ReviewButton.jsx';
-import ReviewSearch from './ReviewSearch.jsx';
-import RatingsSlideBar from './RatingsSlideBar.jsx';
-import ReviewsContainer from './ReviewsContainer.jsx';
-import starAverage from '../../Shared/StarAverage.jsx';
+import SortBar from './components/SortBar.jsx';
+import utils from './utils.js';
+import ReviewModal from './components/ReviewModal.jsx';
+import RatingsTable from './components/RatingsTable.jsx';
+import ReviewButton from './components/ReviewButton.jsx';
+import ReviewSearch from './components/ReviewSearch.jsx';
+import RatingsSlideBar from './components/RatingsSlideBar.jsx';
+import ReviewsContainer from './components/ReviewsContainer.jsx';
+import starAverage from '../Shared/StarAverage.jsx';
 
 const characteristicList = {
   Size: {
