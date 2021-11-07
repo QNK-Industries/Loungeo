@@ -35,8 +35,10 @@ const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQu
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
         date={answers[answer].date} helpful={answers[answer].helpfulness} id={answers[answer].id} addHelpful={addHelpful}/>).reverse()}
-        <button onClick={() => setAnswerCount(answerCount + 2)}
+        {Object.keys(answers).length
+        ? <button onClick={() => setAnswerCount(answerCount + 2)}
         >Add More Answers</button>
+        : null}
     </div>
   );
 };
