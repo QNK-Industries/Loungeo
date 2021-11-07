@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Answers from './Answers.jsx';
 
 const RightBar = {
   float: 'right',
 };
 
-const Questions = ({ question_body, answers, showModal }) => (
-  <div>
-    <div style={RightBar}>
-      Helpful? |
-      <button type="button" onClick={showModal}>Add Answer</button>
+const Questions = ({ modal, id, questionBody, answers, showModal }) => {
+  const [questionId, setQuestionId] = useState(id);
+  return (
+    <div>
+      <div style={RightBar}>
+        Helpful? |
+        <button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</button>
+      </div>
+      <h2>Q. {questionBody}</h2>
+      {/* <Answers showModal={props.showModal} /> */}
+      {Object.keys(answers).slice(0, 2).map((answer) => <Answers
+        showModal={showModal}
+        body={answers[answer].body}
+        asker={answers[answer].answerer_name}
+        date={answers[answer].date} />).reverse()}
     </div>
-    <h2>Q. {question_body}</h2>
-    {/* <Answers showModal={props.showModal} /> */}
-    {Object.keys(answers).map((answer) => <Answers showModal={showModal} body={answers[answer].body} asker={answers[answer].answerer_name} date={answers[answer].date} />)}
-
-  </div>
-);
+  );
+};
 
 export default Questions;

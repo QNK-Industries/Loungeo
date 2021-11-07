@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Search from './components/Search.jsx';
 import Questions from './components/Questions.jsx';
-import BottomSection from './components/BottomSection.jsx';
+import QuestionModal from './components/QuestionModal.jsx';
+import Modal from './components/AddAnswerModal.jsx';
 
 const GH_TOKEN = require('../../../tokens.js');
 
@@ -13,10 +14,13 @@ class QuestionsAnswers extends React.Component {
     this.state = {
       questions: [],
       product_id: '',
+      showModal: false,
+      showQuestion: false,
     };
 
     this.showModal = this.showModal.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
+    this.addQuestion = this.addQuestion.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +28,7 @@ class QuestionsAnswers extends React.Component {
   }
 
   getQuestions() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=4', {
       headers: {
         Authorization: GH_TOKEN.GH_TOKEN,
       },
@@ -33,14 +37,24 @@ class QuestionsAnswers extends React.Component {
       .then((response) => {
         this.setState({
           questions: response.data.results,
-          product_id: response.data.product_id,
+          product_id: parseInt(response.data.product_id, 10),
         });
       })
       .catch((error) => { console.log(error); });
   }
 
-  showModal() {
-    console.log(this, 'add answer is being clicked');
+  showModal(id, qBody) {
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+      questionID: id,
+      questionBody: qBody,
+    }));
+  }
+
+  addQuestion() {
+    this.setState((prevState) => ({
+      showQuestion: !prevState.showQuestion,
+    }));
   }
 
   render() {
@@ -51,12 +65,23 @@ class QuestionsAnswers extends React.Component {
           ? 'Product something'
           : 'Hello World'}
         </h1>
+        {this.state.showModal
+          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
+          : null}
+        {this.state.showQuestion
+         ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id}/>
+         : null}
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-          <Questions question_body={question.question_body} answers={question.answers} showModal={this.showModal}/>
+          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} />
         )}
-        <BottomSection />
+        <div>
+          <button type="button">  Load more questions </button>
+          {' '}
+          {' '}
+          <button type="button" onClick={this.addQuestion}> Add a question + </button>
+        </div>
       </div>
     );
   }
