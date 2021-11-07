@@ -68,7 +68,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
 
   function displayReviewModal() {
     if (writingReview) {
-      return <ReviewModal mainProduct={mainProduct} modalOff={() => setWritingReview(false)} />;
+      return <ReviewModal product={mainProduct} characteristics={ratingData.characteristics} modalOff={() => setWritingReview(false)} characteristicList={characteristicList} />;
     }
     return null;
   }
