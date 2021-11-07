@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Answers from './Answers.jsx';
 
 const RightBar = {
   float: 'right',
 };
 
-const Questions = ({ modal, id, questionBody, answers, showModal }) => {
+const Questions = ({ modal, id, questionBody, answers, showModal, helpful }) => {
   const [questionId, setQuestionId] = useState(id);
+
   return (
     <div>
       <div style={RightBar}>
-        Helpful? |
+        Helpful? {helpful}|
         <button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</button>
       </div>
       <h2>Q. {questionBody}</h2>
@@ -19,7 +21,7 @@ const Questions = ({ modal, id, questionBody, answers, showModal }) => {
         showModal={showModal}
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
-        date={answers[answer].date} helpful={answers[answer].helpfulness} />).reverse()}
+        date={answers[answer].date} helpful={answers[answer].helpfulness} id={answers[answer].id}/>).reverse()}
     </div>
   );
 };
