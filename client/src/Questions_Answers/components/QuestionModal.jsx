@@ -57,7 +57,7 @@ const handleSubmit = (e) => {
       body: questionBody,
       name: nickname,
       email: email,
-      product_id: productId
+      product_id: 61575,
     };
 
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, newQuestion,  {
@@ -143,7 +143,7 @@ question ? ReactDOM.createPortal(
          width='200px'/>
        </label>
        <br />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
        </form>
        </div>
       </div>
