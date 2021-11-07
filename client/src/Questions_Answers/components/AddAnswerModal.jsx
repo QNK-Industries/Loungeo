@@ -77,7 +77,7 @@ const Modal = ({
       axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer, {
         headers: {
           Authorization: GH_TOKEN.GH_TOKEN,
-        }
+        },
       })
         .then((res) => {
           console.log('You did it dawg:', res.data);

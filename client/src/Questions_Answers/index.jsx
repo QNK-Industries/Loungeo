@@ -33,7 +33,6 @@ class QuestionsAnswers extends React.Component {
         Authorization: GH_TOKEN.GH_TOKEN,
       },
     })
-
       .then((response) => {
         this.setState({
           questions: response.data.results,
@@ -74,7 +73,7 @@ class QuestionsAnswers extends React.Component {
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness}/>
+          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions}/>
         )}
         <div>
           <button type="button">  Load more questions </button>
