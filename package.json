@@ -15,7 +15,8 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --watch",
+    "dev": "webpack --config webpack.config.js --watch --mode=development",
+    "build-client": "webpack",
     "test": "jest src"
   },
   "repository": {
