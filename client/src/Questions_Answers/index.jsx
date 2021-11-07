@@ -70,22 +70,24 @@ class QuestionsAnswers extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state)}
-        <h1>{this.state.product_id
-          ? 'Product something'
-          : 'Hello World'}
-        </h1>
-        {this.state.showModal
-          ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
-          : null}
-        {this.state.showQuestion
-         ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id}/>
-         : null}
-        <Search />
-        {/* <Questions showModal={this.showModal} state={this.state} /> */}
-        {this.state.questions.map((question) =>
-          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber} />
-        )}
+        <div style={{ overflowY: "scroll", height: "500px" }}>
+          {console.log(this.state)}
+          <h1>{this.state.product_id
+            ? 'Product something'
+            : 'Hello World'}
+          </h1>
+          {this.state.showModal
+            ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
+            : null}
+          {this.state.showQuestion
+            ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id} />
+            : null}
+          <Search />
+          {/* <Questions showModal={this.showModal} state={this.state} /> */}
+          {this.state.questions.map((question) =>
+            <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber} />
+          )}
+        </div>
         <div>
           <button type="button" onClick={this.addQuestionCount}>  Load more questions </button>
           {' '}
