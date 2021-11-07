@@ -60,6 +60,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   const [reviewData, setReviewData] = useState([]);
   const [ratingData, setRatingData] = useState({});
   const [reviewLimit, setReviewLimit] = useState(2);
+  const [ratingFilter, setRatingFilter] = useState([]);
   const [writingReview, setWritingReview] = useState(false);
   const [starAverageData, setStarAverageData] = useState({});
   const [searchConstraint, setSearchConstraint] = useState('');
@@ -109,8 +110,9 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
 
   useEffect(() => {
     setFilteredReviewData(reviewData
-      .filter((review) => !searchConstraint || review.body.toLowerCase().indexOf(searchConstraint) !== -1 || review.summary.toLowerCase().indexOf(searchConstraint) !== -1));
-  }, [searchConstraint, reviewData]);
+      .filter((review) => !searchConstraint || review.body.toLowerCase().indexOf(searchConstraint) !== -1 || review.summary.toLowerCase().indexOf(searchConstraint) !== -1)
+      .filter(((review) => ratingFilter.length === 0 || ratingFilter.includes(review.rating))));
+  }, [searchConstraint, reviewData, ratingFilter]);
 
   if (starAverageData.total) {
     return (
@@ -119,7 +121,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
           <h2 style={{ 'font-size': '16px' }}>
             RATINGS & REVIEWS
           </h2>
-          <RatingsTable ratingData={ratingData} starAverageData={starAverageData} />
+          <RatingsTable ratingData={ratingData} starAverageData={starAverageData} filter={(values) => setRatingFilter(values)} />
           <RatingsSlideBar characteristics={ratingData.characteristics} characteristicList={characteristicList} />
           <div className="review-button-container" style={{ display: 'flex', 'justify-content': 'space-evenly' }}>
             <ReviewButton type="ADD A REVIEW +" action={() => setWritingReview(true)} />
