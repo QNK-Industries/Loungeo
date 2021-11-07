@@ -30,11 +30,14 @@ const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQu
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
-      {Object.keys(answers).slice(0, answerCount).map((answer) => <Answers
+      <div style={Object.keys(answers).length
+        ? { overflowY: 'scroll', height: '200px'}
+        : null}>
+        {Object.keys(answers).slice(0, answerCount).map((answer) => <Answers
         showModal={showModal}
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
-        date={answers[answer].date} helpful={answers[answer].helpfulness} id={answers[answer].id} addHelpful={addHelpful}/>).reverse()}
+        date={answers[answer].date} helpful={answers[answer].helpfulness} id={answers[answer].id} addHelpful={addHelpful}/>).reverse()}</div>
         {Object.keys(answers).length
         ? <button onClick={() => setAnswerCount(answerCount + 2)}
         >Add More Answers</button>
