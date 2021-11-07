@@ -31,7 +31,7 @@ const Answers = ({
     <strong>A</strong> {body}
     <br />
     <br />
-    By {asker}, {moment(date).utc().format('MMMM D, YYYY')} |  <span onClick={() => addHelpful(questionId, putRequest)}>Helpful? {helpful ? helpful : null}</span> | <span onClick={() => reportAnswer(questionId)}>Report</span>
+    By {asker === "Seller" ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  <span onClick={() => addHelpful(questionId, putRequest)}>Helpful? {helpful ? helpful : null}</span> | <span onClick={() => reportAnswer(questionId)}>Report</span>
   </div>
 );}
 
