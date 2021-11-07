@@ -17,7 +17,7 @@ const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQu
       },
     })
       .then((response) => console.log('You did it dawg ', response.data))
-      .then(() => getQuestions())
+      .then(() => getQuestions(count))
       .catch((error) => console.log(error));
   };
 
