@@ -37,7 +37,7 @@ const CharacteristicSelection = ({ type, details }) => {
   function creatAllRadios() {
     return Object.keys(details).map((index) => (
       <StyledLabel htmlFor={`radio-${type.toLowerCase()}-${index}`}>
-        <input id={`radio-${type.toLowerCase()}-${index}`} type="radio" name={`${type}`} />
+        <input id={`radio-${type.toLowerCase()}-${index}`} type="radio" name={`${type}`} required />
         <span>{details[index]}</span>
       </StyledLabel>
     ));
