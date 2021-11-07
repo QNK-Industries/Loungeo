@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Answers from './Answers.jsx';
 
@@ -9,6 +9,7 @@ const RightBar = {
 };
 
 const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQuestions, count }) => {
+  const [answerCount, setAnswerCount] = useState(2);
   const putRequest = 'questions';
   const addHelpful = (questionId, endPoint) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/${endPoint}/${questionId}/helpful`, {}, {
@@ -29,11 +30,13 @@ const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQu
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
-      {Object.keys(answers).slice(0, 2).map((answer) => <Answers
+      {Object.keys(answers).slice(0, answerCount).map((answer) => <Answers
         showModal={showModal}
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
         date={answers[answer].date} helpful={answers[answer].helpfulness} id={answers[answer].id} addHelpful={addHelpful}/>).reverse()}
+        <button onClick={() => setAnswerCount(answerCount + 2)}
+        >Add More Answers</button>
     </div>
   );
 };
