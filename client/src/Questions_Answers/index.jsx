@@ -16,19 +16,22 @@ class QuestionsAnswers extends React.Component {
       product_id: '',
       showModal: false,
       showQuestion: false,
+      questionNumber: 5,
     };
 
     this.showModal = this.showModal.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.addQuestion = this.addQuestion.bind(this);
+    this.addQuestionCount = this.addQuestionCount.bind(this);
   }
 
   componentDidMount() {
-    this.getQuestions();
+    const { questionNumber } = this.state;
+    this.getQuestions(questionNumber);
   }
 
-  getQuestions() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=4', {
+  getQuestions(qNum) {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=${qNum}`, {
       headers: {
         Authorization: GH_TOKEN.GH_TOKEN,
       },
@@ -56,6 +59,14 @@ class QuestionsAnswers extends React.Component {
     }));
   }
 
+  addQuestionCount() {
+    const { questionNumber } = this.state;
+    this.setState((prevState) => ({
+      questionNumber: prevState.questionNumber + 2,
+    }));
+    this.getQuestions(questionNumber);
+  }
+
   render() {
     return (
       <div>
@@ -73,10 +84,10 @@ class QuestionsAnswers extends React.Component {
         <Search />
         {/* <Questions showModal={this.showModal} state={this.state} /> */}
         {this.state.questions.map((question) =>
-          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions}/>
+          <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber}/>
         )}
         <div>
-          <button type="button">  Load more questions </button>
+          <button type="button" onClick={this.addQuestionCount}>  Load more questions </button>
           {' '}
           {' '}
           <button type="button" onClick={this.addQuestion}> Add a question + </button>

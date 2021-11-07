@@ -8,7 +8,7 @@ const RightBar = {
   float: 'right',
 };
 
-const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQuestions }) => {
+const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQuestions, count }) => {
   const putRequest = 'questions';
   const addHelpful = (questionId, endPoint) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/${endPoint}/${questionId}/helpful`, {}, {
