@@ -19,7 +19,7 @@ const Questions = ({ modal, id, questionBody, answers, showModal }) => {
         showModal={showModal}
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
-        date={answers[answer].date} />).reverse()}
+        date={answers[answer].date} helpful={answers[answer].helpfulness} />).reverse()}
     </div>
   );
 };

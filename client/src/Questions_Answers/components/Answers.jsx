@@ -7,14 +7,14 @@ const AnswerStyle = {
 };
 
 const Answers = ({
-  body, asker, date,
+  body, asker, date, helpful,
 }) => (
   <div style={AnswerStyle}>
     <br />
     <strong>A</strong> {body}
     <br />
     <br />
-    By {asker}, {moment(date).utc().format('MMMM D, YYYY')} | Helpful? | Report
+    By {asker}, {moment(date).utc().format('MMMM D, YYYY')} |  <span onClick={() => console.log('Helpful Click ')}>Helpful? {helpful}</span> | Report
   </div>
 );
 
