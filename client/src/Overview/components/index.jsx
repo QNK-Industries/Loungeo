@@ -4,6 +4,8 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import DefaultView from './DefaultView.jsx';
+import ExpandedView from './ExpandedView.jsx';
+import ZoomedView from './ZoomedView.jsx';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -16,7 +18,9 @@ export default function Overview() {
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [rating, setRating] = useState({});
-  const [isLoading, setLoading] = useState(true);
+  const [imageClick, setImageClick] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [mouseLocation, setMouseLocation] = useState([0,0]);
 
   function getItem() {
     axios.get(productUrl, { headers: { Authorization: GH_TOKEN } })
@@ -54,25 +58,51 @@ export default function Overview() {
     getItem();
     getStyle();
     getRating();
-    setLoading(false);
   }, []);
 
+  if (imageClick === 0) {
+    return (
+      <div>
+        <DefaultView
+          currentStyle={currentStyle}
+          setImageClick={setImageClick}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+        />
+        <ProductInfo item={item} style={currentStyle} rating={rating} />
+        <StyleSelector
+          item={item}
+          styles={styles}
+          currentStyle={currentStyle}
+          rating={rating}
+          setCurrentStyle={setCurrentStyle}
+        />
+        {/* <div>Select Size:</div> */}
+        <AddToCart item={item} currentStyle={currentStyle} />
+      </div>
+    );
+  } if (imageClick === 1) {
+    return (
+      <div>
+        <ExpandedView
+          currentStyle={currentStyle}
+          setImageClick={setImageClick}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+          setMouseLocation={setMouseLocation}
+        />
+      </div>
+    );
+  }
   return (
-    isLoading ? <div>Loading</div>
-      : (
-        <div>
-          <DefaultView currentStyle={currentStyle} />
-          <ProductInfo item={item} style={currentStyle} rating={rating} />
-          <StyleSelector
-            item={item}
-            styles={styles}
-            currentStyle={currentStyle}
-            rating={rating}
-            setCurrentStyle={setCurrentStyle}
-          />
-          {/* <div>Select Size:</div> */}
-          <AddToCart item={item} currentStyle={currentStyle} />
-        </div>
-      )
+    <div>
+      <ZoomedView
+        currentStyle={currentStyle}
+        setImageClick={setImageClick}
+        imageIndex={imageIndex}
+        setImageIndex={setImageIndex}
+        mouseLocation={mouseLocation}
+      />
+    </div>
   );
 }
