@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import StarBar from './StarBar.jsx';
 import StarRating from '../../Shared/StarRating.jsx';
@@ -32,7 +32,7 @@ const RemoveFilterBox = styled.div`
   padding-top: 5px;
 `;
 
-const RatingsTable = ({ ratingData, starAverageData }) => {
+const RatingsTable = ({ ratingData, starAverageData, filter }) => {
   const [selectedStar, setSelectedStar] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false });
 
   function displayRecommendedPercent() {
@@ -73,6 +73,14 @@ const RatingsTable = ({ ratingData, starAverageData }) => {
     }
     return <RemoveFilterBox />;
   }
+
+  useEffect(() => {
+    const filterBucket = [];
+    for (let i = 1; i < 6; i += 1) {
+      if (selectedStar[i]) filterBucket.push(i);
+    }
+    filter(filterBucket);
+  }, [selectedStar]);
 
   return (
     <div>

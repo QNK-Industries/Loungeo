@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import StarRating from '../../Shared/StarRating.jsx';
 
@@ -19,7 +19,14 @@ const ReviewBorder = styled.div`
   border-bottom: solid 2px lightgrey;
 `;
 
+const ColumnDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Review = ({ review, search }) => {
+  const [minimizedBody, setMinimizedBody] = useState(true);
+
   function highlightFound(text, type) {
     if (search) {
       const parts = text.split(new RegExp(`(${search})`, 'gi'));
@@ -35,26 +42,70 @@ const Review = ({ review, search }) => {
     return <span className={type}>{text}</span>;
   }
 
-  /*
-    Aut repellendus blanditiis sed voluptas sapiente eligendi quisquam non ut.
-  */
-
   function parseDate() {
     const date = new Date(review.date);
     return <span>{date.toLocaleString('default', { month: 'long' })} {date.getDate()}, {date.getFullYear()}</span>;
   }
 
-  function displaySummary() {
+  function splitSummary() {
     if (review.summary.length > 60) {
       const lastWordBreakPosition = review.summary.substring(0, 60).lastIndexOf(' ');
       return (
-        <div style={{ display: 'flex', 'flex-direction': 'column' }}>
+        <ColumnDiv>
           {highlightFound(`${review.summary.substring(0, lastWordBreakPosition)}...`, 'review-summary')}
           {highlightFound(`...${review.summary.substring(lastWordBreakPosition + 1)}`, 'review-sub-summary')}
-        </div>
+        </ColumnDiv>
       );
     }
-    return highlightFound(review.summary, 'review-summary');
+    return (
+      <ColumnDiv>
+        {highlightFound(review.summary, 'review-summary')}
+      </ColumnDiv>
+    );
+  }
+
+  function displayShowMore() {
+    if (minimizedBody) {
+      return (
+        <button type="button" style={{ width: 'fit-content', 'border-bottom': 'solid 1px black' }} onClick={() => setMinimizedBody(false)}>
+          Show More
+        </button>
+      );
+    }
+    return (
+      <button type="button" style={{ width: 'fit-content', 'border-bottom': 'solid 1px black' }} onClick={() => setMinimizedBody(true)}>
+        Show Less
+      </button>
+    );
+  }
+
+  function splitBody() {
+    if (review.body.length > 250) {
+      const lastWordBreakPosition = review.body.substring(0, 250).lastIndexOf(' ');
+      return (
+        <ColumnDiv>
+          {highlightFound(`${review.body.substring(0, lastWordBreakPosition)}...`, 'review-body')}
+          {displayShowMore()}
+        </ColumnDiv>
+      );
+    }
+    return (
+      <ColumnDiv>
+        {highlightFound(review.body, 'review-body')}
+      </ColumnDiv>
+    );
+  }
+
+  function displayBody() {
+    if (minimizedBody) {
+      return splitBody();
+    }
+    return (
+      <ColumnDiv>
+        {highlightFound(review.body, 'review-body')}
+        {displayShowMore()}
+      </ColumnDiv>
+    );
   }
 
   return (
@@ -63,9 +114,10 @@ const Review = ({ review, search }) => {
         <StarRating ratingObj={{ average: review.rating }} />
         {parseDate()}
       </div>
-      {displaySummary()}
-      <h1>Body</h1>
-      {highlightFound(review.body)}
+      {splitSummary()}
+      <div>
+        {displayBody()}
+      </div>
       <ReviewBorder />
     </StyledReview>
   );
