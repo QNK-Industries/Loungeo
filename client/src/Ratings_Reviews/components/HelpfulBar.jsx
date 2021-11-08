@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import utils from '../utils.js';
 
@@ -23,6 +23,8 @@ const HelpfulBar = ({ reviewId, helpfulness }) => {
   const [selectedReport, setSelectedReport] = useState(false);
   const [yesReview, setYesReview] = useState(helpfulness);
   const [noReview, setNoReview] = useState(0);
+
+  useEffect(() => setYesReview(helpfulness), [reviewId]);
 
   function castVote(vote) {
     if (selectedVote === '') {

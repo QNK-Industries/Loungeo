@@ -2,6 +2,7 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import utils from '../utils.js';
 import OverallRating from './OverallRating.jsx';
 import CharacteristicSelection from './CharacteristicSelection.jsx';
 
@@ -106,7 +107,7 @@ const PersonalInformationContainer = styled.div`
   }
 `;
 
-const ReviewForm = ({ product, modalOff, characteristics, characteristicList, submitForm }) => {
+const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) => {
   const [imageBucket, setImageBucket] = useState([]);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
@@ -188,8 +189,8 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList, su
   function handleSubmit(event) {
     event.preventDefault();
     const newReview = {
-      id: product.id,
-      rating: null,
+      product_id: product.id,
+      rating: Number(event.target.reviewRating.value),
       summary: summary.length === 0 ? null : summary,
       body,
       recommend: !!event.target.recommendProduct.value,
@@ -204,8 +205,8 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList, su
     setJustSubmittedForm(true);
     setTimeout(() => {
       modalOff();
-      submitForm(newReview);
-    }, 3000);
+      utils.submitReview(newReview);
+    }, 2000);
   }
 
   if (justSubmittedForm) {

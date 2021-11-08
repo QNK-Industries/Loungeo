@@ -66,11 +66,6 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   const [searchConstraint, setSearchConstraint] = useState('');
   const [filteredReviewData, setFilteredReviewData] = useState([]);
 
-  function submitForm() {
-    return null;
-    // Submit form object to api
-  }
-
   function displayReviewModal() {
     if (writingReview) {
       return (
@@ -79,7 +74,6 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
           characteristics={ratingData.characteristics}
           modalOff={() => setWritingReview(false)}
           characteristicList={characteristicList}
-          submitForm={(form) => submitForm(form)}
         />
       );
     }
