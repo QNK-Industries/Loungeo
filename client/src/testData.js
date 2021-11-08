@@ -1,20 +1,6 @@
 const replaceWithGetFirstProductApiCall = () => {
   const staticItem = {
-    id: 61618,
-    campus: 'hr-sfo',
-    name: 'Gerson Slacks',
-    slogan: 'Sequi consequatur consequatur assumenda.',
-    description: 'Facilis dolor eaque esse voluptatem eum mollitia voluptatibus harum non. Aut illo quo est. Excepturi quia blanditiis blanditiis quia aut quis.',
-    category: 'Slacks',
-    default_price: '286.00',
-    created_at: '2021-10-28T19:58:55.070Z',
-    updated_at: '2021-10-28T19:58:55.070Z',
-    features: [
-      {
-        feature: 'Non-GMO',
-        value: null,
-      },
-    ],
+    id: 61575, campus: 'hr-sfo', name: 'Camo Onesie', slogan: 'Blend in to your crowd', description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.', category: 'Jackets', default_price: '140.00', created_at: '2021-10-28T19:58:54.904Z', updated_at: '2021-10-28T19:58:54.904Z', features: [{ feature: 'Fabric', value: 'Canvas' }, { feature: 'Buttons', value: 'Brass' }],
   };
   return staticItem;
 };

@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  margin: 32px 16px 5px 100px;
-  height: 520px;
-  width: 570px;
+  height: 90vh;
+  width: 45vw;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   float: left;
+  background-color: grey;
 `;
 const Img = styled.img`
   box-shadow: 2px 2px px black;
   position: absolute;
-  max-height: 520px;
-  max-width: 580px;
+  max-height: 90vh;
+  max-width: 40vw;
   cursor: pointer;
   animation-name: custom;
   animation-iteration-count: 1;
@@ -34,31 +35,29 @@ const Img = styled.img`
 `;
 
 const Thumbnail = styled.img`
-  box-shadow: 2px 2px 5px black
-  margin: 5px 5px 5px 5px;
-  position: relative;
-  left: 0;
-  height: 30px;
-  width: 25px;
-  cursor: pointer;
-  z-index: 10;
+margin: 5px 5px 5px 5px;
+right: 550%;
+position: relative;
+height: 30px;
+width: 25px;
+cursor: pointer;
+z-index: 10;
+box-shadow: 2px 2px 5px black;
 `;
 
 const ClickedThumbnail = styled.img`
-  box-shadow: 2px 2px 5px yellow;
-  margin: 5px 5px 5px 5px;
-  position: relative;
-  left: 0;
-  height: 30px;
-  width: 25px;
-  cursor: pointer;
-  z-index: 10;
+margin: 5px 5px 5px 5px;
+right: 550%;
+position: relative;
+height: 30px;
+width: 25px;
+cursor: pointer;
+z-index: 10;
+box-shadow: 2px 2px 5px yellow;
 `;
 
 const Button = styled.span`
-  margin: 5px 5px 5px 5px;
-  position: relative;
-  left: 0;
+  position: absolute;
   height: 10px;
   width: 25px;
   cursor: pointer;
@@ -66,6 +65,16 @@ const Button = styled.span`
   color: grey;
   font-size: 40px;
   -webkit-text-stroke: 2px white;
+`;
+
+const LeftButton = styled(Button)`
+  left: 1%;
+  bottom: 50%;
+`;
+
+const RightButton = styled(Button)`
+  right: 4%;
+  bottom: 50%;
 `;
 
 export default function DefaultView({
@@ -78,18 +87,18 @@ export default function DefaultView({
   }
 
   if (imageIndex === 0) {
-    button = <Button type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</Button>;
+    button = <RightButton type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</RightButton>;
   } else if (imageIndex === currentStyle.photos.length - 1) {
-    button = <Button type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</Button>;
+    button = <LeftButton type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</LeftButton>;
   } else {
     button = (
       <>
-        <Button type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</Button>
-        <Button type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</Button>
+        <LeftButton type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</LeftButton>
+        <RightButton type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</RightButton>
       </>
     );
   }
-
+  console.log(currentStyle.photos);
   return (
     <>
       <Div>
