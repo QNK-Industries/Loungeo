@@ -16,10 +16,16 @@ const ModalBackground = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
-const ReviewModal = ({ product, modalOff, characteristicList, characteristics }) => (
+const ReviewModal = ({ product, modalOff, characteristicList, characteristics, submitForm }) => (
   <div>
     <ModalBackground onClick={modalOff} />
-    <ReviewForm product={product} modalOff={modalOff} characteristics={characteristics} characteristicList={characteristicList} />
+    <ReviewForm
+      product={product}
+      modalOff={modalOff}
+      characteristics={characteristics}
+      characteristicList={characteristicList}
+      submitForm={submitForm}
+    />
   </div>
 );
 

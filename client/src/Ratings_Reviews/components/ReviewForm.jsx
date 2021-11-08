@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -12,9 +13,9 @@ const ModalContent = styled.div`
   margin: 0 auto;
   padding: 20px;
   border: 1px solid yellow;
-  width: 70vw;
+  width: ${(props) => (props.submitted ? '30vw' : '70vw')};
   max-width: 1200px;
-  height: 60vh;
+  height: ${(props) => (props.submitted ? '10vw' : '60vw')};;
   z-index: 2;
 `;
 
@@ -75,9 +76,40 @@ const RequiredCharacters = styled.div`
   bottom: 0;
 `;
 
-const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) => {
+const PhotoUploadContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & img {
+    max-width: 100px;
+  }
+`;
+
+const PersonalInformationContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  $ label {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & input {
+    margin-left: 5px;
+    width: 300px;
+  }
+
+  & div {
+    width: 100%;
+    text-align: end;
+  }
+`;
+
+const ReviewForm = ({ product, modalOff, characteristics, characteristicList, submitForm }) => {
+  const [imageBucket, setImageBucket] = useState([]);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
+  const [justSubmittedForm, setJustSubmittedForm] = useState(false);
 
   function textCount(type) {
     if (type === 'body') {
@@ -109,6 +141,84 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
     );
   }
 
+  function checkFiles(event) {
+    setImageBucket([...imageBucket, URL.createObjectURL(event.target.files[0])]);
+    event.target.value = '';
+  }
+
+  function displayAddImage() {
+    if (imageBucket.length < 5) {
+      return (
+        <input
+          type="file"
+          name="reviewImages"
+          multiple="multiple"
+          onChange={(event) => checkFiles(event)}
+        />
+      );
+    }
+    return null;
+  }
+
+  function removeImage(index) {
+    const newBucket = [...imageBucket];
+    newBucket.splice(index, 1);
+    setImageBucket(newBucket);
+  }
+
+  function displayImageBucket() {
+    return (
+      <PhotoUploadContainer>
+        <div style={{ display: 'flex', 'flex-direction': 'column' }}>
+          <span>Upload Photos:</span>
+          <span>{imageBucket.length}/5</span>
+        </div>
+        {imageBucket.map((image, index) => (
+          <div>
+            <img alt="review upload" src={image} />
+            <button type="button" onClick={() => removeImage(index)}>X</button>
+          </div>
+        ))}
+        {displayAddImage()}
+      </PhotoUploadContainer>
+    );
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const newReview = {
+      id: product.id,
+      rating: null,
+      summary: summary.length === 0 ? null : summary,
+      body,
+      recommend: !!event.target.recommendProduct.value,
+      name: event.target.reviewUsername.value,
+      email: event.target.reviewEmail.value,
+      photos: imageBucket,
+      characteristics: {},
+    };
+    Object.keys(characteristics).forEach((element) => {
+      newReview.characteristics[characteristics[element].id] = Number(event.target[element].value);
+    });
+    setJustSubmittedForm(true);
+    setTimeout(() => {
+      modalOff();
+      submitForm(newReview);
+    }, 3000);
+  }
+
+  if (justSubmittedForm) {
+    return (
+      <ModalContent submitted>
+        <Title>
+          <h1>
+            Thank you for your submission!
+          </h1>
+        </Title>
+      </ModalContent>
+    );
+  }
+
   return (
     <ModalContent>
       <CloseButton onClick={modalOff}>Close</CloseButton>
@@ -116,19 +226,19 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
         <h1>Write Your Review</h1>
         <p>About the {product.name}</p>
       </Title>
-      <form>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <RatingAndRecommend>
           <div>
             <span>*Overall Rating: *****</span>
           </div>
           <div>
             <span>*Do you recommend this product?</span>
-            <label htmlFor="recommend-yes" required>
-              <input id="recommend-yes" type="radio" name="recommend-product" />
+            <label htmlFor="recommend-yes">
+              <input id="recommend-yes" type="radio" name="recommendProduct" value="true" required />
               Yes
             </label>
-            <label htmlFor="recommend-no" required>
-              <input id="recommend-no" type="radio" name="recommend-product" />
+            <label htmlFor="recommend-no">
+              <input id="recommend-no" type="radio" name="recommendProduct" value="false" />
               No
             </label>
           </div>
@@ -148,7 +258,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
               <input
                 type="text"
                 id="summary-input"
-                name="summary-input"
+                name="summaryInput"
                 placeholder="Example: Best purchase ever!"
                 maxLength="60"
                 onChange={(event) => {
@@ -165,7 +275,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
             <InputContainer inputType="body">
               <textarea
                 id="body-input"
-                name="body-input"
+                name="bodyInput"
                 placeholder="Why did you like the product or not?"
                 minLength="50"
                 maxLength="1000"
@@ -179,6 +289,38 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
             {displayRemainingCharacters()}
           </label>
         </FieldContainer>
+        {displayImageBucket()}
+        <PersonalInformationContainer>
+          <label htmlFor="review-username">
+            *Username:
+            <input
+              id="review-username"
+              name="reviewUsername"
+              max-length="60"
+              type="text"
+              autoComplete="nickname"
+              required
+            />
+            <div>
+              <span>For privacy reasons, do not use your full name.</span>
+            </div>
+          </label>
+          <label htmlFor="review-email">
+            *Email:
+            <input
+              id="review-email"
+              name="reviewEmail"
+              max-length="120"
+              type="email"
+              autoComplete="email"
+              required
+            />
+            <div>
+              <span>For authentication reasons, you will not be emailed.</span>
+            </div>
+          </label>
+        </PersonalInformationContainer>
+        <input type="submit" value="Submit Review" />
       </form>
     </ModalContent>
   );
