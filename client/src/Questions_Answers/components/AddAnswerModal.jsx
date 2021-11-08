@@ -12,6 +12,8 @@ const overlay = {
   width: '100vw',
   height: '100vh',
   backgroundColor: '#000',
+  overflowX: 'hidden',
+  overflowY: 'hidden',
   opacity: '.5',
 };
 
@@ -23,7 +25,7 @@ const modalWrapper = {
   width: '100%',
   height: '100%',
   overflowX: 'hidden',
-  overflowY: 'auto',
+  overflowY: 'hidden',
   outline: '0',
   display: 'flex',
   justifyContent: 'center',
@@ -32,6 +34,7 @@ const modalWrapper = {
 
 const modalDiv = {
   zIndex: '1055',
+  overflowY: 'hidden',
   backgroundColor: 'white',
   width: '60%',
   height: '350px',
