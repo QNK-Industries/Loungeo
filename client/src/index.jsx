@@ -9,7 +9,7 @@ import RatingsAndReviewsModule from './Ratings_Reviews/RatingsAndReviewsModule.j
 const tests = ['NOAH', 'KHAI', 'QUINTON1', 'QUINTON2'];
 
 // Change array selection below to swap modules. Add props to your modules through switch block as needed.
-const CURRENTLY_TESTING = tests[1];
+const CURRENTLY_TESTING = tests[3];
 
 const staticItem = {
   id: 61579,
