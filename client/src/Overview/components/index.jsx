@@ -7,7 +7,7 @@ import DefaultView from './DefaultView.jsx';
 import ExpandedView from './ExpandedView.jsx';
 import ZoomedView from './ZoomedView.jsx';
 
-const GH_TOKEN = require('../../../../tokens.js');
+const { GH_TOKEN } = require('../../../../tokens.js');
 
 const productUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575';
 const styleUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575/styles';

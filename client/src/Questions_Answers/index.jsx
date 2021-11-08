@@ -78,25 +78,30 @@ class QuestionsAnswers extends React.Component {
 
   render() {
     return (
-      <div>
-        <div style={{ overflowY: "scroll", height: "500px" }}>
-          {console.log(this.state)}
+      <section style={{ alignItems: "center" }}>
+        <div style={{display: "block", margin: "0 auto", width: "70vw"}}>
           <h1>{this.state.product_id
             ? 'Product something'
             : 'Hello World'}
           </h1>
+          <AnswerSearch search={this.handleSearch} />
+
+        <div style={{overflowY: "auto", height: "500px"}}>
+          {console.log(this.state)}
+
           {this.state.showModal
             ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
             : null}
           {this.state.showQuestion
             ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id} />
             : null}
-          <AnswerSearch search={this.handleSearch} />
           {/* <Questions showModal={this.showModal} state={this.state} /> */}
-          {this.state.questions.filter((question) => {if (this.state.query === '') {
-            return question;
-          } else if (question.question_body.toLowerCase().includes(this.state.query.toLowerCase())) {
-            return question;}
+          {this.state.questions.filter((question) => {
+            if (this.state.query === '') {
+              return question;
+            } else if (question.question_body.toLowerCase().includes(this.state.query.toLowerCase())) {
+              return question;
+            }
           }).map((question) =>
             <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber} />
           )}
@@ -107,7 +112,8 @@ class QuestionsAnswers extends React.Component {
           {' '}
           <button type="button" onClick={this.addQuestion}> Add a question + </button>
         </div>
-      </div>
+        </div>
+      </section>
     );
   }
 }
