@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Overview from './Overview/components/index.jsx';
 import QuestionsAnswers from './Questions_Answers/index.jsx';
 import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
-import RatingsAndReviewsModule from './Ratings_Reviews/components/RatingsAndReviewsModule.jsx';
+import RatingsAndReviewsModule from './Ratings_Reviews/RatingsAndReviewsModule.jsx';
 
 const tests = ['NOAH', 'KHAI', 'QUINTON1', 'QUINTON2'];
 
