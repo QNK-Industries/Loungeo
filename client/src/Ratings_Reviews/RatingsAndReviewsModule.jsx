@@ -66,7 +66,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   const [searchConstraint, setSearchConstraint] = useState('');
   const [filteredReviewData, setFilteredReviewData] = useState([]);
 
-  function submitForm(form) {
+  function submitForm() {
     return null;
     // Submit form object to api
   }

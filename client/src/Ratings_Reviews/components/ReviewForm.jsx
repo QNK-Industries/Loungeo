@@ -2,6 +2,7 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import OverallRating from './OverallRating.jsx';
 import CharacteristicSelection from './CharacteristicSelection.jsx';
 
 const ModalContent = styled.div`
@@ -228,9 +229,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList, su
       </Title>
       <form onSubmit={(event) => handleSubmit(event)}>
         <RatingAndRecommend>
-          <div>
-            <span>*Overall Rating: *****</span>
-          </div>
+          <OverallRating />
           <div>
             <span>*Do you recommend this product?</span>
             <label htmlFor="recommend-yes">
