@@ -60,12 +60,22 @@ class QuestionsAnswers extends React.Component {
       questionID: id,
       questionBody: qBody,
     }));
+    if (this.state.showModal === true) {
+      document.body.style.overflow = 'unset';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   addQuestion() {
     this.setState((prevState) => ({
       showQuestion: !prevState.showQuestion,
     }));
+    if (this.state.showQuestion === true) {
+      document.body.style.overflow = 'unset';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   addQuestionCount() {
