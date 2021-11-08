@@ -66,13 +66,22 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   const [searchConstraint, setSearchConstraint] = useState('');
   const [filteredReviewData, setFilteredReviewData] = useState([]);
 
+  // Function to see if Review Model is Open
+  function checkIfModalOpen() {
+    if (writingReview === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }
+
   function displayReviewModal() {
     if (writingReview) {
       return (
         <ReviewModal
           product={mainProduct}
           characteristics={ratingData.characteristics}
-          modalOff={() => setWritingReview(false)}
+          modalOff={() => { setWritingReview(false); }}
           characteristicList={characteristicList}
         />
       );
@@ -125,6 +134,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
     return (
       <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'center' }}>
         <div className="ratings-left-section" style={{ width: '400px' }}>
+          {checkIfModalOpen()}
           <h2 style={{ 'font-size': '16px' }}>
             RATINGS & REVIEWS
           </h2>
