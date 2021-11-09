@@ -89,41 +89,72 @@ class QuestionsAnswers extends React.Component {
   }
 
   render() {
+    const {
+      product_id, showModal, questionBody, questionID,
+      showQuestion, questions, query, questionNumber
+    } = this.state;
     return (
-      <section style={{ alignItems: "center" }}>
-        <div style={{display: "block", margin: "0 auto", width: "70vw"}}>
-          <h1>{this.state.product_id
+      <section style={{ alignItems: 'center' }}>
+        <div style={{ display: 'block', margin: '0 auto', width: '70vw' }}>
+          <h1>{product_id
             ? 'Product something'
             : 'Hello World'}
           </h1>
           <AnswerSearch search={this.handleSearch} />
 
-        <div style={{overflowY: "auto", height: "500px"}}>
-          {console.log(this.state)}
+          <div style={{ overflowY: 'auto', height: '500px' }}>
+            {console.log(this.state)}
 
-          {this.state.showModal
-            ? <Modal qBody={this.state.questionBody} questionID={this.state.questionID} modal={this.state.showModal} showModal={this.showModal} getQuestions={this.getQuestions} />
-            : null}
-          {this.state.showQuestion
-            ? <QuestionModal question={this.state.showQuestion} showQuestion={this.addQuestion} getQuestions={this.getQuestions} productId={this.state.product_id} />
-            : null}
-          {/* <Questions showModal={this.showModal} state={this.state} /> */}
-          {this.state.questions.filter((question) => {
-            if (this.state.query === '') {
-              return question;
-            } else if (question.question_body.toLowerCase().includes(this.state.query.toLowerCase())) {
-              return question;
-            }
-          }).map((question) =>
-            <Questions key={question.question_id} id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber} />
-          )}
-        </div>
-        <div>
-          <button type="button" onClick={this.addQuestionCount}>  Load more questions </button>
-          {' '}
-          {' '}
-          <button type="button" onClick={this.addQuestion}> Add a question + </button>
-        </div>
+            {showModal
+              ? (
+                <Modal
+                  qBody={questionBody}
+                  questionID={questionID}
+                  modal={showModal}
+                  showModal={this.showModal}
+                  getQuestions={this.getQuestions}
+                />
+              )
+              : null}
+            {showQuestion
+              ? (
+                <QuestionModal
+                  question={showQuestion}
+                  showQuestion={this.addQuestion}
+                  getQuestions={this.getQuestions}
+                  productId={product_id}
+                />
+              )
+              : null}
+            {/* <Questions showModal={this.showModal} state={this.state} /> */}
+            {questions.filter((question, { question_body }) => {
+              if (query === '') {
+                return question;
+              } else if (question_body.toLowerCase().includes(query.toLowerCase())) {
+                return question;
+              }
+            }).map(({
+              question_id, question_body, answers, question_helpfulness
+            }) => (
+              <Questions
+                key={question_id}
+                id={question_id}
+                questionBody={question_body}
+                answers={answers}
+                modal={showModal}
+                showModal={this.showModal}
+                helpful={question_helpfulness}
+                getQuestions={this.getQuestions}
+                count={questionNumber}
+              />
+            ))}
+          </div>
+          <div>
+            <button type="button" onClick={this.addQuestionCount}>  Load more questions </button>
+            {' '}
+            {' '}
+            <button type="button" onClick={this.addQuestion}> Add a question + </button>
+          </div>
         </div>
       </section>
     );
