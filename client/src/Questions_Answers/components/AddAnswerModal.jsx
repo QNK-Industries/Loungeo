@@ -87,19 +87,33 @@ const Modal = ({
         })
         .then(() => getQuestions())
         .then(() => showModal())
-        .catch(console.log)}
+        .catch(console.log);
+    }
   };
-
 
   return (
     modal ? ReactDOM.createPortal(
-      <React.Fragment>
-        <div style={overlay} />
-        <div style={modalWrapper} onClick={showModal}>
-          <div style={modalDiv} onClick={e => {
-            // Need to use this to be able to click on things inside Modal without closing
-            e.stopPropagation();
-          }}>
+      <>
+        <div
+          style={overlay}
+        />
+        <div
+          role="button"
+          tabIndex="0"
+          style={modalWrapper}
+          onClick={showModal}
+          onKeyDown={(e) => console.log(e)}
+        >
+          <div
+            style={modalDiv}
+            role="button"
+            tabIndex="0"
+            onKeyDown={(e) => console.log(e)}
+            onClick={e => {
+              // Need to use this to be able to click on things inside Modal without closing
+              e.stopPropagation();
+            }}
+          >
             <div style={formStyle}>
               <h1>Submit Your Answer</h1>
               <h2>{qBody}</h2>
@@ -110,7 +124,7 @@ const Modal = ({
                   <input
                     placeholder="Example: jack543!"
                     onChange={(e) => setNickname(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For privacy reasons, do not use your full name or email address"
                 </label>
@@ -121,7 +135,7 @@ const Modal = ({
                   <input
                     placeholder="Example: jack543!@noev.cam"
                     onChange={(e) => setEmail(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For authentication reasons, you will not be emailed”
                 </label>
@@ -138,8 +152,8 @@ const Modal = ({
               </form>
             </div>
           </div>
-        </ div>
-      </React.Fragment>, document.body,
+        </div>
+      </>, document.body,
     ) : null);
 };
 export default Modal;
