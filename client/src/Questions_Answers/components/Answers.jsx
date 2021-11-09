@@ -33,7 +33,8 @@ const Answers = ({
       <br />
       By {asker === 'Seller' ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  Helpful? {
         wasHelpful
-          ? (
+          ? <span> Yes ({helpful}) </span>
+          : (
             <span
               role="button"
               tabIndex={0}
@@ -46,7 +47,6 @@ const Answers = ({
               Yes ({helpful})
             </span>
           )
-          : <span> Yes </span>
       } | <span role="button" tabIndex={0} onClick={() => reportAnswer(id)} onKeyDown={(e) => console.log(e)}>Report</span>
     </div>
   );
