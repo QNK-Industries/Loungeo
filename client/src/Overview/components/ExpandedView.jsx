@@ -1,121 +1,51 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Box = styled.span`
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  z-index: 10;
+`;
+
 const Div = styled.div`
-  margin: 32px 16px 5px 100px;
-  height: 520px;
-  width: 800px;
+  margin: 0px 5px 0px 20px;
+  height: 90vh;
+  width: 35vw;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
-  float: left;
+  align-items: center;
+  &:hover ${Box} {
+    color: blue;
+    border: 2px solid blue;
+    transform-origin: 
+  }
 `;
+
 const Img = styled.img`
   box-shadow: 2px 2px px black;
   position: absolute;
-  height: 520px;
-  width: 800px;
-  cursor: -webkit-zoom-in;
+  height: 90vh;
+  width: 35vw;
+  object-fit: cover;
+  cursor: -webkit-zoom-out;
   animation-name: custom;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 0.2s;
-  @keyframes custom {
-    0% {
-      opacity: 0.7;
-      filter: blur(14px);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(0px);
-    }
-  }
-`;
-
-const Icon = styled.span`
-  margin: 5px 5px 5px 5px;
-  position: relative;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  z-index: 10;
-`;
-
-const ClickedIcon = styled.span`
-  margin: 5px 5px 5px 5px;
-  color: red;
-  position: relative;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  z-index: 10;
-`;
-
-const Button = styled.span`
-  margin: 5px 5px 5px 5px;
-  position: relative;
-  left: 0;
-  height: 10px;
-  width: 25px;
-  cursor: pointer;
-  z-index: 10;
-  color: grey;
-  font-size: 40px;
-  -webkit-text-stroke: 2px white;
 `;
 
 export default function ExpandedView({
-  currentStyle, setImageClick, imageIndex, setImageIndex, setMouseLocation,
+  currentStyle, setImageClick, imageIndex, imageClick,
 }) {
-  let button = null;
-
-  if (Object.keys(currentStyle).length === 0) {
-    return (<div>Loading Image</div>);
-  }
-
-  if (imageIndex === 0) {
-    button = <Button type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</Button>;
-  } else if (imageIndex === currentStyle.photos.length - 1) {
-    button = <Button type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</Button>;
-  } else {
-    button = (
-      <>
-        <Button type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</Button>
-        <Button type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</Button>
-      </>
-    );
-  }
-
   return (
     <>
       <Div>
-        {button}
-        <Img
-          src={currentStyle.photos[imageIndex].url}
-          alt=""
-          onClick={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            setImageClick(2);
-            setMouseLocation([e.clientX - rect.left, e.clientY - rect.top]);
-            console.log('x', e.clientX, rect.left);
-            console.log('y', e.clientY, rect.top);
-          }}
-        />
-        {[...Array(Object.keys(currentStyle).length - 1)].map((image, index) => (
-          imageIndex === index
-            ? (
-              <div>
-                <ClickedIcon alt="">&#9679;</ClickedIcon>
-              </div>
-            ) : (
-              <div>
-                <Icon alt="" onClick={() => setImageIndex(index)}>&#9679;</Icon>
-              </div>
-            )
-        ))}
+        <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
+        <Box></Box>
       </Div>
     </>
   );

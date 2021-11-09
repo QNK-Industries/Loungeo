@@ -79,7 +79,7 @@ export default function Overview() {
     getRating();
   }, []);
 
-  if (imageClick === 0) {
+  if (!imageClick) {
     return (
       <Section>
         <ImageSelector
@@ -89,6 +89,7 @@ export default function Overview() {
         />
         <DefaultView
           currentStyle={currentStyle}
+          imageClick={imageClick}
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
@@ -106,28 +107,24 @@ export default function Overview() {
         </Div>
       </Section>
     );
-  } if (imageClick === 1) {
+  } if (imageClick) {
     return (
       <Section>
+        <ImageSelector
+          currentStyle={currentStyle}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+        />
         <ExpandedView
           currentStyle={currentStyle}
+          imageClick={imageClick}
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
           setMouseLocation={setMouseLocation}
+          mouseLocation={mouseLocation}
         />
       </Section>
     );
   }
-  return (
-    <Section>
-      <ZoomedView
-        currentStyle={currentStyle}
-        setImageClick={setImageClick}
-        imageIndex={imageIndex}
-        setImageIndex={setImageIndex}
-        mouseLocation={mouseLocation}
-      />
-    </Section>
-  );
 }

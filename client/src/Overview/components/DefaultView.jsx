@@ -17,14 +17,11 @@ const Img = styled.img`
   height: 90vh;
   width: 35vw;
   object-fit: cover;
-  cursor: pointer;
+  cursor: -webkit-zoom-in;
   animation-name: custom;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 0.2s;
-  &:hover {
-
-  }
 `;
 
 const Button = styled.span`
@@ -49,7 +46,7 @@ const RightButton = styled(Button)`
 `;
 
 export default function DefaultView({
-  currentStyle, setImageClick, imageIndex, setImageIndex,
+  currentStyle, setImageClick, imageIndex, setImageIndex, imageClick,
 }) {
   let button = null;
 
@@ -73,7 +70,7 @@ export default function DefaultView({
     <>
       <Div>
         {button}
-        <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(1); }} />
+        <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
       </Div>
     </>
   );

@@ -2,17 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  height: 88vh;
+  height: 90vh;
   width: 20vw;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
 const Thumbnail = styled.img`
-  margin: 0px 5px 5px 0px;
   position: relative;
   height: 13vh;
   width: 6vw;
