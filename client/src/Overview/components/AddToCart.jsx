@@ -32,11 +32,11 @@ export default function AddToCart({ currentStyle }) {
       <div>
         {sizesNums.map((sizeNum) => {
           if (sizeNum.quantity === 0) {
-            return (<span style={{ padding: '10px', textDecoration: 'line-through' }}>{sizeNum.size}</span>);
+            return (<span style={{ padding: '10px', textDecoration: 'line-through', width: '10px', height: '10px' }}>{sizeNum.size}</span>);
           } if (currentSize === sizeNum.size) {
             return (
               <span style={{
-                padding: '10px', borderRadius: '50%', backgroundColor: 'black', color: 'white',
+                width: '10px', height: '10px', padding: '10px', borderRadius: '50%', backgroundColor: 'black', color: 'white',
               }}
               >{sizeNum.size}
               </span>
