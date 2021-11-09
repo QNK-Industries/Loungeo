@@ -72,7 +72,7 @@ const RelatedItems = ({ mainProduct }) => {
   }
 
   return (
-    <section id="related_products_and_comparison_module">
+    <section id="related_products_and_comparison_module" data-testid="relateditems">
       <section>
         <CarousolHeader>
           <CarousolText>

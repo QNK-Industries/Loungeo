@@ -17,7 +17,7 @@
     "start": "nodemon server/index.js",
     "dev": "webpack --config webpack.config.js --watch --mode=development",
     "build-client": "webpack",
-    "test": "jest src"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,10 @@
   "homepage": "https://github.com/QNK-Industries/Loungeo#readme",
   "devDependencies": {
     "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
+    "@jest/globals": "^27.3.1",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "babel-jest": "^27.3.1",
