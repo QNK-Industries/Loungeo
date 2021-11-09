@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import SortBar from './components/SortBar.jsx';
-import utils from './utils.js';
+import utils from '../Shared/serverUtils.js';
 import ReviewModal from './components/ReviewModal.jsx';
 import RatingsTable from './components/RatingsTable.jsx';
 import ReviewButton from './components/ReviewButton.jsx';
@@ -97,11 +97,11 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   }
 
   function fetchReviewData(apiPage = 1, sort = sortBy, typeChange = false) {
-    utils.getReviews(mainProduct.id, apiPage, sort, (results) => {
+    utils.getReviews(mainProduct.id, apiPage, sort).then(({ data }) => {
       if (typeChange) {
-        setReviewData(results.results);
+        setReviewData(data.results);
       } else {
-        setReviewData([...reviewData, ...results.results]);
+        setReviewData([...reviewData, ...data.results]);
       }
 
       if (reviewData.length === apiPage * 100) {
@@ -117,9 +117,9 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   }
 
   useEffect(() => {
-    utils.getRating(mainProduct.id, (results) => {
-      setRatingData(results);
-      setStarAverageData(starAverage(results.ratings));
+    utils.getRating(mainProduct.id).then(({ data }) => {
+      setRatingData(data);
+      setStarAverageData(starAverage(data.ratings));
     });
     fetchReviewData();
   }, []);

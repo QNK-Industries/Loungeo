@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import utils from '../utils.js';
+import utils from '../../Shared/serverUtils.js';
 import ActionButton from './ActionButton.jsx';
 
-const $cardHeight = '300px';
-const $cardWidth = '200px';
+const $cardHeight = '475px';
+const $cardWidth = '280px';
 
 const StyledItemCard = styled.div`
   width: ${$cardWidth};
@@ -40,7 +40,7 @@ const ItemCardInfo = styled.div`
 const ItemCard = (props) => {
   const [product, setProduct] = useState({});
 
-  useEffect(() => utils.getItemDetails(props.item, (newData) => setProduct(newData)), []);
+  useEffect(() => utils.getItemDetails(props.item).then((newData) => setProduct(newData.data)), []);
 
   function getDefaultImageUrl() {
     let defaultUrl = null;

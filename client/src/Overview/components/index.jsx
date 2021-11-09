@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import ImageSelector from './ImageSelector.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import DefaultView from './DefaultView.jsx';
@@ -17,7 +18,7 @@ const ratingUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/m
 const Section = styled.section`
   margin: 30px 30px 30px 30px;
   height: 90vh;
-  width: 90vw;
+  width: 80vw;
   position: relative;
   display: flex;
 `;
@@ -78,11 +79,17 @@ export default function Overview() {
     getRating();
   }, []);
 
-  if (imageClick === 0) {
+  if (!imageClick) {
     return (
       <Section>
+        <ImageSelector
+          currentStyle={currentStyle}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+        />
         <DefaultView
           currentStyle={currentStyle}
+          imageClick={imageClick}
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
@@ -96,33 +103,28 @@ export default function Overview() {
             rating={rating}
             setCurrentStyle={setCurrentStyle}
           />
-          {/* <div>Select Size:</div> */}
           <AddToCart item={item} currentStyle={currentStyle} />
         </Div>
       </Section>
     );
-  } if (imageClick === 1) {
+  } if (imageClick) {
     return (
       <Section>
+        <ImageSelector
+          currentStyle={currentStyle}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+        />
         <ExpandedView
           currentStyle={currentStyle}
+          imageClick={imageClick}
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
           setMouseLocation={setMouseLocation}
+          mouseLocation={mouseLocation}
         />
       </Section>
     );
   }
-  return (
-    <Section>
-      <ZoomedView
-        currentStyle={currentStyle}
-        setImageClick={setImageClick}
-        imageIndex={imageIndex}
-        setImageIndex={setImageIndex}
-        mouseLocation={mouseLocation}
-      />
-    </Section>
-  );
 }
