@@ -55,12 +55,13 @@ class QuestionsAnswers extends React.Component {
   }
 
   showModal(id, qBody) {
+    const { showModal } = this.state;
     this.setState((prevState) => ({
       showModal: !prevState.showModal,
       questionID: id,
       questionBody: qBody,
     }));
-    if (this.state.showModal === true) {
+    if (showModal === true) {
       document.body.style.overflow = 'unset';
     } else {
       document.body.style.overflow = 'hidden';
@@ -68,10 +69,11 @@ class QuestionsAnswers extends React.Component {
   }
 
   addQuestion() {
+    const { showQuestion } = this.state;
     this.setState((prevState) => ({
       showQuestion: !prevState.showQuestion,
     }));
-    if (this.state.showQuestion === true) {
+    if (showQuestion === true) {
       document.body.style.overflow = 'unset';
     } else {
       document.body.style.overflow = 'hidden';
@@ -113,7 +115,7 @@ class QuestionsAnswers extends React.Component {
               return question;
             }
           }).map((question) =>
-            <Questions id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber} />
+            <Questions key={question.question_id} id={question.question_id} questionBody={question.question_body} answers={question.answers} modal={this.state.showModal} showModal={this.showModal} helpful={question.question_helpfulness} getQuestions={this.getQuestions} count={this.state.questionNumber} />
           )}
         </div>
         <div>

@@ -37,7 +37,7 @@ const Questions = ({ modal, id, questionBody, answers, showModal, helpful, getQu
         showModal={showModal}
         body={answers[answer].body}
         asker={answers[answer].answerer_name}
-        date={answers[answer].date} helpful={answers[answer].helpfulness} id={answers[answer].id} addHelpful={addHelpful}/>).sort((a, b) => (b.helpfulness - a.helpfulness))}</div>
+        date={answers[answer].date} helpful={answers[answer].helpfulness} key={answers[answer].id} id={answers[answer].id} addHelpful={addHelpful}/>).sort((a, b) => (b.helpfulness - a.helpfulness))}</div>
         {Object.keys(answers).length
         ? <button onClick={() => setAnswerCount(answerCount + 2)}
         >Add More Answers</button>
