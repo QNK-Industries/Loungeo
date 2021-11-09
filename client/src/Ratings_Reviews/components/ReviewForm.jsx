@@ -2,7 +2,7 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import utils from '../utils.js';
+import utils from '../../Shared/serverUtils.js';
 import OverallRating from './OverallRating.jsx';
 import CharacteristicSelection from './CharacteristicSelection.jsx';
 
@@ -206,7 +206,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
     setTimeout(() => {
       modalOff();
       utils.submitReview(newReview);
-    }, 2000);
+    }, 1000);
   }
 
   if (justSubmittedForm) {

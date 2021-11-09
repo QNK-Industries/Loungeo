@@ -1,8 +1,39 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import utils from '../utils.js';
+import styled from 'styled-components';
+import utils from '../../Shared/serverUtils.js';
 import Carousel from './Carousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
+
+const CarousolHeader = styled.h2`
+  position: relative;
+  text-align: center;
+  padding: .2rem 0;
+  overflow: hidden;
+`;
+
+const CarousolText = styled.span`
+  display: inline-block;
+  position: relative;
+  padding: 0 0.5em;
+
+  &:before, &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 70em;
+    border-top: 1px solid #ccc;
+  }
+
+  &:before {
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+`;
 
 const RelatedItems = ({ mainProduct }) => {
   const [data, setData] = useState([]);
@@ -10,7 +41,7 @@ const RelatedItems = ({ mainProduct }) => {
   const [currentCompare, setCurrentCompare] = useState(null);
   const [outfit, setOutfit] = useState([]);
 
-  useEffect(() => utils.getRelatedProducts(mainProduct.id, (newData) => setData(newData)), []);
+  useEffect(() => utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data)), []);
 
   function addOutfit(outfitId) {
     if (outfit.indexOf(outfitId) === -1) {
@@ -41,15 +72,23 @@ const RelatedItems = ({ mainProduct }) => {
   }
 
   return (
-    <section id="related_products_and_comparison_module">
+    <section id="related_products_and_comparison_module" data-testid="relateditems">
       <section>
-        {displayModal()}
-        <h4>RELATED PRODUCTS</h4>
-        <Carousel type="RELATED" key="RELATED" action={(selectedProduct) => turnOnModal(selectedProduct)} data={data} />
+        <CarousolHeader>
+          <CarousolText>
+            Your Outfit
+          </CarousolText>
+        </CarousolHeader>
+        <Carousel type="OUTFIT" key="OUTFIT" action={(selectedProduct) => removeOutfit(selectedProduct)} outfit={outfit} mainProduct={mainProduct} addOutfit={(addToOutfit) => addOutfit(addToOutfit)} />
       </section>
       <section>
-        <h4>YOUR OUTFIT</h4>
-        <Carousel type="OUTFIT" key="OUTFIT" action={(selectedProduct) => removeOutfit(selectedProduct)} outfit={outfit} mainProduct={mainProduct} addOutfit={(addToOutfit) => addOutfit(addToOutfit)} />
+        {displayModal()}
+        <CarousolHeader>
+          <CarousolText>
+            Your Outfit
+          </CarousolText>
+        </CarousolHeader>
+        <Carousel type="RELATED" key="RELATED" action={(selectedProduct) => turnOnModal(selectedProduct)} data={data} />
       </section>
     </section>
   );
