@@ -14,6 +14,7 @@ const Answers = ({
 }) => {
   const putRequest = 'answers';
   const [wasHelpful, setHelpful] = useState(false);
+  const [wasReported, setReported] = useState(false);
 
   const reportAnswer = (reportId) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${reportId}/report`, {}, {
@@ -47,7 +48,9 @@ const Answers = ({
               Yes ({helpful})
             </span>
           )
-      } | <span role="button" tabIndex={0} onClick={() => reportAnswer(id)} onKeyDown={(e) => console.log(e)}>Report</span>
+      } | { wasReported
+        ? <span role="button" tabIndex={0} onClick={() => alert('This Answer Has Already Been Reported')} onKeyDown={(e) => console.log(e)}>Report</span>
+        : <span role="button" tabIndex={0} onClick={() => { reportAnswer(id); setReported(true); alert('Answer Reported'); }} onKeyDown={(e) => console.log(e)}>Report</span>}
     </div>
   );
 };
