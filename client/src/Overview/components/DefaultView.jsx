@@ -1,79 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
+  margin: 0px 5px 0px 20px;
   height: 90vh;
-  width: 45vw;
+  width: 35vw;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  float: left;
-  background-color: grey;
 `;
 const Img = styled.img`
   box-shadow: 2px 2px px black;
   position: absolute;
-  max-height: 90vh;
-  max-width: 40vw;
+  height: 90vh;
+  width: 35vw;
+  object-fit: cover;
   cursor: pointer;
   animation-name: custom;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 0.2s;
-  @keyframes custom {
-    0% {
-      opacity: 0.7;
-      filter: blur(14px);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(0px);
-    }
+  &:hover {
+
   }
-`;
-
-const Thumbnail = styled.img`
-margin: 5px 5px 5px 5px;
-right: 550%;
-position: relative;
-height: 30px;
-width: 25px;
-cursor: pointer;
-z-index: 10;
-box-shadow: 2px 2px 5px black;
-`;
-
-const ClickedThumbnail = styled.img`
-margin: 5px 5px 5px 5px;
-right: 550%;
-position: relative;
-height: 30px;
-width: 25px;
-cursor: pointer;
-z-index: 10;
-box-shadow: 2px 2px 5px yellow;
 `;
 
 const Button = styled.span`
   position: absolute;
   height: 10px;
-  width: 25px;
+  width: 10px;
   cursor: pointer;
   z-index: 10;
-  color: grey;
+  color: rgb(104,104,104);
   font-size: 40px;
-  -webkit-text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
 `;
 
 const LeftButton = styled(Button)`
-  left: 1%;
+  left: -17%;
   bottom: 50%;
 `;
 
 const RightButton = styled(Button)`
-  right: 4%;
+  right: -8%;
   bottom: 50%;
 `;
 
@@ -98,27 +69,11 @@ export default function DefaultView({
       </>
     );
   }
-  console.log(currentStyle.photos);
   return (
     <>
       <Div>
         {button}
         <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(1); }} />
-        {currentStyle.photos.map((image, index) => {
-          const thumbnail = image.thumbnail_url;
-          return (
-            imageIndex === index
-              ? (
-                <div>
-                  <ClickedThumbnail src={thumbnail} alt="" />
-                </div>
-              ) : (
-                <div>
-                  <Thumbnail src={thumbnail} alt="" onClick={() => setImageIndex(index)} />
-                </div>
-              )
-          );
-        })}
       </Div>
     </>
   );
