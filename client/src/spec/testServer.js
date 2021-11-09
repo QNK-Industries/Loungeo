@@ -2,8 +2,12 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
-import details from './JSONdata/details.js';
-import reviewsMeta from './JSONdata/reviewsMeta.js';
+
+const {
+  details,
+  reviews,
+  reviewsMeta,
+} = require('./JSONdata/allData.js');
 
 const server = setupServer(
   // getItemDetails
@@ -27,6 +31,11 @@ const server = setupServer(
   rest.get('/reviews/meta/', (req, res, ctx) => res(
     ctx.status(200),
     ctx.json(reviewsMeta),
+  )),
+  // getReviews
+  rest.get('/reviews/', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(reviews),
   )),
 );
 
