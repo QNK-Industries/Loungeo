@@ -12,8 +12,8 @@ const GH_TOKEN = require('../../../../tokens.js');
 const Answers = ({
   body, asker, date, helpful, id, addHelpful,
 }) => {
-  const [questionId, setId] = useState(id);
   const putRequest = 'answers';
+  const [wasHelpful, setHelpful] = useState(false);
 
   const reportAnswer = (reportId) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${reportId}/report`, {}, {
@@ -26,13 +26,30 @@ const Answers = ({
   };
 
   return (
-  <div style={AnswerStyle}>
-    <br />
-    <strong>A</strong> {body}
-    <br />
-    <br />
-    By {asker === "Seller" ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  <span onClick={() => addHelpful(questionId, putRequest)}>Helpful? {helpful ? helpful : null}</span> | <span onClick={() => reportAnswer(questionId)}>Report</span>
-  </div>
-);}
+    <div style={AnswerStyle}>
+      <br />
+      <strong>A</strong> {body}
+      <br />
+      <br />
+      By {asker === 'Seller' ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  Helpful? {
+        wasHelpful
+          ? (
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => {
+                addHelpful(id, putRequest);
+                setHelpful(true);
+              }}
+              onKeyDown={(e) => console.log(e)}
+            >
+              Yes ({helpful})
+            </span>
+          )
+          : <span> Yes </span>
+      } | <span role="button" tabIndex={0} onClick={() => reportAnswer(id)} onKeyDown={(e) => console.log(e)}>Report</span>
+    </div>
+  );
+};
 
 export default Answers;
