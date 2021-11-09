@@ -183,6 +183,20 @@ app.post('/qa/:question_id/answers', (req, res) => {
     });
 });
 
+app.post('/cart', (req, res) => {
+  const data = req.body;
+  // eslint-disable-next-line camelcase
+  const url = `${URL}/cart`;
+
+  axios.post(url, data, HEADERS)
+    .then((response) => {
+      res.status(response.status).send(response.data);
+    })
+    .catch((error) => {
+      res.status(error).send(error);
+    });
+});
+
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   const url = `${URL}/qa/questions/${req.params.question_id}/helpful`;
   axios.put(url, null, HEADERS)
