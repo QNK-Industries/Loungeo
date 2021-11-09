@@ -91,7 +91,7 @@ class QuestionsAnswers extends React.Component {
   render() {
     const {
       product_id, showModal, questionBody, questionID,
-      showQuestion, questions, query, questionNumber
+      showQuestion, questions, query, questionNumber,
     } = this.state;
     return (
       <section style={{ alignItems: 'center' }}>
