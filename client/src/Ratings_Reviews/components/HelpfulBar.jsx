@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import utils from '../utils.js';
+import utils from '../../Shared/serverUtils.js';
 
 const StyledHelpful = styled.div`
   & span {

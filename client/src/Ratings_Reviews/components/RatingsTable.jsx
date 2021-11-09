@@ -83,7 +83,7 @@ const RatingsTable = ({ ratingData, starAverageData, filter }) => {
   }, [selectedStar]);
 
   return (
-    <div>
+    <div data-testid="ratingstable">
       <ReveiwScoreHeader>
         <h1>
           {starAverageData.average}

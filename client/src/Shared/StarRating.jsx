@@ -47,6 +47,7 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
       <span className="star-rating">
         {stars.map((star, index) => (
           <div
+            key={`star-${index + 1}`}
             style={{ display: 'inline-block', position: 'relative', cursor: 'pointer' }}
             className="star"
             onMouseEnter={() => changeHover(index + 1)}
@@ -64,8 +65,8 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
   }
   return (
     <span className="star-rating">
-      {stars.map((star) => (
-        <div style={{ display: 'inline-block', position: 'relative' }} className="star">
+      {stars.map((star, index) => (
+        <div key={`star-${index + 1}`} style={{ display: 'inline-block', position: 'relative' }} className="star">
           <img src={star} alt="filled star" style={{ width: '30px' }} />
         </div>
       ))}
