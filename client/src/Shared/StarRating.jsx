@@ -3,11 +3,11 @@ import React from 'react';
 // import styled from 'styled-components';
 
 const starShapes = [
-  '../../images/empty star.png',
-  '../../images/quarter star.png',
-  '../../images/half star.png',
-  '../../images/three quarter star.png',
-  '../../images/filled star.png',
+  '../../images/emptystar.svg',
+  '../../images/quarterstar.svg',
+  '../../images/halfstar.svg',
+  '../../images/threequarterstar.svg',
+  '../../images/fullstar.svg',
 ];
 
 export default function StarRating({ ratingObj, submissionNotSelected, changeHover, setStar }) {
@@ -56,7 +56,7 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
             role="button"
             tabIndex={0}
           >
-            <img src={star} alt="filled star" style={{ width: '15px' }} />
+            <img src={star} alt="filled star" style={{ width: '30px' }} />
           </div>
         ))}
       </span>
@@ -66,7 +66,7 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
     <span className="star-rating">
       {stars.map((star) => (
         <div style={{ display: 'inline-block', position: 'relative' }} className="star">
-          <img src={star} alt="filled star" style={{ width: '15px' }} />
+          <img src={star} alt="filled star" style={{ width: '30px' }} />
         </div>
       ))}
     </span>
