@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import RelatedItemsModule from '../Related_Items/components/RelatedItemsModule.jsx';
 
 const staticItem = {
