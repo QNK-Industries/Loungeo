@@ -21,7 +21,7 @@ const Div = styled.div`
   &:hover ${Box} {
     color: blue;
     border: 2px solid blue;
-    transform-origin: 
+    transform-origin:
   }
 `;
 
@@ -39,13 +39,17 @@ const Img = styled.img`
 `;
 
 export default function ExpandedView({
-  currentStyle, setImageClick, imageIndex, imageClick,
+  currentStyle, setImageClick, imageIndex, imageClick, mouseLocation,
 }) {
+  handleCursor = (e) => {
+    e.preventDefault();
+    
+  }
   return (
     <>
       <Div>
         <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
-        <Box></Box>
+        <Box onMouse></Box>
       </Div>
     </>
   );
