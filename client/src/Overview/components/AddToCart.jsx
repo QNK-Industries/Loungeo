@@ -57,7 +57,7 @@ export default function AddToCart({ currentStyle }) {
                   <option>{quantity}</option>
                 ))}
               </select>
-              <button onClick={() => postToCart({ count: currentQuantity, sku_id: currentID })}>Add to Cart</button>
+              <button onClick={() => utils.postToCart({ count: currentQuantity, sku_id: currentID })}>Add to Cart</button>
             </>
           )
           : <button onClick={() => { alert('Please Select a Size'); }}>Add to Cart</button>}
