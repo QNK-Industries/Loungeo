@@ -26,6 +26,13 @@ const addHelpfulQuestion = (id, endpoint) => axios.put(`qa/${endpoint}/${id}/hel
 
 const reportAnswer = (id) => axios.put(`/qa/answers/${id}/report`);
 
+// Product Overview
+const getItem = (id) => axios.get(`/products/${id}`);
+
+const getStyle = (id) => axios.get(`/products/${id}/styles`);
+
+const postToCart = () => axios.post('/cart');
+
 export default {
   getRelatedProducts,
   getItemDetails,
@@ -39,4 +46,7 @@ export default {
   addAnswer,
   addHelpfulQuestion,
   reportAnswer,
+  getItem,
+  getStyle,
+  postToCart,
 };

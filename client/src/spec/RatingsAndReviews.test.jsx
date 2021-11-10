@@ -4,22 +4,29 @@ import {
   screen,
   act,
   waitFor,
+  fireEvent,
 } from '@testing-library/react';
-import { test, expect } from '@jest/globals';
+import {
+  test,
+  expect,
+  describe,
+  beforeAll,
+  beforeEach,
+  afterAll,
+  afterEach,
+} from '@jest/globals';
+import '@testing-library/jest-dom';
 import testServer from './testServer.js';
 import RatingsAndReviewsModule from '../Ratings_Reviews/RatingsAndReviewsModule.jsx';
-import '@testing-library/jest-dom';
 
-const staticItem = {
-  id: 61575, campus: 'hr-sfo', name: 'Camo Onesie', slogan: 'Blend in to your crowd', description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.', category: 'Jackets', default_price: '140.00', created_at: '2021-10-28T19:58:54.904Z', updated_at: '2021-10-28T19:58:54.904Z', features: [{ feature: 'Fabric', value: 'Canvas' }, { feature: 'Buttons', value: 'Brass' }],
-};
+const { mainProduct } = require('./JSONdata/allData.js');
 
 beforeAll(() => testServer.listen());
 afterEach(() => testServer.resetHandlers());
 afterAll(() => testServer.close());
-beforeAll(() => {
+beforeEach(() => {
   act(() => {
-    render(<RatingsAndReviewsModule mainProduct={staticItem} />);
+    render(<RatingsAndReviewsModule mainProduct={mainProduct} />);
   });
 });
 
@@ -29,8 +36,53 @@ describe('Ratings and Reviews', () => {
     expect(appContainer).toBeInTheDocument();
   });
 
-  test('renders Product Breakdown to DOM', async () => {
-    const appContainer = await waitFor(() => screen.getByTestId('ratingsslidebar'));
-    expect(appContainer).toBeInTheDocument();
+  test('displays the modal on button click', async () => {
+    const button = await waitFor(() => screen.getByText(/add a review/i));
+    fireEvent.click(button);
+    const modal = await waitFor(() => screen.getByText(/write your review/i));
+    expect(modal).toBeVisible();
+  });
+
+  test('form modal contains summary forms', async () => {
+    const button = await waitFor(() => screen.getByText(/add a review/i));
+    fireEvent.click(button);
+    const summary = await waitFor(() => screen.getByPlaceholderText(/best purchase/i));
+    expect(summary).toBeVisible();
+  });
+
+  test('form modal contains filled summary forms', async () => {
+    const button = await waitFor(() => screen.getByText(/add a review/i));
+    fireEvent.click(button);
+    const summary = await waitFor(() => screen.getByPlaceholderText(/best purchase/i));
+    fireEvent.change(summary, { target: { value: 'test' } });
+    expect(summary.value).toBe('test');
+  });
+
+  test('form modal contains body forms', async () => {
+    const button = await waitFor(() => screen.getByText(/add a review/i));
+    fireEvent.click(button);
+    const body = await waitFor(() => screen.getByPlaceholderText(/why did you like/i));
+    expect(body).toBeVisible();
+  });
+
+  test('form modal contains filled summary forms', async () => {
+    const button = await waitFor(() => screen.getByText(/add a review/i));
+    fireEvent.click(button);
+    const body = await waitFor(() => screen.getByPlaceholderText(/why did you like/i));
+    fireEvent.change(body, { target: { value: 'test' } });
+    expect(body.value).toBe('test');
+  });
+
+  test('displays more reviews on button click', async () => {
+    const button = await waitFor(() => screen.getByText(/more reviews/i));
+    fireEvent.click(button);
+    const modal = await waitFor(() => screen.getAllByText(/report/i)[3]);
+    expect(modal).toBeVisible();
+  });
+
+  test('search bar works', async () => {
+    const search = await waitFor(() => screen.getByPlaceholderText(/search reviews/i));
+    fireEvent.change(search, { target: { value: 'test test test nothing here' } });
+    expect(search.value).toBe('test test test nothing here');
   });
 });
