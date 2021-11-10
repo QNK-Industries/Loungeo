@@ -20,10 +20,16 @@ export default function AddToCart({ currentStyle }) {
 
   return (
     <div>
-      {/* <div>
+      <div>
         {sizesNums.map((sizeNum) => {
           if (sizeNum.quantity === 0) {
-            return (<span style={{ padding: '10px', textDecoration: 'line-through', width: '10px', height: '10px' }}>{sizeNum.size}</span>);
+            return (
+              <span style={{
+                padding: '10px', textDecoration: 'line-through', width: '10px', height: '10px',
+              }}
+              >{sizeNum.size}
+              </span>
+            );
           } if (currentSize === sizeNum.size) {
             return (
               <span style={{
@@ -52,8 +58,8 @@ export default function AddToCart({ currentStyle }) {
           ? (
             <>
               <select>
-                {/* <option>Select </option> */}
-                {/* {[...Array(currentQuantity + 1).keys()].map((quantity) => (
+                <option>Select </option>
+                {[...Array(currentQuantity + 1).keys()].map((quantity) => (
                   <option>{quantity}</option>
                 ))}
               </select>
@@ -61,7 +67,7 @@ export default function AddToCart({ currentStyle }) {
             </>
           )
           : <button onClick={() => { alert('Please Select a Size'); }}>Add to Cart</button>}
-      </div> */} 
+      </div>
     </div>
   );
 }
