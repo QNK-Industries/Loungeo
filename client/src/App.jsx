@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Overview from './Overview/components/index.jsx';
 import QuestionsAnswers from './Questions_Answers/index.jsx';
-import data from './testData.js';
 import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';
 import RatingsAndReviewsModule from './Ratings_Reviews/RatingsAndReviewsModule.jsx';
 
@@ -11,11 +10,7 @@ const Body = styled.div`
 
 `;
 
-const App = () => {
-  const [mainProduct, setMainProduct] = useState({});
-
-  useEffect(() => setMainProduct(data.replaceWithGetFirstProductApiCall()), []);
-
+const App = ({ mainProduct }) => {
   if (mainProduct.id) {
     return (
       <Body data-testid="app">

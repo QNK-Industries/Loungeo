@@ -5,17 +5,25 @@ import {
   act,
   waitFor,
 } from '@testing-library/react';
-import { test, expect } from '@jest/globals';
+import {
+  test,
+  expect,
+  describe,
+  beforeAll,
+  beforeEach,
+  afterAll,
+  afterEach,
+} from '@jest/globals';
+import '@testing-library/jest-dom';
 import testServer from './testServer.js';
 import RatingsAndReviewsModule from '../Ratings_Reviews/RatingsAndReviewsModule.jsx';
-import '@testing-library/jest-dom';
 
 const { mainProduct } = require('./JSONdata/allData.js');
 
 beforeAll(() => testServer.listen());
 afterEach(() => testServer.resetHandlers());
 afterAll(() => testServer.close());
-beforeAll(() => {
+beforeEach(() => {
   act(() => {
     render(<RatingsAndReviewsModule mainProduct={mainProduct} />);
   });

@@ -10,12 +10,14 @@ import {
 import testServer from './testServer.js';
 import App from '../App.jsx';
 
+const { mainProduct } = require('./JSONdata/allData.js');
+
 beforeAll(() => testServer.listen());
 afterEach(() => testServer.resetHandlers());
 afterAll(() => testServer.close());
 beforeAll(() => {
   act(() => {
-    render(<App />);
+    render(<App mainProduct={mainProduct} />);
   });
 });
 
