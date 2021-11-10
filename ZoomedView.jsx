@@ -12,7 +12,7 @@ const Div = styled.div`
   float: left;
 `;
 
-export default function ExpandedView({
+export default function ZoomedView({
   currentStyle, setImageClick, imageIndex, mouseLocation,
 }) {
   const Img = styled.img`

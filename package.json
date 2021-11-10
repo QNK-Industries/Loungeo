@@ -66,6 +66,7 @@
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/client/src/setupTests.js"
-    ]
+    ],
+    "modulePathIgnorePatterns": ["<rootDir>/client/Overview/components/ZoomedView.jsx"]
   }
 }
