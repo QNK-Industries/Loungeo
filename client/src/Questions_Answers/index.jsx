@@ -22,19 +22,12 @@ class QuestionsAnswers extends React.Component {
     this.addQuestion = this.addQuestion.bind(this);
     this.addQuestionCount = this.addQuestionCount.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-
-    // Deprecated due to moving to server calls
-    // this.getQuestions = this.getQuestions.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
     const { questionNumber } = this.state;
-    utils.getQuestions(61575, questionNumber).then((response) => {
-      this.setState({
-        questions: response.data.results,
-        product_id: parseInt(response.data.product_id, 10),
-      });
-    }).catch((error) => console.log(error));
+    this.getQuestions(questionNumber);
   }
 
   handleSearch(e) {
@@ -44,20 +37,27 @@ class QuestionsAnswers extends React.Component {
     // console.log(e)
   }
 
-  // getQuestions(qNum) {
-  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=${qNum}`, {
-  //     headers: {
-  //       Authorization: GH_TOKEN.GH_TOKEN,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       this.setState({
-  //         questions: response.data.results,
-  //         product_id: parseInt(response.data.product_id, 10),
-  //       });
-  //     })
-  //     .catch((error) => { console.log(error); });
-  // }
+  getQuestions(qNum) {
+    utils.getQuestions(61575, qNum).then((response) => {
+      this.setState({
+        questions: response.data.results,
+        product_id: parseInt(response.data.product_id, 10),
+      });
+    }).catch((error) => console.log(error));
+
+    // axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=${qNum}`, {
+    //   headers: {
+    //     Authorization: GH_TOKEN.GH_TOKEN,
+    //   },
+    // })
+    //   .then((response) => {
+    //     this.setState({
+    //       questions: response.data.results,
+    //       product_id: parseInt(response.data.product_id, 10),
+    //     });
+    //   })
+    //   .catch((error) => { console.log(error); });
+  }
 
   showModal(id, qBody) {
     const { showModal } = this.state;
@@ -106,6 +106,7 @@ class QuestionsAnswers extends React.Component {
             : 'Hello World'}
           </h1>
           <AnswerSearch search={this.handleSearch} />
+          <button onClick={() => console.log(questions)}>Question State</button>
           <div style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
 
@@ -117,6 +118,7 @@ class QuestionsAnswers extends React.Component {
                   modal={showModal}
                   showModal={this.showModal}
                   getQuestions={this.getQuestions}
+                  questionNumber={this.questionNumber}
                 />
               )
               : null}
@@ -134,9 +136,11 @@ class QuestionsAnswers extends React.Component {
             {questions.filter((question, { question_body }) => {
               if (query === '') {
                 return question;
-              } else if (question_body.toLowerCase().includes(query.toLowerCase())) {
+              }
+              if (question_body.toLowerCase().includes(query.toLowerCase())) {
                 return question;
               }
+              return question;
             }).map(({
               question_id, question_body, answers, question_helpfulness
             }) => (

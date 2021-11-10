@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import ReactDOM from 'react-dom';
+import utils from '../../Shared/serverUtils.js';
 
 const GH_TOKEN = require('../../../../tokens.js');
 
@@ -48,7 +49,7 @@ const formStyle = {
 };
 
 const Modal = ({
-  modal, showModal, qBody, questionID, getQuestions,
+  modal, showModal, qBody, questionID, getQuestions, questionNumber
 }) => {
   const [answerBody, setAnswerBody] = useState('');
   const [nickname, setNickname] = useState('');
@@ -77,15 +78,17 @@ const Modal = ({
         name: nickname,
         email: email,
       };
-      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer, {
-        headers: {
-          Authorization: GH_TOKEN.GH_TOKEN,
-        },
-      })
+
+      // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer, {
+      //   headers: {
+      //     Authorization: GH_TOKEN.GH_TOKEN,
+      //   },
+      // })
+      utils.addAnswer(questionID, newAnswer)
         .then((res) => {
           console.log('You did it dawg:', res.data);
         })
-        .then(() => getQuestions())
+        .then(() => getQuestions(61575, questionNumber))
         .then(() => showModal())
         .catch(console.log);
     }
@@ -109,7 +112,7 @@ const Modal = ({
             role="button"
             tabIndex="0"
             onKeyDown={(e) => console.log(e)}
-            onClick={e => {
+            onClick={(e) => {
               // Need to use this to be able to click on things inside Modal without closing
               e.stopPropagation();
             }}
