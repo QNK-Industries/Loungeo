@@ -6,7 +6,7 @@ import StyleSelector from './components/StyleSelector.jsx';
 import AddToCart from './components/AddToCart.jsx';
 import DefaultView from './components/DefaultView.jsx';
 import ExpandedView from './components/ExpandedView.jsx';
-import ZoomedView from './components/ZoomedView.jsx';
+// import ZoomedView from './components/ZoomedView.jsx';
 import utils from '../Shared/serverUtils.js';
 
 const id = 61575;
@@ -60,6 +60,7 @@ export default function Overview() {
           currentStyle={currentStyle}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
+          data-testid="ImageSelector"
         />
         <DefaultView
           currentStyle={currentStyle}
@@ -67,17 +68,19 @@ export default function Overview() {
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
+          data-testid="DefaultView"
         />
         <Div>
-          <ProductInfo item={item} style={currentStyle} rating={rating} />
+          <ProductInfo item={item} style={currentStyle} rating={rating} data-testid="ProductInfo" />
           <StyleSelector
             item={item}
             styles={styles}
             currentStyle={currentStyle}
             rating={rating}
             setCurrentStyle={setCurrentStyle}
+            data-testid="StyleSelector"
           />
-          <AddToCart item={item} currentStyle={currentStyle} />
+          <AddToCart item={item} currentStyle={currentStyle} data-testid="AddToCart" />
         </Div>
       </Section>
     );
@@ -88,6 +91,7 @@ export default function Overview() {
           currentStyle={currentStyle}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
+          data-testid="ImageSelector"
         />
         <ExpandedView
           currentStyle={currentStyle}
@@ -97,6 +101,7 @@ export default function Overview() {
           setImageIndex={setImageIndex}
           setMouseLocation={setMouseLocation}
           mouseLocation={mouseLocation}
+          data-testid="ExpandedView"
         />
       </Section>
     );

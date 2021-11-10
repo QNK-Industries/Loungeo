@@ -7,6 +7,8 @@ const {
   details,
   reviews,
   reviewsMeta,
+  productStyles,
+  mainProduct,
 } = require('./JSONdata/allData.js');
 
 const server = setupServer(
@@ -14,6 +16,11 @@ const server = setupServer(
   rest.get('/products/:id/details', (req, res, ctx) => res(
     ctx.status(200),
     ctx.json(details),
+  )),
+  // getItemDetails
+  rest.get('/products/:id', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(mainProduct),
   )),
   // getRelatedProducts
   rest.get('/products/:id/related', (req, res, ctx) => res(
@@ -26,6 +33,11 @@ const server = setupServer(
       61583,
       61584,
     ]),
+  )),
+  // getItemStyles
+  rest.get('/products/:id/styles', (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(productStyles),
   )),
   // getRating
   rest.get('/reviews/meta/', (req, res, ctx) => res(

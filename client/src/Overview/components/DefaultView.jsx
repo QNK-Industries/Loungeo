@@ -68,9 +68,9 @@ export default function DefaultView({
   }
   return (
     <>
-      <Div>
+      <Div data-testid="DefaultImageDiv">
         {button}
-        <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
+        <Img data-testid="DefaultImageImg" src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
       </Div>
     </>
   );
