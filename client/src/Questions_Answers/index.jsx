@@ -4,6 +4,7 @@ import AnswerSearch from './components/AnswerSearch.jsx';
 import Questions from './components/Questions.jsx';
 import QuestionModal from './components/QuestionModal.jsx';
 import Modal from './components/AddAnswerModal.jsx';
+import utils from '../Shared/serverUtils.js';
 
 const GH_TOKEN = require('../../../tokens.js');
 
@@ -21,15 +22,22 @@ class QuestionsAnswers extends React.Component {
     };
 
     this.showModal = this.showModal.bind(this);
-    this.getQuestions = this.getQuestions.bind(this);
     this.addQuestion = this.addQuestion.bind(this);
     this.addQuestionCount = this.addQuestionCount.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+
+    // Deprecated due to moving to server calls
+    // this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
     const { questionNumber } = this.state;
-    this.getQuestions(questionNumber);
+    utils.getQuestions(61575, questionNumber).then((response) => {
+      this.setState({
+        questions: response.data.results,
+        product_id: parseInt(response.data.product_id, 10),
+      });
+    });
   }
 
   handleSearch(e) {
@@ -39,20 +47,20 @@ class QuestionsAnswers extends React.Component {
     // console.log(e)
   }
 
-  getQuestions(qNum) {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=${qNum}`, {
-      headers: {
-        Authorization: GH_TOKEN.GH_TOKEN,
-      },
-    })
-      .then((response) => {
-        this.setState({
-          questions: response.data.results,
-          product_id: parseInt(response.data.product_id, 10),
-        });
-      })
-      .catch((error) => { console.log(error); });
-  }
+  // getQuestions(qNum) {
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=61575&count=${qNum}`, {
+  //     headers: {
+  //       Authorization: GH_TOKEN.GH_TOKEN,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       this.setState({
+  //         questions: response.data.results,
+  //         product_id: parseInt(response.data.product_id, 10),
+  //       });
+  //     })
+  //     .catch((error) => { console.log(error); });
+  // }
 
   showModal(id, qBody) {
     const { showModal } = this.state;
@@ -101,7 +109,6 @@ class QuestionsAnswers extends React.Component {
             : 'Hello World'}
           </h1>
           <AnswerSearch search={this.handleSearch} />
-
           <div style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
 
