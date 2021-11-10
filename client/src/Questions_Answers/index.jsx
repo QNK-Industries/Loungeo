@@ -1,12 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import QuestionModal from './components/QuestionModal.jsx';
 import AnswerSearch from './components/AnswerSearch.jsx';
 import Questions from './components/Questions.jsx';
-import QuestionModal from './components/QuestionModal.jsx';
 import Modal from './components/AddAnswerModal.jsx';
 import utils from '../Shared/serverUtils.js';
-
-const GH_TOKEN = require('../../../tokens.js');
 
 class QuestionsAnswers extends React.Component {
   constructor(props) {
@@ -37,7 +34,7 @@ class QuestionsAnswers extends React.Component {
         questions: response.data.results,
         product_id: parseInt(response.data.product_id, 10),
       });
-    });
+    }).catch((error) => console.log(error));
   }
 
   handleSearch(e) {

@@ -157,10 +157,10 @@ app.get('/qa/:question_id/answers', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
-  const { data } = req.body;
+  const { body } = req;
   const url = `${URL}/qa/questions`;
 
-  axios.post(url, data, HEADERS)
+  axios.post(url, body, HEADERS)
     .then((response) => {
       res.status(response.status).send(response);
     })

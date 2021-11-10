@@ -18,6 +18,8 @@ const submitReview = (form) => axios.post('/reviews/', form);
 
 const getQuestions = (id, count) => axios.get(`/qa/questions/${id}&count=${count}`);
 
+const postQuestion = (form) => axios.post('/qa/questions', form);
+
 export default {
   getRelatedProducts,
   getItemDetails,
@@ -27,4 +29,5 @@ export default {
   reportPost,
   submitReview,
   getQuestions,
+  postQuestion,
 };
