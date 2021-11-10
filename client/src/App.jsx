@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Overview from './Overview/components/index.jsx';
+import Overview from './Overview/index.jsx';
 import QuestionsAnswers from './Questions_Answers/index.jsx';
 import data from './testData.js';
 import RelatedItemsModule from './Related_Items/components/RelatedItemsModule.jsx';

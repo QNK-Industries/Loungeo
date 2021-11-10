@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import ProductInfo from './ProductInfo.jsx';
-import ImageSelector from './ImageSelector.jsx';
-import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
-import DefaultView from './DefaultView.jsx';
-import ExpandedView from './ExpandedView.jsx';
-import ZoomedView from './ZoomedView.jsx';
+import ProductInfo from './components/ProductInfo.jsx';
+import ImageSelector from './components/ImageSelector.jsx';
+import StyleSelector from './components/StyleSelector.jsx';
+import AddToCart from './components/AddToCart.jsx';
+import DefaultView from './components/DefaultView.jsx';
+import ExpandedView from './components/ExpandedView.jsx';
+import ZoomedView from './components/ZoomedView.jsx';
+import utils from '../Shared/serverUtils.js';
 
-const productUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575';
-const styleUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/61575/styles';
-const ratingUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=61575';
+const id = 61575;
 
 const Section = styled.section`
   margin: 30px 30px 30px 30px;
@@ -39,42 +37,20 @@ export default function Overview() {
   const [imageIndex, setImageIndex] = useState(0);
   const [mouseLocation, setMouseLocation] = useState([0, 0]);
 
-  function getItem() {
-    axios.get(productUrl, { headers: { Authorization: GH_TOKEN } })
+  useEffect(() => {
+    utils.getItem(id)
       .then((res) => {
         setItem(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
       });
-  }
-
-  function getStyle() {
-    axios.get(styleUrl, { headers: { Authorization: GH_TOKEN } })
+    utils.getStyle(id)
       .then((res) => {
         setStyles(res.data.results);
         setCurrentStyle(res.data.results[0]);
-      })
-      .catch((error) => {
-        console.error(error);
       });
-  }
-
-  function getRating() {
-    axios.get(ratingUrl, { headers: { Authorization: GH_TOKEN } })
+    utils.getRating(id)
       .then((res) => {
-        // setStyle(res.data.results);
         setRating(res.data.ratings);
-      })
-      .catch((error) => {
-        console.error(error);
       });
-  }
-
-  useEffect(() => {
-    getItem();
-    getStyle();
-    getRating();
   }, []);
 
   if (!imageClick) {
