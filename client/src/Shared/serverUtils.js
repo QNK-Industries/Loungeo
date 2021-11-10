@@ -18,6 +18,8 @@ const getItem = (id) => axios.get(`/products/${id}`);
 
 const getStyle = (id) => axios.get(`/products/${id}/styles`);
 
+const postToCart = () => axios.post('/cart');
+
 export default {
   getRelatedProducts,
   getItemDetails,
@@ -28,4 +30,5 @@ export default {
   submitReview,
   getItem,
   getStyle,
+  postToCart,
 };
