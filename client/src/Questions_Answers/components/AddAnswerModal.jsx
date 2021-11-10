@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import utils from '../../Shared/serverUtils.js';
 
-const GH_TOKEN = require('../../../../tokens.js');
-
 const overlay = {
   position: 'fixed',
   top: '0',

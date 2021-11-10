@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import moment from 'moment';
+import utils from '../../Shared/serverUtils.js';
 
 const AnswerStyle = {
   border: '1px solid black',
   marginTop: '15px',
 };
 
-const GH_TOKEN = require('../../../../tokens.js');
+// const GH_TOKEN = require('../../../../tokens.js');
 
 const Answers = ({
   body, asker, date, helpful, id, addHelpful,

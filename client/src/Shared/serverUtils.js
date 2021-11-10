@@ -22,6 +22,10 @@ const postQuestion = (form) => axios.post('/qa/questions', form);
 
 const addAnswer = (id, form) => axios.post(`/qa/${id}/answers`, form);
 
+const addHelpfulQuestion = (id, endpoint) => axios.put(`qa/${endpoint}/${id}/helpful`);
+
+const reportAnswer = (id) => axios.put(``);
+
 export default {
   getRelatedProducts,
   getItemDetails,
@@ -33,4 +37,5 @@ export default {
   getQuestions,
   postQuestion,
   addAnswer,
+  addHelpfulQuestion,
 };
