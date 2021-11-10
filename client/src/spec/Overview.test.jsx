@@ -4,6 +4,7 @@ import {
   screen,
   act,
   waitFor,
+  fireEvent,
 } from '@testing-library/react';
 import { test, expect } from '@jest/globals';
 import testServer from './testServer.js';
@@ -48,5 +49,45 @@ describe('Overview', () => {
   test('renders default image div to the dom', async () => {
     const appContainer = await waitFor(() => screen.getByTestId('DefaultImageDiv'));
     expect(appContainer).toBeInTheDocument();
+  });
+  test('renders default image img to the dom', async () => {
+    const appContainer = await waitFor(() => screen.getByTestId('DefaultImageImg'));
+    expect(appContainer).toBeInTheDocument();
+  });
+  test('renders expanded image div to the dom', async () => {
+    const appContainer = await waitFor(() => screen.getByTestId('ExpandedImageDiv'));
+    expect(appContainer).toBeInTheDocument();
+  });
+  test('renders expanded image img to the dom', async () => {
+    const appContainer = await waitFor(() => screen.getByTestId('ExpandedImageImg'));
+    expect(appContainer).toBeInTheDocument();
+  });
+  test('renders expanded image img to the dom', async () => {
+    const appContainer = await waitFor(() => screen.getByTestId('ExpandedImageBox'));
+    expect(appContainer).toBeInTheDocument();
+  });
+  test('displays the modal on button click', async () => {
+    const button = await waitFor(() => screen.getByAltText(''));
+    fireEvent.click(button);
+    const img = await waitFor(() => screen.getByAltText(''));
+    expect(img).toBeVisible();
+  });
+  test('displays the modal on button click', async () => {
+    const button = await waitFor(() => screen.getAllByRole('button'));
+    fireEvent.click(button);
+    const img = await waitFor(() => screen.getByRole('button'));
+    expect(img).toBeVisible();
+  });
+  test('displays expanded on button click', async () => {
+    const button = await waitFor(() => screen.getByTestId('ExpandedImageImg'));
+    fireEvent.click(button);
+    const img = await waitFor(() => screen.getByTestId('DefaultImageImg'));
+    expect(img).toBeVisible();
+  });
+  test('displays default on button click', async () => {
+    const button = await waitFor(() => screen.getByTestId('DefaultImageImg'));
+    fireEvent.click(button);
+    const img = await waitFor(() => screen.getByTestId('ExpandedImageImg'));
+    expect(img).toBeVisible();
   });
 });

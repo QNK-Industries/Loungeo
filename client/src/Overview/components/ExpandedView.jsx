@@ -41,15 +41,16 @@ const Img = styled.img`
 export default function ExpandedView({
   currentStyle, setImageClick, imageIndex, imageClick, mouseLocation,
 }) {
-  handleCursor = (e) => {
-    e.preventDefault();
-    
-  }
   return (
     <>
-      <Div>
-        <Img src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
-        <Box onMouse></Box>
+      <Div data-testid="ExpandedImageDiv">
+        <Img
+          src={currentStyle.photos[imageIndex].url}
+          alt=""
+          onClick={() => { setImageClick(!imageClick); }}
+          data-testid="ExpandedImageImg"
+        />
+        <Box data-testid="ExpandedImageBox" />
       </Div>
     </>
   );

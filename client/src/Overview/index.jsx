@@ -6,7 +6,7 @@ import StyleSelector from './components/StyleSelector.jsx';
 import AddToCart from './components/AddToCart.jsx';
 import DefaultView from './components/DefaultView.jsx';
 import ExpandedView from './components/ExpandedView.jsx';
-import ZoomedView from './components/ZoomedView.jsx';
+// import ZoomedView from './components/ZoomedView.jsx';
 import utils from '../Shared/serverUtils.js';
 
 const id = 61575;
