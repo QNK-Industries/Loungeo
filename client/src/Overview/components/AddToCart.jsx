@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
-const cartURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart';
-const GH_TOKEN = require('../../../../tokens.js');
+import utils from '../../Shared/serverUtils.js';
 
 export default function AddToCart({ currentStyle }) {
   if (Object.keys(currentStyle).length === 0) {
@@ -21,12 +18,6 @@ export default function AddToCart({ currentStyle }) {
     sizesNums.push(currentStyle.skus[key]);
   });
 
-  function postToCart(quantityObj) {
-    axios.post(cartURL, quantityObj, { headers: { Authorization: GH_TOKEN } })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
   return (
     <div>
       <div>

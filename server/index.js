@@ -25,6 +25,19 @@ app.get('/products', (req, res) => {
     });
 });
 
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
+  const url = `${URL}/products/${id}`;
+
+  axios.get(url, HEADERS)
+    .then((response) => {
+      res.status(response.status).send(response.data);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err.response.data);
+    });
+});
+
 app.get('/products/:id/styles', (req, res) => {
   const { id } = req.params;
   const url = `${URL}/products/${id}/styles`;
@@ -173,6 +186,20 @@ app.post('/qa/:question_id/answers', (req, res) => {
   const data = req.body;
   // eslint-disable-next-line camelcase
   const url = `${URL}/qa/questions/${req.params.question_id}/answers`;
+
+  axios.post(url, data, HEADERS)
+    .then((response) => {
+      res.status(response.status).send(response.data);
+    })
+    .catch((error) => {
+      res.status(error).send(error);
+    });
+});
+
+app.post('/cart', (req, res) => {
+  const data = req.body;
+  // eslint-disable-next-line camelcase
+  const url = `${URL}/cart`;
 
   axios.post(url, data, HEADERS)
     .then((response) => {

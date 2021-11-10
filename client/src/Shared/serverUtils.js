@@ -14,6 +14,12 @@ const reportPost = (id) => axios.put(`/reviews/${id}/report`);
 
 const submitReview = (form) => axios.post('/reviews/', form);
 
+const getItem = (id) => axios.get(`/products/${id}`);
+
+const getStyle = (id) => axios.get(`/products/${id}/styles`);
+
+const postToCart = () => axios.post('/cart');
+
 export default {
   getRelatedProducts,
   getItemDetails,
@@ -22,4 +28,7 @@ export default {
   voteHelpful,
   reportPost,
   submitReview,
+  getItem,
+  getStyle,
+  postToCart,
 };
