@@ -18,13 +18,13 @@ const Answers = ({
   const [wasReported, setReported] = useState(false);
 
   const reportAnswer = (reportId) => {
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${reportId}/report`, {}, {
-      headers: {
-        Authorization: GH_TOKEN.GH_TOKEN,
-      },
-    })
-      .then((res) => console.log('Answer reported ', res.data))
-      .catch((error) => console.log(error));
+    // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${reportId}/report`, {}, {
+    //   headers: {
+    //     Authorization: GH_TOKEN.GH_TOKEN,
+    //   },
+    // })
+    utils.reportAnswer(reportId)
+      .then((res) => console.log('Answer reported ', res.data));
   };
 
   return (

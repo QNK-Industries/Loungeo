@@ -218,6 +218,18 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
     });
 });
 
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  const url = `${URL}/qa/answers/${req.params.answer_id}/report`;
+
+  axios.put(url, null, HEADERS)
+    .then((response) => {
+      res.status(204).send(response);
+    })
+    .catch((error) => {
+      res.status(204).send(error);
+    });
+});
+
 app.listen(PORT, () => {
   // console.log('Server listening on port:', `${PORT}`);
 });
