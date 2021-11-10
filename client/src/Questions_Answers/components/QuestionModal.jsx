@@ -100,25 +100,32 @@ const QuestionModal = ({ question, showQuestion, productId }) => {
 
   return (
     question ? ReactDOM.createPortal(
-      <React.Fragment>
-        <div style={overlay} />
-        <div style={modalWrapper} onClick={showQuestion}>
-          <div style={modalDiv} onClick={e => {
+      <>
+        <div
+        data-testid="QuestionOverlay"
+        style={overlay} />
+          <div
+            data-testid="ModalWrapper"
+            style={modalWrapper}
+            onClick={showQuestion}
+          >
+          <div data-testid="QuestionModal" style={modalDiv} onClick={e => {
             // Need to use this to be able to click on things inside Modal without closing
             e.stopPropagation();
           }}>
-            <div style={formStyle}>
+            <div data-testid="FormStyle" style={formStyle}>
               <h1>Submit Your Question</h1>
-
-
-              <form onSubmit={handleSubmit}>
+              <form
+                data-testid="FormSubmit"
+                onSubmit={handleSubmit}
+              >
                 <label>
                   Nickname:
                   <br />
                   <input
                     placeholder="Example: jack543!"
                     onChange={(e) => setNickname(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For privacy reasons, do not use your full name or email address"
                 </label>
@@ -129,7 +136,7 @@ const QuestionModal = ({ question, showQuestion, productId }) => {
                   <input
                     placeholder="Example: jack543!@noev.cam"
                     onChange={(e) => setEmail(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For authentication reasons, you will not be emailed”
                 </label>
@@ -138,16 +145,18 @@ const QuestionModal = ({ question, showQuestion, productId }) => {
                   Question Body
                   <br />
                   <textarea
+                    data-testid="TextArea"
                     onChange={(e) => setQuestionBody(e.target.value)}
-                    width='200px' />
+                    width='200px'
+                  />
                 </label>
                 <br />
                 <button type="submit">Submit</button>
               </form>
             </div>
           </div>
-        </ div>
-      </React.Fragment>, document.body,
+        </div>
+      </>, document.body,
     ) : null);
 };
 

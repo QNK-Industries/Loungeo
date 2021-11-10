@@ -57,6 +57,7 @@ const Questions = ({
       {Object.keys(answers).length
         ? (
           <button
+            data-testid="AddAnswerButton"
             type="button"
             onClick={() => setAnswerCount(answerCount + 2)}
           >Add More Answers

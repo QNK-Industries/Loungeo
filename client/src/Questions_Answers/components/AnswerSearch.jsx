@@ -12,7 +12,7 @@ const AnswerSearch = ({ search }) => {
 
   return (
     <div>
-      <input size="50" data-testid="input" placeholder="Have a question? Search for answers…" onChange={(e) => searchFilter(e)} />
+      <input size="50" data-testid="QuestionInput" placeholder="Have a question? Search for answers…" onChange={(e) => searchFilter(e)} />
     </div>
   );
 };

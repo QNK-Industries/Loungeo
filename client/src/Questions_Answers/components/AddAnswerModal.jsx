@@ -115,7 +115,9 @@ const Modal = ({
               e.stopPropagation();
             }}
           >
-            <div style={formStyle}>
+            <div
+            data-testid="AnswerModal"
+            style={formStyle}>
               <h1>Submit Your Answer</h1>
               <h2>{qBody}</h2>
               <form onSubmit={handleSubmit}>

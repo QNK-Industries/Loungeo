@@ -99,15 +99,14 @@ class QuestionsAnswers extends React.Component {
       showQuestion, questions, query, questionNumber,
     } = this.state;
     return (
-      <section style={{ alignItems: 'center' }}>
-        <div style={{ display: 'block', margin: '0 auto', width: '70vw' }}>
-          <h1>{product_id
+      <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
+        <div data-testid="QAStyleDiv" style={{ display: 'block', margin: '0 auto', width: '70vw' }}>
+          <h1 data-testid="QAHeading">{product_id
             ? 'Product something'
             : 'Hello World'}
           </h1>
           <AnswerSearch search={this.handleSearch} />
-          <button onClick={() => console.log(questions)}>Question State</button>
-          <div style={{ overflowY: 'auto', height: '500px' }}>
+          <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
 
             {showModal
@@ -133,6 +132,7 @@ class QuestionsAnswers extends React.Component {
               )
               : null}
             {/* <Questions showModal={this.showModal} state={this.state} /> */}
+            <div data-testid="QuestionsDiv" />
             {questions.filter((question, { question_body }) => {
               if (query === '') {
                 return question;
@@ -157,11 +157,11 @@ class QuestionsAnswers extends React.Component {
               />
             ))}
           </div>
-          <div>
-            <button type="button" onClick={this.addQuestionCount}>  Load more questions </button>
+          <div data-testid="BottomSection">
+            <button data-testid="LoadQuestions" type="button" onClick={this.addQuestionCount}>  Load more questions </button>
             {' '}
             {' '}
-            <button type="button" onClick={this.addQuestion}> Add a question + </button>
+            <button data-testid="QuestionButton" type="button" onClick={this.addQuestion}> Add a question + </button>
           </div>
         </div>
       </section>

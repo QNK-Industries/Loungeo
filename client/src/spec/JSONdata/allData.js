@@ -3,6 +3,7 @@ const { reviews } = require('./reviews.js');
 const { mainProduct } = require('./mainProduct.js');
 const { reviewsMeta } = require('./reviewsMeta.js');
 const { productStyles } = require('./productStyles.js');
+const { questions } = require('./questionData.js');
 
 module.exports = {
   details,
@@ -10,4 +11,5 @@ module.exports = {
   reviews,
   mainProduct,
   productStyles,
+  questions,
 };
