@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import ReactDOM from 'react-dom';
+import utils from '../../Shared/serverUtils.js';
 
-const GH_TOKEN = require('../../../../tokens.js');
+// const GH_TOKEN = require('../../../../tokens.js');
 
 const overlay = {
   position: 'fixed',
@@ -44,10 +45,10 @@ const formStyle = {
   zIndex: '3000',
 };
 
-const QuestionModal = ({ question, showQuestion, getQuestions, productId }) => {
+const QuestionModal = ({ question, showQuestion, productId }) => {
   const [questionBody, setQuestionBody] = useState('');
   const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
+  const [eMail, setEmail] = useState('');
 
   const formCheck = () => {
     if (!questionBody) {
@@ -56,7 +57,7 @@ const QuestionModal = ({ question, showQuestion, getQuestions, productId }) => {
     } else if (!nickname) {
       alert('Please Provide Your Nickname')
       return false;
-    } else if (!email) {
+    } else if (!eMail) {
       alert('Please Provide Your Email')
       return false
     } else {
@@ -70,49 +71,61 @@ const QuestionModal = ({ question, showQuestion, getQuestions, productId }) => {
       const newQuestion = {
         body: questionBody,
         name: nickname,
-        email: email,
+        email: eMail,
         product_id: productId,
       };
 
-      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, newQuestion, {
-        headers: {
-          Authorization: GH_TOKEN.GH_TOKEN,
-        },
-      })
-        .then((res) => {
-          console.log('You did it dawg:', res.data);
-        })
-        .then(() => getQuestions())
-        .then(() => showQuestion())
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response.data);
-          }
-        });
+      utils.postQuestion(newQuestion)
+        .then((response) => console.log(response))
+        .then(() => utils.getQuestions(61575))
+        .then(() => showQuestion());
+
+      //     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, newQuestion, {
+      //       headers: {
+      //         Authorization: GH_TOKEN.GH_TOKEN,
+      //       },
+      //     })
+      //       .then((res) => {
+      //         console.log('You did it dawg:', res.data);
+      //       })
+      //       .then(() => getQuestions())
+      //       .then(() => showQuestion())
+      //       .catch((error) => {
+      //         if (error.response) {
+      //           console.log(error.response.data);
+      //         }
+      //       });
     }
   };
 
   return (
     question ? ReactDOM.createPortal(
-      <React.Fragment>
-        <div style={overlay} />
-        <div style={modalWrapper} onClick={showQuestion}>
-          <div style={modalDiv} onClick={e => {
+      <>
+        <div
+        data-testid="QuestionOverlay"
+        style={overlay} />
+          <div
+            data-testid="ModalWrapper"
+            style={modalWrapper}
+            onClick={showQuestion}
+          >
+          <div data-testid="QuestionModal" style={modalDiv} onClick={e => {
             // Need to use this to be able to click on things inside Modal without closing
             e.stopPropagation();
           }}>
-            <div style={formStyle}>
+            <div data-testid="FormStyle" style={formStyle}>
               <h1>Submit Your Question</h1>
-
-
-              <form onSubmit={handleSubmit}>
+              <form
+                data-testid="FormSubmit"
+                onSubmit={handleSubmit}
+              >
                 <label>
                   Nickname:
                   <br />
                   <input
                     placeholder="Example: jack543!"
                     onChange={(e) => setNickname(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For privacy reasons, do not use your full name or email address"
                 </label>
@@ -123,7 +136,7 @@ const QuestionModal = ({ question, showQuestion, getQuestions, productId }) => {
                   <input
                     placeholder="Example: jack543!@noev.cam"
                     onChange={(e) => setEmail(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For authentication reasons, you will not be emailed”
                 </label>
@@ -132,16 +145,19 @@ const QuestionModal = ({ question, showQuestion, getQuestions, productId }) => {
                   Question Body
                   <br />
                   <textarea
+                    data-testid="TextArea"
                     onChange={(e) => setQuestionBody(e.target.value)}
-                    width='200px' />
+                    width='200px'
+                  />
                 </label>
                 <br />
                 <button type="submit">Submit</button>
               </form>
             </div>
           </div>
-        </ div>
-      </React.Fragment>, document.body,
+        </div>
+      </>, document.body,
     ) : null);
 };
+
 export default QuestionModal;

@@ -170,10 +170,10 @@ app.get('/qa/:question_id/answers', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
-  const { data } = req.body;
+  const { body } = req;
   const url = `${URL}/qa/questions`;
 
-  axios.post(url, data, HEADERS)
+  axios.post(url, body, HEADERS)
     .then((response) => {
       res.status(response.status).send(response);
     })
@@ -183,11 +183,11 @@ app.post('/qa/questions', (req, res) => {
 });
 
 app.post('/qa/:question_id/answers', (req, res) => {
-  const data = req.body;
+  const { body } = req;
   // eslint-disable-next-line camelcase
   const url = `${URL}/qa/questions/${req.params.question_id}/answers`;
 
-  axios.post(url, data, HEADERS)
+  axios.post(url, body, HEADERS)
     .then((response) => {
       res.status(response.status).send(response.data);
     })
@@ -242,6 +242,18 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
     })
     .catch((error) => {
       res.status(error.status).send(error);
+    });
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  const url = `${URL}/qa/answers/${req.params.answer_id}/report`;
+
+  axios.put(url, null, HEADERS)
+    .then((response) => {
+      res.status(204).send(response);
+    })
+    .catch((error) => {
+      res.status(204).send(error);
     });
 });
 
