@@ -15,7 +15,7 @@ const ItemCard = (props) => {
       utils.getRating(props.item).then(({ data }) => setRating(StarAverage(data.ratings)));
     } else {
       setProduct(props.item);
-      setRating(props.item.rating);
+      setRating(setRating(StarAverage(props.item.ratings)));
     }
   }, []);
 
@@ -35,7 +35,7 @@ const ItemCard = (props) => {
     }
   }
 
-  if (product.id) {
+  if (product.id && rating) {
     return (
       <StyledItemCard>
         <div className="card-image-container">
@@ -70,7 +70,11 @@ const ItemCard = (props) => {
     );
   }
   return (
-    <StyledItemCard url="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47d23nnjrd24i8d7pt8wtvxse5rkasd8v30moj9rv1&rid=giphy.gif&ct=g" />
+    <StyledItemCard url="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47d23nnjrd24i8d7pt8wtvxse5rkasd8v30moj9rv1&rid=giphy.gif&ct=g">
+      <div className="card-image-container">
+        <img alt="product" src={getDefaultImageUrl()} className="card-image" />
+      </div>
+    </StyledItemCard>
   );
 };
 
