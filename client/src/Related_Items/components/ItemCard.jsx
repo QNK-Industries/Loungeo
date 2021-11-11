@@ -1,49 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { StyledItemCard } from '../RelatedItemsStyles.js';
 import utils from '../../Shared/serverUtils.js';
 import ActionButton from './ActionButton.jsx';
-
-const $cardHeight = '475px';
-const $cardWidth = '280px';
-
-const StyledItemCard = styled.div`
-  width: ${$cardWidth};
-  height: ${$cardHeight};
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
-  position: relative;
-`;
-
-const ItemCardBackground = styled.div`
-  width: 100%;
-  height: 65%;
-  background: url(${(props) => props.url || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}) no-repeat;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px 10px 0 0;
-`;
-
-const ItemCardInfo = styled.div`
-  width: 100%;
-  height: 35%;
-
-  & * {
-    margin: 0;
-  }
-
-  & span {
-    text-transform: uppercase;
-  }
-`;
+import StarRating from '../../Shared/StarRating.jsx';
+import StarAverage from '../../Shared/StarAverage.jsx';
 
 const ItemCard = (props) => {
   const [product, setProduct] = useState({});
+  const [rating, setRating] = useState({});
 
-  useEffect(() => utils.getItemDetails(props.item).then((newData) => setProduct(newData.data)), []);
+  useEffect(() => {
+    utils.getItemDetails(props.item).then(({ data }) => setProduct(data));
+    utils.getRating(props.item).then(({ data }) => setRating(StarAverage(data.ratings)));
+  }, []);
 
   function getDefaultImageUrl() {
-    let defaultUrl = null;
+    let defaultUrl = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
     try {
       for (let i = 0; i < product.results.length; i += 1) {
         if (product.results[i]['default?']) {
@@ -61,14 +33,34 @@ const ItemCard = (props) => {
   if (product.id) {
     return (
       <StyledItemCard>
-        <ActionButton type={props.type} product={product} actionFunc={props.action} />
-        <ItemCardBackground url={getDefaultImageUrl()} />
-        <ItemCardInfo>
-          <span>{product.category}</span>
-          <h3>{product.name}</h3>
-          <p>${product.default_price}</p>
-          <p>STARS PLACEHOLDER</p>
-        </ItemCardInfo>
+        <div className="card-image-container">
+          <img alt="product" src={getDefaultImageUrl()} className="card-image" />
+        </div>
+
+        <div className="card-text">
+
+          <div className="card-category">
+            <span>{product.category}</span>
+          </div>
+
+          <div className="card-title">
+            <h3>{product.name}</h3>
+          </div>
+
+          <div className="card-rating">
+            <StarRating ratingObj={rating} />
+          </div>
+
+          <div className="card-footer">
+            <div className="card-left">
+              <span className="card-price">${product.default_price}</span>
+            </div>
+
+            <div className="card-right">
+              <ActionButton type={props.type} product={product} actionFunc={props.action} />
+            </div>
+          </div>
+        </div>
       </StyledItemCard>
     );
   }

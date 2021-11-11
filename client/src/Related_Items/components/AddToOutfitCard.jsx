@@ -1,22 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const OutfitDiv = styled.div`
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  border: solid 1px black;
-  text-align: center;
-`;
+import { OutfitDiv } from '../RelatedItemsStyles.js';
 
 const AddToOutfitCard = ({ addOutfit, product }) => (
   <OutfitDiv onClick={() => addOutfit(product.id)}>
-    <p>
-      +
-    </p>
-    <p>
-      Add to Outfit
-    </p>
+    <div className="outfit-card">
+      <h1>
+        Add
+        <span className="enclosed">to</span>
+        <span className="enclosed">outfit</span>
+        <img alt="shopping bag" src="../../images/shoppingbag.svg" className="shopping" />
+      </h1>
+    </div>
   </OutfitDiv>
 );
 
