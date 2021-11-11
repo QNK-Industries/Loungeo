@@ -10,8 +10,13 @@ const ItemCard = (props) => {
   const [rating, setRating] = useState({});
 
   useEffect(() => {
-    utils.getItemDetails(props.item).then(({ data }) => setProduct(data));
-    utils.getRating(props.item).then(({ data }) => setRating(StarAverage(data.ratings)));
+    if (props.type === 'RELATED') {
+      utils.getItemDetails(props.item).then(({ data }) => setProduct(data));
+      utils.getRating(props.item).then(({ data }) => setRating(StarAverage(data.ratings)));
+    } else {
+      setProduct(props.item);
+      setRating(props.item.rating);
+    }
   }, []);
 
   function getDefaultImageUrl() {

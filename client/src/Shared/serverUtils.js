@@ -14,6 +14,8 @@ const reportPost = (id) => axios.put(`/reviews/${id}/report`);
 
 const submitReview = (form) => axios.post('/reviews/', form);
 
+const getCurrentOutfit = () => axios.get('/myoutfit');
+
 // QA
 
 const getQuestions = (id, count) => axios.get(`/qa/questions/${id}&count=${count}`);
@@ -49,4 +51,5 @@ export default {
   getItem,
   getStyle,
   postToCart,
+  getCurrentOutfit,
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const { GH_TOKEN } = require('../tokens.js');
+const { outfitData } = require('./clientOutfit.js');
 
 const app = express();
 const PORT = 3000 || process.env.PORT;
@@ -80,6 +81,10 @@ app.get('/products/:id/related', (req, res) => {
     .catch((err) => {
       res.status(err.response.status).send(err.response.data);
     });
+});
+
+app.get('/myoutfit', (req, res) => {
+  res.status(200).send(outfitData);
 });
 
 app.get('/reviews/', (req, res) => {

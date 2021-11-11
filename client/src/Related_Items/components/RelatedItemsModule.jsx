@@ -5,16 +5,24 @@ import utils from '../../Shared/serverUtils.js';
 import Carousel from './Carousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
-// const testOutfit = [61578, 61592, 61595, 'ADD TO OUTFIT'];
-
 const RelatedItems = ({ mainProduct }) => {
   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
   const [currentCompare, setCurrentCompare] = useState(null);
-  const [outfit, setOutfit] = useState(['ADD TO OUTFIT']);
-  // const [outfit, setOutfit] = useState(testOutfit);
+  const [outfit, setOutfit] = useState(null);
+  const [outfitBucket, setOutfitBucket] = useState({});
 
-  useEffect(() => utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data)), []);
+  useEffect(() => {
+    utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data));
+    utils.getCurrentOutfit().then((storedOutfit) => {
+      setOutfitBucket(storedOutfit.data);
+      if (storedOutfit.data[mainProduct.id]) {
+        setOutfit(Object.keys(storedOutfit.data));
+      } else {
+        setOutfit([...Object.keys(storedOutfit.data), 'ADD TO OUTFIT']);
+      }
+    });
+  }, []);
 
   function addOutfit(outfitId) {
     if (outfit.indexOf(outfitId) === -1) {
@@ -44,27 +52,43 @@ const RelatedItems = ({ mainProduct }) => {
     return undefined;
   }
 
-  return (
-    <section id="related_products_and_comparison_module" data-testid="relateditems">
-      <section>
-        <CarousolHeader>
-          <CarousolText>
-            YOUR OUTFIT
-          </CarousolText>
-        </CarousolHeader>
-        <Carousel type="OUTFIT" key="OUTFIT" action={(selectedProduct) => removeOutfit(selectedProduct)} outfit={outfit} mainProduct={mainProduct} addOutfit={(addToOutfit) => addOutfit(addToOutfit)} />
+  if (outfit) {
+    return (
+      <section id="related_products_and_comparison_module" data-testid="relateditems">
+        <section>
+          <CarousolHeader>
+            <CarousolText>
+              YOUR OUTFIT
+            </CarousolText>
+          </CarousolHeader>
+          <Carousel
+            type="OUTFIT"
+            key="Carousel-OUTFIT"
+            action={(selectedProduct) => removeOutfit(selectedProduct)}
+            outfit={outfit}
+            outfitBucket={outfitBucket}
+            mainProduct={mainProduct}
+            addOutfit={(addToOutfit) => addOutfit(addToOutfit)}
+          />
+        </section>
+        <section>
+          {displayModal()}
+          <CarousolHeader>
+            <CarousolText>
+              WEAR IT WITH
+            </CarousolText>
+          </CarousolHeader>
+          <Carousel
+            type="RELATED"
+            key="Carousel-RELATED"
+            action={(selectedProduct) => turnOnModal(selectedProduct)}
+            data={data}
+          />
+        </section>
       </section>
-      <section>
-        {displayModal()}
-        <CarousolHeader>
-          <CarousolText>
-            WEAR IT WITH
-          </CarousolText>
-        </CarousolHeader>
-        <Carousel type="RELATED" key="RELATED" action={(selectedProduct) => turnOnModal(selectedProduct)} data={data} />
-      </section>
-    </section>
-  );
+    );
+  }
+  return 'Loading...';
 };
 
 export default RelatedItems;
