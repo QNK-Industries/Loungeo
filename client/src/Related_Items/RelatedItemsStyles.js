@@ -1,6 +1,60 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // RELATED ITEMS MODULE
+
+const fadeIn = keyframes`
+  0% {
+    background:rgba(0,0,0,.0);
+  }
+  100% {
+    background:rgba(0,0,0,.7);
+  }
+`;
+
+const fadeOut = keyframes`
+  0% {
+    background:rgba(0,0,0,.7);
+  }
+  100% {
+    background:rgba(0,0,0,.0);
+  }
+`;
+
+const quickScaleDown = keyframes`
+  0% {
+    transform:scale(1);
+  }
+  99.9% {
+    transform:scale(1);
+  }
+  100% {
+    transform:scale(0);
+  }
+`;
+
+const roadRunnerIn = keyframes`
+  0% {
+    transform:translateX(-1500px) skewX(30deg) scaleX(1.3);
+  }
+  70% {
+    transform:translateX(30px) skewX(0deg) scaleX(.9);
+  }
+  100% {
+    transform:translateX(0px) skewX(0deg) scaleX(1);
+  }
+`;
+
+const roadRunnerOut = keyframes`
+  0% {
+    transform:translateX(0px) skewX(0deg) scaleX(1);
+  }
+  30% {
+    transform:translateX(-30px) skewX(-5deg) scaleX(.9);
+  }
+  100% {
+    transform:translateX(1500px) skewX(30deg) scaleX(1.3);
+  }
+`;
 
 export const CarousolHeader = styled.h2`
   position: relative;
@@ -65,16 +119,48 @@ export const CarousolButton = styled.div`
 
 // COMPARISON MODAL
 
-export const StyleModal = styled.div`
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+export const ModalContainer = styled.div`
+  position:fixed;
+  display:table;
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+  transform:scale(0);
+  z-index:1;
+
+    &.modal-container {
+    transform:scale(1);
+
+    .modal-background {
+      background:rgba(0,0,0,.0);
+      animation: ${fadeIn} .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+
+      .modal {
+        transform:translateX(-1500px);
+        animation: ${roadRunnerIn} .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+    }
+
+    &.close {
+      animation: ${quickScaleDown} 0s .5s linear forwards;
+
+      .modal-background {
+        animation: ${fadeOut} .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+
+        .modal {
+          animation: ${roadRunnerOut} .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        }
+      }
+    }
+  }
+
+  .modal-background {
+    display:table-cell;
+    background:rgba(0,0,0,.8);
+    text-align:center;
+    vertical-align:middle;
+  }
 `;
 
 export const ModalContent = styled.div`
