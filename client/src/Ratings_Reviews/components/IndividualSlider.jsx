@@ -31,7 +31,7 @@ const IndividualSlider = ({ characteristic, characteristicDetails, rating }) => 
   function displayBreakpoints() {
     const breakpointBucket = [];
     for (let i = 0; i < 5; i += 1) {
-      breakpointBucket.push(<StyleDot position={i * 25} />);
+      breakpointBucket.push(<StyleDot key={`dot-${i + 1}`} position={i * 25} />);
     }
     return breakpointBucket;
   }

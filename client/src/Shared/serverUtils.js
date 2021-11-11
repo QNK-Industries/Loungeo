@@ -14,6 +14,19 @@ const reportPost = (id) => axios.put(`/reviews/${id}/report`);
 
 const submitReview = (form) => axios.post('/reviews/', form);
 
+// QA
+
+const getQuestions = (id, count) => axios.get(`/qa/questions/${id}&count=${count}`);
+
+const postQuestion = (form) => axios.post('/qa/questions', form);
+
+const addAnswer = (id, form) => axios.post(`/qa/${id}/answers`, form);
+
+const addHelpfulQuestion = (id, endpoint) => axios.put(`qa/${endpoint}/${id}/helpful`);
+
+const reportAnswer = (id) => axios.put(`/qa/answers/${id}/report`);
+
+// Product Overview
 const getItem = (id) => axios.get(`/products/${id}`);
 
 const getStyle = (id) => axios.get(`/products/${id}/styles`);
@@ -28,6 +41,11 @@ export default {
   voteHelpful,
   reportPost,
   submitReview,
+  getQuestions,
+  postQuestion,
+  addAnswer,
+  addHelpfulQuestion,
+  reportAnswer,
   getItem,
   getStyle,
   postToCart,

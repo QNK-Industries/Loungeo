@@ -1,5 +1,5 @@
 export default function starAverage(obj) {
-  let result = {average: 0, total: 0};
+  const result = { average: 0, total: 0 };
   if (Object.keys(obj).length > 0) {
     let ratingsTotal = 0;
     let ratingsCount = 0;

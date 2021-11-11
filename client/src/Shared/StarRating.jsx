@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 const starShapes = [
   '../../images/emptystar.svg',
@@ -9,6 +9,16 @@ const starShapes = [
   '../../images/threequarterstar.svg',
   '../../images/fullstar.svg',
 ];
+
+const StarImage = styled.img`
+  width: 30px;
+`;
+
+const StarImageContainer = styled.div`
+  display: inline-block;
+  position: relative;
+  ${(props) => (props.role === 'button' ? 'cursor: pointer;' : '')}
+`;
 
 export default function StarRating({ ratingObj, submissionNotSelected, changeHover, setStar }) {
   let rating = ratingObj.average;
@@ -46,9 +56,8 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
     return (
       <span className="star-rating">
         {stars.map((star, index) => (
-          <div
+          <StarImageContainer
             key={`star-${index + 1}`}
-            style={{ display: 'inline-block', position: 'relative', cursor: 'pointer' }}
             className="star"
             onMouseEnter={() => changeHover(index + 1)}
             onMouseLeave={() => changeHover(0)}
@@ -57,8 +66,8 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
             role="button"
             tabIndex={0}
           >
-            <img src={star} alt="filled star" style={{ width: '30px' }} />
-          </div>
+            <StarImage src={star} alt="filled star" />
+          </StarImageContainer>
         ))}
       </span>
     );
@@ -66,9 +75,9 @@ export default function StarRating({ ratingObj, submissionNotSelected, changeHov
   return (
     <span className="star-rating">
       {stars.map((star, index) => (
-        <div key={`star-${index + 1}`} style={{ display: 'inline-block', position: 'relative' }} className="star">
-          <img src={star} alt="filled star" style={{ width: '30px' }} />
-        </div>
+        <StarImageContainer key={`star-${index + 1}`} className="star">
+          <StarImage src={star} alt="filled star" />
+        </StarImageContainer>
       ))}
     </span>
   );

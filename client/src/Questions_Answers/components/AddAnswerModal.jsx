@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import ReactDOM from 'react-dom';
-
-const GH_TOKEN = require('../../../../tokens.js');
+import utils from '../../Shared/serverUtils.js';
 
 const overlay = {
   position: 'fixed',
@@ -48,7 +47,7 @@ const formStyle = {
 };
 
 const Modal = ({
-  modal, showModal, qBody, questionID, getQuestions,
+  modal, showModal, qBody, questionID, getQuestions, questionNumber
 }) => {
   const [answerBody, setAnswerBody] = useState('');
   const [nickname, setNickname] = useState('');
@@ -77,30 +76,48 @@ const Modal = ({
         name: nickname,
         email: email,
       };
-      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer, {
-        headers: {
-          Authorization: GH_TOKEN.GH_TOKEN,
-        },
-      })
+
+      // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}/answers`, newAnswer, {
+      //   headers: {
+      //     Authorization: GH_TOKEN.GH_TOKEN,
+      //   },
+      // })
+      utils.addAnswer(questionID, newAnswer)
         .then((res) => {
           console.log('You did it dawg:', res.data);
         })
-        .then(() => getQuestions())
+        .then(() => getQuestions(61575, questionNumber))
         .then(() => showModal())
-        .catch(console.log)}
+        .catch(console.log);
+    }
   };
-
 
   return (
     modal ? ReactDOM.createPortal(
-      <React.Fragment>
-        <div style={overlay} />
-        <div style={modalWrapper} onClick={showModal}>
-          <div style={modalDiv} onClick={e => {
-            // Need to use this to be able to click on things inside Modal without closing
-            e.stopPropagation();
-          }}>
-            <div style={formStyle}>
+      <>
+        <div
+          style={overlay}
+        />
+        <div
+          role="button"
+          tabIndex="0"
+          style={modalWrapper}
+          onClick={showModal}
+          onKeyDown={(e) => console.log(e)}
+        >
+          <div
+            style={modalDiv}
+            role="button"
+            tabIndex="0"
+            onKeyDown={(e) => console.log(e)}
+            onClick={(e) => {
+              // Need to use this to be able to click on things inside Modal without closing
+              e.stopPropagation();
+            }}
+          >
+            <div
+            data-testid="AnswerModal"
+            style={formStyle}>
               <h1>Submit Your Answer</h1>
               <h2>{qBody}</h2>
               <form onSubmit={handleSubmit}>
@@ -110,7 +127,7 @@ const Modal = ({
                   <input
                     placeholder="Example: jack543!"
                     onChange={(e) => setNickname(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For privacy reasons, do not use your full name or email address"
                 </label>
@@ -121,7 +138,7 @@ const Modal = ({
                   <input
                     placeholder="Example: jack543!@noev.cam"
                     onChange={(e) => setEmail(e.target.value)}
-                  ></input>
+                  />
                   <br />
                   “For authentication reasons, you will not be emailed”
                 </label>
@@ -138,8 +155,8 @@ const Modal = ({
               </form>
             </div>
           </div>
-        </ div>
-      </React.Fragment>, document.body,
+        </div>
+      </>, document.body,
     ) : null);
 };
 export default Modal;
