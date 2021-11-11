@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   height: 90vh;
-  width: 15vw;
+  width: 6vw;
   position: relative;
   display: flex;
   flex-direction: column;

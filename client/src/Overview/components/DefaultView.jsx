@@ -6,9 +6,10 @@ const Div = styled.div`
   width: 35vw;
   position: relative;
   display: flex;
+  align-items: center;
 `;
 const Img = styled.img`
-  box-shadow: 2px 2px px black;
+  box-shadow: 2px 2px 5px black;
   position: absolute;
   height: 90vh;
   width: 35vw;
@@ -28,12 +29,12 @@ const Button = styled.span`
 `;
 
 const LeftButton = styled(Button)`
-  left: -17%;
+  left: 0%;
   bottom: 50%;
 `;
 
 const RightButton = styled(Button)`
-  right: -8%;
+  right: 7.5%;
   bottom: 50%;
 `;
 

@@ -6,7 +6,7 @@ import StyleSelector from './components/StyleSelector.jsx';
 import AddToCart from './components/AddToCart.jsx';
 import DefaultView from './components/DefaultView.jsx';
 import ExpandedView from './components/ExpandedView.jsx';
-// import ZoomedView from './components/ZoomedView.jsx';
+import ZoomedView from './components/ZoomedView.jsx';
 import utils from '../Shared/serverUtils.js';
 
 const id = 61575;
@@ -17,13 +17,13 @@ const Section = styled.section`
   width: 80vw;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
 `;
 
 const Div = styled.div`
   height: 90vh;
-  width: 25vw;
+  width: 35vw;
   position: relative;
 `;
 
@@ -34,6 +34,7 @@ export default function Overview() {
   const [rating, setRating] = useState({});
   const [imageClick, setImageClick] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
+  const [mouseLocation, setMouseLocation] = useState([0, 0]);
 
   useEffect(() => {
     utils.getItem(id)
@@ -99,6 +100,18 @@ export default function Overview() {
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
           data-testid="ExpandedView"
+          mouseLocation={mouseLocation}
+          setMouseLocation={setMouseLocation}
+        />
+        <ZoomedView
+          currentStyle={currentStyle}
+          imageClick={imageClick}
+          setImageClick={setImageClick}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+          data-testid="ExpandedView"
+          mouseLocation={mouseLocation}
+          setMouseLocation={setMouseLocation}
         />
       </Section>
     );
