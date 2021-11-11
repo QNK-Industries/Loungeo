@@ -5,7 +5,7 @@ import ItemCard from './ItemCard.jsx';
 import AddToOutfitCard from './AddToOutfitCard.jsx';
 import { StyledCarousel, CarousolButton, CardWrapper } from '../RelatedItemsStyles.js';
 
-const Carousel = ({ type, data, outfit, outfitBucket, action, mainProduct, addOutfit }) => {
+const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const bucketSize = type === 'RELATED' ? data.length : outfit.length + 1;
 
@@ -40,12 +40,14 @@ const Carousel = ({ type, data, outfit, outfitBucket, action, mainProduct, addOu
             <CardWrapper key={`wrapper-${product}`} className={index ? 'outfit-last' : 'outfit-first'}>
               <AddToOutfitCard
                 addOutfit={(addToOutfit) => addOutfit(addToOutfit)}
-                product={mainProduct}
               />
             </CardWrapper>
           );
         }
-        return <CardWrapper key={`wrapper-${product}`}><ItemCard type="OUTFIT" key={`card-${product}`} item={outfitBucket[product]} action={action} /></CardWrapper>;
+        if (outfitBucket[product]) {
+          return <CardWrapper key={`wrapper-${product}`}><ItemCard type="OUTFIT" key={`card-${product}`} item={outfitBucket[product]} action={action} /></CardWrapper>;
+        }
+        return null;
       });
   }
 

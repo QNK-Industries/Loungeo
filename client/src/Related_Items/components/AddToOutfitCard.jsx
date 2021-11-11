@@ -1,8 +1,8 @@
 import React from 'react';
 import { OutfitDiv } from '../RelatedItemsStyles.js';
 
-const AddToOutfitCard = ({ addOutfit, product }) => (
-  <OutfitDiv onClick={() => addOutfit(product.id)}>
+const AddToOutfitCard = ({ addOutfit }) => (
+  <OutfitDiv onClick={() => addOutfit()}>
     <div className="outfit-card">
       <h1>
         Add

@@ -5,17 +5,14 @@ import ActionButton from './ActionButton.jsx';
 import StarRating from '../../Shared/StarRating.jsx';
 import StarAverage from '../../Shared/StarAverage.jsx';
 
-const ItemCard = (props) => {
-  const [product, setProduct] = useState({});
-  const [rating, setRating] = useState({});
+const ItemCard = ({ type, item, action }) => {
+  const [product, setProduct] = useState(type === 'RELATED' ? {} : item);
+  const [rating, setRating] = useState(type === 'RELATED' ? {} : StarAverage(item.ratings));
 
   useEffect(() => {
-    if (props.type === 'RELATED') {
-      utils.getItemDetails(props.item).then(({ data }) => setProduct(data));
-      utils.getRating(props.item).then(({ data }) => setRating(StarAverage(data.ratings)));
-    } else {
-      setProduct(props.item);
-      setRating(setRating(StarAverage(props.item.ratings)));
+    if (type === 'RELATED') {
+      utils.getItemDetails(item).then(({ data }) => setProduct(data));
+      utils.getRating(item).then(({ data }) => setRating(StarAverage(data.ratings)));
     }
   }, []);
 
@@ -62,7 +59,7 @@ const ItemCard = (props) => {
             </div>
 
             <div className="card-right">
-              <ActionButton type={props.type} product={product} actionFunc={props.action} />
+              <ActionButton type={type} product={product} actionFunc={action} />
             </div>
           </div>
         </div>

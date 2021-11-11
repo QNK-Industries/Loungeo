@@ -1,39 +1,63 @@
-/* eslint-disable max-len */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { CarousolHeader, CarousolText } from '../RelatedItemsStyles.js';
 import utils from '../../Shared/serverUtils.js';
 import Carousel from './Carousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
-const RelatedItems = ({ mainProduct }) => {
+const RelatedItems = (props) => {
   const [data, setData] = useState([]);
+  const [mainProduct, setMainProduct] = useState(props.mainProduct);
   const [modal, setModal] = useState(false);
   const [currentCompare, setCurrentCompare] = useState(null);
-  const [outfit, setOutfit] = useState(null);
-  const [outfitBucket, setOutfitBucket] = useState({});
+  const [outfit, setOutfit] = useState({ ids: [], bucket: {} });
 
   useEffect(() => {
     utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data));
+    utils.getItemDetails(mainProduct.id).then((mainDetails) => {
+      utils.getRating(mainProduct.id).then((newData) => {
+        const newProduct = { ...mainDetails.data };
+        newProduct.ratings = newData.data.ratings;
+        setMainProduct(newProduct);
+      });
+    });
     utils.getCurrentOutfit().then((storedOutfit) => {
-      setOutfitBucket(storedOutfit.data);
+      const outfitBucket = {
+        bucket: storedOutfit.data,
+      };
       if (storedOutfit.data[mainProduct.id]) {
-        setOutfit(Object.keys(storedOutfit.data));
+        outfitBucket.ids = Object.keys(storedOutfit.data);
       } else {
-        setOutfit([...Object.keys(storedOutfit.data), 'ADD TO OUTFIT']);
+        outfitBucket.ids = [...Object.keys(storedOutfit.data), 'ADD TO OUTFIT'];
       }
+      setOutfit(outfitBucket);
     });
   }, []);
 
-  function addOutfit(outfitId) {
-    if (outfit.indexOf(outfitId) === -1) {
-      setOutfit([outfitId, ...outfit.slice(0, -1)]);
+  function addOutfit() {
+    if (outfit.ids.indexOf(mainProduct.id) === -1) {
+      const newBucket = { ...outfit.bucket };
+      newBucket[mainProduct.id] = mainProduct;
+      utils.addItemToOutfit(mainProduct);
+      setOutfit({
+        ids: [...outfit.ids.slice(0, -1), mainProduct.id],
+        bucket: newBucket,
+      });
     }
   }
 
   function removeOutfit({ id }) {
-    const stateCopy = [...outfit];
-    stateCopy.splice(stateCopy.indexOf(id), 1);
-    setOutfit([...stateCopy, 'ADD TO OUTFIT']);
+    const outfitBucketCopy = { ...outfit.bucket };
+    utils.deleteItemFromOutfit(id);
+    delete outfitBucketCopy[id];
+    const idCopy = Object.keys(outfitBucketCopy);
+    if (!outfitBucketCopy[mainProduct.id]) {
+      idCopy.push('ADD TO OUTFIT');
+    }
+    setOutfit({
+      ids: idCopy,
+      bucket: outfitBucketCopy,
+    });
   }
 
   function turnOnModal(product) {
@@ -47,7 +71,13 @@ const RelatedItems = ({ mainProduct }) => {
 
   function displayModal() {
     if (modal) {
-      return <ComparisonModal product={mainProduct} compare={currentCompare} modalOff={() => turnOffModal()} />;
+      return (
+        <ComparisonModal
+          product={mainProduct}
+          compare={currentCompare}
+          modalOff={() => turnOffModal()}
+        />
+      );
     }
     return undefined;
   }
@@ -65,8 +95,8 @@ const RelatedItems = ({ mainProduct }) => {
             type="OUTFIT"
             key="Carousel-OUTFIT"
             action={(selectedProduct) => removeOutfit(selectedProduct)}
-            outfit={outfit}
-            outfitBucket={outfitBucket}
+            outfit={outfit.ids}
+            outfitBucket={outfit.bucket}
             mainProduct={mainProduct}
             addOutfit={(addToOutfit) => addOutfit(addToOutfit)}
           />
