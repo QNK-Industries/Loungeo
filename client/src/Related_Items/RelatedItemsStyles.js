@@ -34,25 +34,25 @@ const quickScaleDown = keyframes`
 
 const roadRunnerIn = keyframes`
   0% {
-    transform:translateX(-1500px) skewX(30deg) scaleX(1.3);
+    transform:translateX(-1500px) translateY(-50%) skewX(30deg) scaleX(1.3);
   }
   70% {
-    transform:translateX(30px) skewX(0deg) scaleX(.9);
+    transform:translateX(-40%) translateY(-50%) skewX(0deg) scaleX(.9)
   }
   100% {
-    transform:translateX(0px) skewX(0deg) scaleX(1);
+    transform:translateX(-50%) translateY(-50%) skewX(0deg) scaleX(1);
   }
 `;
 
 const roadRunnerOut = keyframes`
   0% {
-    transform:translateX(0px) skewX(0deg) scaleX(1);
+    transform:translateX(-50%) translateY(-50%) skewX(0deg) scaleX(1);
   }
   30% {
-    transform:translateX(-30px) skewX(-5deg) scaleX(.9);
+    transform:translateX(-40%) translateY(-50%) skewX(0deg) scaleX(.9)
   }
   100% {
-    transform:translateX(1500px) skewX(30deg) scaleX(1.3);
+    transform:translateX(1500px) translateY(-50%) skewX(30deg) scaleX(1.3);
   }
 `;
 

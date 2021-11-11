@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import React from 'react';
 import { ModalContainer, ModalContent } from '../RelatedItemsStyles.js';
 
@@ -51,20 +52,33 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
     return resultDisplay;
   }
 
+  if (compare) {
+    return (
+      <ModalContainer onClick={modalOff} className={modal ? 'modal-container' : ''}>
+        <div className="modal-background">
+          <ModalContent className="modal">
+            <span>COMPARING</span>
+            <div className="compare-label">
+              <h2>
+                {product.name}
+              </h2>
+              <h2>
+                {compare.name}
+              </h2>
+            </div>
+            {generateComparisons()}
+          </ModalContent>
+        </div>
+      </ModalContainer>
+    );
+  }
   return (
     <ModalContainer onClick={modalOff} className={modal ? 'modal-container' : ''}>
       <div className="modal-background">
-        <ModalContent className="modal">
-          <span>COMPARING</span>
-          <div className="compare-label">
-            <h2>
-              {product.name}
-            </h2>
-            <h2>
-              {compare.name}
-            </h2>
-          </div>
-          {generateComparisons()}
+        <ModalContent>
+          <h2>
+            Loading...
+          </h2>
         </ModalContent>
       </div>
     </ModalContainer>

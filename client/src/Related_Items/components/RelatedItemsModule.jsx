@@ -70,17 +70,14 @@ const RelatedItems = (props) => {
   }
 
   function displayModal() {
-    if (modal) {
-      return (
-        <ComparisonModal
-          product={mainProduct}
-          compare={currentCompare}
-          modalOff={() => turnOffModal()}
-          modal={modal}
-        />
-      );
-    }
-    return undefined;
+    return (
+      <ComparisonModal
+        product={mainProduct}
+        compare={currentCompare}
+        modalOff={() => turnOffModal()}
+        modal={modal}
+      />
+    );
   }
 
   if (outfit) {
