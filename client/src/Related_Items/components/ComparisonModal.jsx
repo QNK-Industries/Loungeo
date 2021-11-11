@@ -1,46 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyleModal = styled.div`
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-`;
-
-const ModalContent = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background-color: #fefefe;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid yellow;
-  width: 600px;
-
-  & .compare-label, .comparison-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  & .comparison-container span {
-    width: 33.33%;
-  }
-
-  & .comparison-container .compare-middle {
-    text-align: center;
-  }
-
-  & .comparison-container .compare-right {
-    text-align: right;
-  }
-`;
+import { StyleModal, ModalContent } from '../RelatedItemsStyles.js';
 
 const ComparisonModal = ({ product, compare, modalOff }) => {
   function comparisonModel(left, middle, right) {

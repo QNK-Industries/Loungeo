@@ -1,27 +1,23 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import ItemCard from './ItemCard.jsx';
 import AddToOutfitCard from './AddToOutfitCard.jsx';
+import { StyledCarousel, CarousolButton } from '../RelatedItemsStyles.js';
 
 const carouselItemLimit = 4;
 
-const StyledCarousel = styled.section`
-  display: flex;
-  width: 100%;
-  height: 500px;
-`;
-
-const Carousel = ({ type, data, outfit, addOutfit, action, mainProduct }) => {
+const Carousel = ({ type, data, outfit, action, mainProduct, addOutfit }) => {
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const bucketSize = type === 'RELATED' ? data.length : outfit.length + 1;
+  const bucketSize = type === 'RELATED' ? data.length : outfit.length;
 
   function displayLeftArrow() {
     if (carouselIndex) {
       return (
-        <div>
-          <button type="button" onClick={() => setCarouselIndex(carouselIndex - 1)}>Left</button>
-        </div>
+        <CarousolButton action="left">
+          <button type="button" onClick={() => setCarouselIndex(carouselIndex - 1)}>
+            <img src="../../images/right-chevron.svg" className="left-chev" alt="shift products left" />
+          </button>
+        </CarousolButton>
       );
     }
     return null;
@@ -30,9 +26,11 @@ const Carousel = ({ type, data, outfit, addOutfit, action, mainProduct }) => {
   function displayRightArrow() {
     if (carouselIndex + carouselItemLimit < bucketSize) {
       return (
-        <div>
-          <button type="button" onClick={() => setCarouselIndex(carouselIndex + 1)}>Right</button>
-        </div>
+        <CarousolButton action="right">
+          <button type="button" onClick={() => setCarouselIndex(carouselIndex + 1)}>
+            <img src="../../images/right-chevron.svg" alt="shift products right" />
+          </button>
+        </CarousolButton>
       );
     }
     return null;
@@ -50,8 +48,19 @@ const Carousel = ({ type, data, outfit, addOutfit, action, mainProduct }) => {
   return (
     <StyledCarousel>
       {displayLeftArrow()}
-      {outfit.filter((id, index) => index >= carouselIndex && index < carouselIndex + carouselItemLimit).map((product) => <ItemCard type="OUTFIT" key={product} item={product} action={action} />)}
-      <AddToOutfitCard addOutfit={(addToOutfit) => addOutfit(addToOutfit)} product={mainProduct} />
+      {outfit
+        .filter((id, index) => index >= carouselIndex && index < carouselIndex + carouselItemLimit)
+        .map((product) => {
+          if (product === 'ADD TO OUTFIT') {
+            return (
+              <AddToOutfitCard
+                addOutfit={(addToOutfit) => addOutfit(addToOutfit)}
+                product={mainProduct}
+              />
+            );
+          }
+          return <ItemCard type="OUTFIT" key={product} item={product} action={action} />;
+        })}
       {displayRightArrow()}
     </StyledCarousel>
   );
