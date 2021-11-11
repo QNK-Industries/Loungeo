@@ -34,7 +34,7 @@ const LeftButton = styled(Button)`
 `;
 
 const RightButton = styled(Button)`
-  right: 7.5%;
+  right: 4.2%;
   bottom: 50%;
 `;
 
