@@ -133,14 +133,12 @@ class QuestionsAnswers extends React.Component {
               : null}
             {/* <Questions showModal={this.showModal} state={this.state} /> */}
             <div data-testid="QuestionsDiv" />
-            {questions.filter((question, { question_body }) => {
+            {questions.filter((question) => {
               if (query === '') {
                 return question;
-              }
-              if (question_body.toLowerCase().includes(query.toLowerCase())) {
+              } else if (question.question_body.toLowerCase().includes(query.toLowerCase())) {
                 return question;
               }
-              return question;
             }).map(({
               question_id, question_body, answers, question_helpfulness
             }) => (

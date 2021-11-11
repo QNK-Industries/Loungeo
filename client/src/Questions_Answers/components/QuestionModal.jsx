@@ -102,13 +102,14 @@ const QuestionModal = ({ question, showQuestion, productId }) => {
     question ? ReactDOM.createPortal(
       <>
         <div
-        data-testid="QuestionOverlay"
-        style={overlay} />
-          <div
-            data-testid="ModalWrapper"
-            style={modalWrapper}
-            onClick={showQuestion}
-          >
+          data-testid="QuestionOverlay"
+          style={overlay}
+        />
+        <div
+          data-testid="ModalWrapper"
+          style={modalWrapper}
+          onClick={showQuestion}
+        >
           <div data-testid="QuestionModal" style={modalDiv} onClick={e => {
             // Need to use this to be able to click on things inside Modal without closing
             e.stopPropagation();
