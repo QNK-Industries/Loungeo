@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   height: 90vh;
-  width: 20vw;
+  width: 15vw;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -43,11 +43,11 @@ export default function ImageSelector({
           return (
             imageIndex === index
               ? (
-                <div>
+                <div key={index.toString()}>
                   <ClickedThumbnail src={thumbnail} alt="" />
                 </div>
               ) : (
-                <div>
+                <div key={index.toString()}>
                   <UnclickedThumbnail src={thumbnail} alt="" onClick={() => setImageIndex(index)} />
                 </div>
               )

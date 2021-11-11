@@ -13,7 +13,7 @@ const Div = styled.div`
 `;
 
 export default function ZoomedView({
-  currentStyle, setImageClick, imageIndex, mouseLocation,
+  currentStyle, setImageClick, imageIndex,
 }) {
   const Img = styled.img`
     box-shadow: 2px 2px px black;

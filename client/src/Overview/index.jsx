@@ -17,15 +17,14 @@ const Section = styled.section`
   width: 80vw;
   position: relative;
   display: flex;
+  justify-content: center;
+  flex-direction: row;
 `;
 
 const Div = styled.div`
-  margin: 10px 10px 10px 100px;
-  height: 100vh;
-  width: 40vw;
+  height: 90vh;
+  width: 25vw;
   position: relative;
-  justify-content: right;
-  float: right;
 `;
 
 export default function Overview() {
@@ -35,7 +34,6 @@ export default function Overview() {
   const [rating, setRating] = useState({});
   const [imageClick, setImageClick] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
-  const [mouseLocation, setMouseLocation] = useState([0, 0]);
 
   useEffect(() => {
     utils.getItem(id)
@@ -78,6 +76,7 @@ export default function Overview() {
             currentStyle={currentStyle}
             rating={rating}
             setCurrentStyle={setCurrentStyle}
+            setImageIndex={setImageIndex}
             data-testid="StyleSelector"
           />
           <AddToCart item={item} currentStyle={currentStyle} data-testid="AddToCart" />
@@ -99,8 +98,6 @@ export default function Overview() {
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
-          setMouseLocation={setMouseLocation}
-          mouseLocation={mouseLocation}
           data-testid="ExpandedView"
         />
       </Section>

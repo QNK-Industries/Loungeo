@@ -2,14 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  margin: 0px 5px 0px 20px;
   height: 90vh;
   width: 35vw;
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 const Img = styled.img`
   box-shadow: 2px 2px px black;
@@ -18,10 +14,6 @@ const Img = styled.img`
   width: 35vw;
   object-fit: cover;
   cursor: -webkit-zoom-in;
-  animation-name: custom;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 0.2s;
 `;
 
 const Button = styled.span`
@@ -70,7 +62,12 @@ export default function DefaultView({
     <>
       <Div data-testid="DefaultImageDiv">
         {button}
-        <Img data-testid="DefaultImageImg" src={currentStyle.photos[imageIndex].url} alt="" onClick={() => { setImageClick(!imageClick); }} />
+        <Img
+          data-testid="DefaultImageImg"
+          src={currentStyle.photos[imageIndex].url}
+          alt=""
+          onClick={() => { setImageClick(!imageClick); }}
+        />
       </Div>
     </>
   );
