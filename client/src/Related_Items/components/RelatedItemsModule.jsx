@@ -76,6 +76,7 @@ const RelatedItems = (props) => {
           product={mainProduct}
           compare={currentCompare}
           modalOff={() => turnOffModal()}
+          modal={modal}
         />
       );
     }

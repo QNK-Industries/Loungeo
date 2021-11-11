@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleModal, ModalContent } from '../RelatedItemsStyles.js';
+import { ModalContainer, ModalContent } from '../RelatedItemsStyles.js';
 
-const ComparisonModal = ({ product, compare, modalOff }) => {
+const ComparisonModal = ({ product, compare, modalOff, modal }) => {
   function comparisonModel(left, middle, right) {
     return (
       <div className="comparison-container">
@@ -52,20 +52,22 @@ const ComparisonModal = ({ product, compare, modalOff }) => {
   }
 
   return (
-    <StyleModal onClick={modalOff}>
-      <ModalContent>
-        <span>COMPARING</span>
-        <div className="compare-label">
-          <h2>
-            {product.name}
-          </h2>
-          <h2>
-            {compare.name}
-          </h2>
-        </div>
-        {generateComparisons()}
-      </ModalContent>
-    </StyleModal>
+    <ModalContainer onClick={modalOff} className={modal ? 'modal-container' : ''}>
+      <div className="modal-background">
+        <ModalContent className="modal">
+          <span>COMPARING</span>
+          <div className="compare-label">
+            <h2>
+              {product.name}
+            </h2>
+            <h2>
+              {compare.name}
+            </h2>
+          </div>
+          {generateComparisons()}
+        </ModalContent>
+      </div>
+    </ModalContainer>
   );
 };
 
