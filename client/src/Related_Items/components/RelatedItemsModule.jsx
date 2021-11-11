@@ -5,24 +5,27 @@ import utils from '../../Shared/serverUtils.js';
 import Carousel from './Carousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
+// const testOutfit = [61578, 61592, 61595, 'ADD TO OUTFIT'];
+
 const RelatedItems = ({ mainProduct }) => {
   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
   const [currentCompare, setCurrentCompare] = useState(null);
   const [outfit, setOutfit] = useState(['ADD TO OUTFIT']);
+  // const [outfit, setOutfit] = useState(testOutfit);
 
   useEffect(() => utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data)), []);
 
   function addOutfit(outfitId) {
     if (outfit.indexOf(outfitId) === -1) {
-      setOutfit([outfitId, outfitId, outfitId, outfitId, outfitId, ...outfit]);
+      setOutfit([outfitId, ...outfit.slice(0, -1)]);
     }
   }
 
   function removeOutfit({ id }) {
     const stateCopy = [...outfit];
     stateCopy.splice(stateCopy.indexOf(id), 1);
-    setOutfit(stateCopy);
+    setOutfit([...stateCopy, 'ADD TO OUTFIT']);
   }
 
   function turnOnModal(product) {

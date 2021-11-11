@@ -35,19 +35,19 @@ export const CarousolText = styled.span`
 // CAROUSEL
 
 export const StyledCarousel = styled.section`
-  display: flex;
-  justify-content: center;
-  width: 90%;
+  width: 75%;
   padding: 10px 50px;
-  align-items: center;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
+  & div div div {
+    ${(props) => (props.bucket ? 'justify-content: center' : '')}
+  }
 `;
 
 export const CarousolButton = styled.div`
   position: absolute;
   top: 50%;
-  ${(props) => props.action}: 0;
+  ${(props) => props.action}: -200%;
   transform: translateY(-50%);
 
   button {
@@ -117,7 +117,7 @@ export const StyledItemCard = styled.div`
   position:relative;
   min-width: 250px;
   width: 300px;
-  margin: 0 30px;
+  z-index: 1;
 
   .card-image-container{
     position:absolute;
@@ -246,15 +246,98 @@ export const StyledItemCard = styled.div`
   }
 `;
 
+export const CardWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px;
+
+  ${(props) => (props.first
+    ? `height: 400px;
+    width: 300px;`
+    : `width: 100%;
+    height: 100%;`)
+}
+`;
+
 // ADD TO OUTFIT
 
 export const OutfitDiv = styled.div`
+  position: relative;
+  perspective: 40em;
+  display: grid;
+  transform-style: preserve-3d;
   cursor: pointer;
-  width: 100px;
-  height: 100px;
-  border: solid 1px black;
-  text-align: center;
-  margin: 25px;
+
+  .outfit-card {
+    grid-area: 1 / 1;
+    height: 210px;
+    width: 210px;
+    transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    background: rgba(198, 178, 249, 0.88);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-weight: 900;
+    backface-visibility: hidden;
+    box-shadow: 0 10px 30px -3px rgba(0,0,0,.1);
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .outfit-card .enclosed {
+    background: #000;
+    line-height: 1;
+    color: rgba(198, 178, 249, 1);
+    padding: 0 5px;
+    display: inline-block;
+    transform: translate(-1px, 1px) scale(0.75);
+    transform-origin: right center;
+  }
+
+  &:before {
+    --bw: 9px;
+    grid-area: 1 / 1;
+    content: '';
+    backface-visibility: hidden;
+    height: 100%;
+    width: 100%;
+    margin-top: calc(-1 * var(--bw));
+    margin-left: calc(-1 * var(--bw));
+    background: transparent;
+    transform: translateX(-30px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    pointer-events: none;
+    border: var(--bw) solid #000;
+    box-sizing: content-box;
+  }
+
+  .shopping {
+    width: 40px;
+    margin-left: auto;
+    margin-right: 20px;
+    display: block;
+  }
+
+  &:hover > div,
+  &:hover:before {
+    transform: none;
+  }
+
+
+  & > div,
+  &:before {
+    will-change: transform;
+    transition: .3s transform cubic-bezier(.25,.46,.45,1);
+  }
+
+
 `;
 
 // ACTION BUTTON
