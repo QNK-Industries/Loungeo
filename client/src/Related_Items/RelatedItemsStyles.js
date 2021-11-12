@@ -4,19 +4,19 @@ import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
   0% {
-    background:rgba(0,0,0,.0);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(125, 125, 125, 0), rgba(0, 0, 0, 0));
   }
   100% {
-    background:rgba(0,0,0,.7);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(125, 125, 125, 0.7), rgba(0, 0, 0, 0.7));
   }
 `;
 
 const fadeOut = keyframes`
   0% {
-    background:rgba(0,0,0,.7);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(125, 125, 125, 0.7), rgba(0, 0, 0, 0.7));
   }
   100% {
-    background:rgba(0,0,0,.0);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(125, 125, 125, 0), rgba(0, 0, 0, 0));
   }
 `;
 
@@ -133,7 +133,7 @@ export const ModalContainer = styled.div`
     transform:scale(1);
 
     .modal-background {
-      background:rgba(0,0,0,.0);
+      background: rgba(0, 0, 0, 0);
       animation: ${fadeIn} .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 
       .modal {
@@ -169,8 +169,8 @@ export const ModalContent = styled.div`
   left: 50%;
   background-color: #fefefe;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid yellow;
+  padding: 40px;
+  border-radius: 50px;
   width: 600px;
 
   & .compare-label, .comparison-container {
@@ -196,6 +196,15 @@ export const ModalContent = styled.div`
 
   & img {
     width: 25px;
+  }
+
+  & h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+
+  & h2 {
+    font-size: 20px
   }
 `;
 
