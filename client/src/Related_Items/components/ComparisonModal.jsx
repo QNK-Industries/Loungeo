@@ -8,9 +8,9 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
   function comparisonModel(left, middle, right) {
     return (
       <div className="comparison-container">
-        <span className="compare-left">{left}</span>
+        <span className="compare-left">{left ? <img alt="selected" src="../../images/checkmark.svg" /> : ''}</span>
         <span className="compare-middle">{middle}</span>
-        <span className="compare-right">{right}</span>
+        <span className="compare-right">{right ? <img alt="selected" src="../../images/checkmark.svg" /> : ''}</span>
       </div>
     );
   }
@@ -29,7 +29,7 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
     }
     for (let i = 0; i < product.features.length; i += 1) {
       const { feature, value } = product.features[i];
-      if (compareFeatures[feature]) {
+      if (compareFeatures[feature] && compareFeatures[feature] === value) {
         matchedFeatures[feature] = [value, compareFeatures[feature]];
         matchedFeatureKeys.push(feature);
         compareFeatureKeys.splice(compareFeatureKeys.indexOf(feature), 1);
@@ -41,15 +41,13 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
     }
     // Build out the comparisons from bins
     for (let i = 0; i < matchedFeatureKeys.length; i += 1) {
-      resultDisplay.push(comparisonModel(matchedFeatures[matchedFeatureKeys[i]][0],
-        matchedFeatureKeys[i],
-        matchedFeatures[matchedFeatureKeys[i]][1]));
+      resultDisplay.push(comparisonModel(true, `${matchedFeatures[matchedFeatureKeys[i]] || ''} ${matchedFeatureKeys[i]}`, true));
     }
     for (let i = 0; i < productFeatureKeys.length; i += 1) {
-      resultDisplay.push(comparisonModel(productFeatures[productFeatureKeys[i]], productFeatureKeys[i], ''));
+      resultDisplay.push(comparisonModel(true, `${productFeatures[productFeatureKeys[i]] || ''} ${productFeatureKeys[i]}`));
     }
     for (let i = 0; i < compareFeatureKeys.length; i += 1) {
-      resultDisplay.push(comparisonModel('', compareFeatureKeys[i], compareFeatures[compareFeatureKeys[i]]));
+      resultDisplay.push(comparisonModel(false, `${compareFeatures[compareFeatureKeys[i]] || ''} ${compareFeatureKeys[i]}`, true));
     }
     return resultDisplay;
   }
@@ -70,7 +68,7 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
       >
         <div className="modal-background">
           <ModalContent className="modal">
-            <span>COMPARING</span>
+            <h1>Features</h1>
             <div className="compare-label">
               <h2>
                 {product.name}

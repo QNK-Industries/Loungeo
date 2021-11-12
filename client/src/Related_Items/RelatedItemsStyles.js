@@ -167,7 +167,6 @@ export const ModalContent = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   background-color: #fefefe;
   margin: 0 auto;
   padding: 20px;
@@ -189,6 +188,14 @@ export const ModalContent = styled.div`
 
   & .comparison-container .compare-right {
     text-align: right;
+  }
+
+  & .comparison-container .compare-left {
+    text-align: left;
+  }
+
+  & img {
+    width: 25px;
   }
 `;
 
