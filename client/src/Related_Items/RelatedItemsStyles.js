@@ -121,6 +121,10 @@ export const CarousolButton = styled.div`
   .left-chev {
     transform: rotate(180deg)
   }
+
+  .left-chev:hover {
+    fill: ${accentColor}
+  }
 `;
 
 // COMPARISON MODAL
