@@ -1,5 +1,11 @@
 import styled, { keyframes } from 'styled-components';
 
+const focalWhite = '#FFF';
+const focalDark = '#262730';
+const offWhite = '#F8F0FB';
+const offGrey = '#7D8491';
+const accentColor = '#8D0801';
+
 // RELATED ITEMS MODULE
 
 const fadeIn = keyframes`
@@ -276,15 +282,15 @@ export const StyledItemCard = styled.div`
   .card-text .card-category > span{
     padding: 12px 30px;
     border: 1px solid #313131;
-    background:#212121;
-    color:#fff;
+    background:${focalDark};
+    color:${focalWhite};
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius:27px;
     transition: all 0.05s ease-in-out;
   }
 
   &:hover .card-text .card-category > span{
-    border:2px solid red;
+    border:2px solid ${accentColor};
     box-shadow: none;
     padding: 11px 28px;
   }
@@ -376,12 +382,12 @@ export const OutfitDiv = styled.div`
     height: 210px;
     width: 210px;
     transform: translateX(10px) rotateY(25deg) rotateX(10deg);
-    background: rgba(198, 178, 249, 0.88);
+    background: rgba(141, 8, 1, 0.88);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 30px;
-    color: #000;
+    color: #F8F0FB;
     text-transform: uppercase;
     font-size: 60px;
     font-weight: 900;
@@ -395,9 +401,9 @@ export const OutfitDiv = styled.div`
   }
 
   .outfit-card .enclosed {
-    background: #000;
+    background: #F8F0FB;
     line-height: 1;
-    color: rgba(198, 178, 249, 1);
+    color: rgba(141, 8, 1, 1);
     padding: 0 5px;
     display: inline-block;
     transform: translate(-1px, 1px) scale(0.75);
@@ -460,6 +466,6 @@ export const ActionImage = styled.img`
 
   &:hover {
     transform: scale(1.15);
-    background-color: ${(props) => (props.type === 'RELATED' ? 'lightblue' : 'red')}
+    background-color: ${(props) => (props.type === 'RELATED' ? 'lightblue' : 'rgba(141, 8, 1, 0.88)')}
   }
 `;
