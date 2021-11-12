@@ -1,8 +1,10 @@
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useState } from 'react';
 import { ModalContainer, ModalContent } from '../RelatedItemsStyles.js';
 
 const ComparisonModal = ({ product, compare, modalOff, modal }) => {
+  const [turningOff, setTurningOff] = useState(false);
+
   function comparisonModel(left, middle, right) {
     return (
       <div className="comparison-container">
@@ -52,9 +54,20 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
     return resultDisplay;
   }
 
+  function turningOffAnimation() {
+    setTurningOff(true);
+    setTimeout( () => {
+      modalOff();
+      setTurningOff(false);
+    }, 500);
+  }
+
   if (compare) {
     return (
-      <ModalContainer onClick={modalOff} className={modal ? 'modal-container' : ''}>
+      <ModalContainer
+        onClick={() => turningOffAnimation()}
+        className={`${(modal && !turningOff ? 'modal-container' : '')} ${turningOff ? 'modal-container close' : ''}`}
+      >
         <div className="modal-background">
           <ModalContent className="modal">
             <span>COMPARING</span>
@@ -73,7 +86,10 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
     );
   }
   return (
-    <ModalContainer onClick={modalOff} className={modal ? 'modal-container' : ''}>
+    <ModalContainer
+      onClick={() => turningOffAnimation()}
+      className={`${(modal && !turningOff ? 'modal-container' : '')} ${turningOff ? 'close' : ''}`}
+    >
       <div className="modal-background">
         <ModalContent>
           <h2>
