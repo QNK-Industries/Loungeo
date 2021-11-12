@@ -1,5 +1,11 @@
 import styled, { keyframes } from 'styled-components';
 
+const focalWhite = '#FFF';
+const focalDark = '#262730';
+const magnolia = '#F8F0FB';
+const offGrey = '#7D8491';
+const accentColor = '#8D0801';
+
 // RELATED ITEMS MODULE
 
 const fadeIn = keyframes`
@@ -61,6 +67,7 @@ export const CarousolHeader = styled.h2`
   text-align: center;
   padding: .2rem 0;
   overflow: hidden;
+  margin-bottom: 0;
 `;
 
 export const CarousolText = styled.span`
@@ -74,7 +81,7 @@ export const CarousolText = styled.span`
     position: absolute;
     top: 50%;
     width: 70em;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid ${offGrey};
   }
 
   &:before {
@@ -89,7 +96,7 @@ export const CarousolText = styled.span`
 // CAROUSEL
 
 export const StyledCarousel = styled.section`
-  width: 75%;
+  width: 80%;
   padding: 10px 50px;
   position: relative;
   margin: 0 auto;
@@ -114,6 +121,14 @@ export const CarousolButton = styled.div`
 
   .left-chev {
     transform: rotate(180deg)
+  }
+
+  .left-chev:hover {
+    fill: ${accentColor}
+  }
+
+  @media (max-width: 1200px) {
+    ${(props) => props.action}: -100%;
   }
 `;
 
@@ -180,6 +195,7 @@ export const ModalContent = styled.div`
 
   & .comparison-container span {
     width: 33.33%;
+    white-space: no-wrap;
   }
 
   & .comparison-container .compare-middle {
@@ -250,7 +266,7 @@ export const StyledItemCard = styled.div`
   }
 
   &:hover .card-image-container img{
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    box-shadow: 0 19px 25px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 
   .card-text{
@@ -276,15 +292,16 @@ export const StyledItemCard = styled.div`
   .card-text .card-category > span{
     padding: 12px 30px;
     border: 1px solid #313131;
-    background:#212121;
-    color:#fff;
+    white-space: pre;
+    background:${focalDark};
+    color:${focalWhite};
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius:27px;
     transition: all 0.05s ease-in-out;
   }
 
   &:hover .card-text .card-category > span{
-    border:2px solid red;
+    border:2px solid rgba(141, 8, 1, 0.88);
     box-shadow: none;
     padding: 11px 28px;
   }
@@ -346,13 +363,29 @@ export const StyledItemCard = styled.div`
     font-size:18px;
     font-weight:bold;
   }
+
+  @media (max-width: 1200px) {
+    width: 275px;
+
+    .card-image-container {
+      height: 60%;
+    }
+
+    .card-text .card-category {
+      bottom: 40%;
+    }
+
+    .card-text{
+      padding-top:100%;
+    }
+  }
 `;
 
 export const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 10px;
+  padding: 30px 10px 40px;
 
   ${(props) => (props.first
     ? `height: 400px;
@@ -376,12 +409,12 @@ export const OutfitDiv = styled.div`
     height: 210px;
     width: 210px;
     transform: translateX(10px) rotateY(25deg) rotateX(10deg);
-    background: rgba(198, 178, 249, 0.88);
+    background: rgba(141, 8, 1, 0.88);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 30px;
-    color: #000;
+    color: #F8F0FB;
     text-transform: uppercase;
     font-size: 60px;
     font-weight: 900;
@@ -395,9 +428,9 @@ export const OutfitDiv = styled.div`
   }
 
   .outfit-card .enclosed {
-    background: #000;
+    background: #F8F0FB;
     line-height: 1;
-    color: rgba(198, 178, 249, 1);
+    color: rgba(141, 8, 1, 1);
     padding: 0 5px;
     display: inline-block;
     transform: translate(-1px, 1px) scale(0.75);
@@ -460,6 +493,6 @@ export const ActionImage = styled.img`
 
   &:hover {
     transform: scale(1.15);
-    background-color: ${(props) => (props.type === 'RELATED' ? 'lightblue' : 'red')}
+    background-color: ${(props) => (props.type === 'RELATED' ? magnolia : 'rgba(141, 8, 1, 0.88)')}
   }
 `;
