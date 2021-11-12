@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { HiddenRadio, FormOverallRating } from '../ReviewsStyles.js';
 import StarRating from '../../Shared/StarRating.jsx';
 
 const rating = {
@@ -9,16 +9,6 @@ const rating = {
   4: 'Good!',
   5: 'Great!!!',
 };
-
-const HiddenRadio = styled.input`
-  position: absolute;
-  opacity: 0;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  padding: 0;
-  margin: 0;
-`;
 
 const OverallRating = () => {
   const [tempStar, setTempStar] = useState(0);
@@ -59,23 +49,24 @@ const OverallRating = () => {
   }
 
   return (
-    <div>
+    <FormOverallRating>
       <span>
         Overall Rating:
       </span>
-      <label htmlFor="review-rating" style={{ position: 'relative' }}>
+      <label htmlFor="review-rating">
         <HiddenRadio
           type="radio"
           name="reviewRating"
           id="review-rating"
           required
           checked={!!star}
+          onChange={() => {}}
           value={star}
         />
         {displayStar()}
       </label>
       {displayRating()}
-    </div>
+    </FormOverallRating>
   );
 };
 

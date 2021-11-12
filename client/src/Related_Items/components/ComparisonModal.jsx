@@ -6,7 +6,6 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
   const [turningOff, setTurningOff] = useState(false);
 
   function comparisonModel(left, middle, right, key) {
-    console.log(key);
     return (
       <div key={key} className="comparison-container">
         <span className="compare-left">{left ? <img alt="selected" src="../../images/checkmark.svg" /> : ''}</span>
@@ -64,7 +63,6 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
   if (compare) {
     return (
       <ModalContainer
-        key={`modal-loaded-${compare.id}`}
         onClick={() => turningOffAnimation()}
         className={`${(modal && !turningOff ? 'modal-container' : '')} ${turningOff ? 'modal-container close' : ''}`}
       >
@@ -87,7 +85,6 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
   }
   return (
     <ModalContainer
-      key="modalcontainer-loading"
       onClick={() => turningOffAnimation()}
       className={`${(modal && !turningOff ? 'modal-container' : '')} ${turningOff ? 'close' : ''}`}
     >

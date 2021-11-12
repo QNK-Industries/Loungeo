@@ -1,47 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import {
+  StyledReview,
+  ReviewBorder,
+  ColumnDiv,
+  SellerResponse,
+  ReviewPhotos,
+  Highlight,
+  ReviewShowButton,
+} from '../ReviewsStyles.js';
 import StarRating from '../../Shared/StarRating.jsx';
 import HelpfulBar from './HelpfulBar.jsx';
-
-const StyledReview = styled.div`
-  margin-bottom: 30px;
-  padding: 0 15px;
-
-  & .review-summary {
-    font-size: 24px;
-  }
-`;
-
-const ReviewBorder = styled.div`
-  width: 95%;
-  margin: 0 auto;
-  padding-top: 5px;
-  border-bottom: solid 2px lightgrey;
-`;
-
-const ColumnDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const SellerResponse = styled.div`
-  width: 80%;
-  padding: 5px 20px;
-  margin: 0 auto;
-  background-color: lightgreen;
-`;
-
-const ReviewPhotos = styled.div`
-  padding: 20px;
-  display: flex;
-
-  & img {
-    max-width: 150px;
-    max-height: 150px;
-    margin-right: 10px;
-  }
-`;
 
 const Review = ({ review, search }) => {
   const [minimizedBody, setMinimizedBody] = useState(true);
@@ -51,9 +20,9 @@ const Review = ({ review, search }) => {
       const parts = text.split(new RegExp(`(${search})`, 'gi'));
       return (
         <span className={type}> { parts.map((part, i) => (
-          <span key={`highlight-${i}`} style={part.toLowerCase() === search.toLowerCase() ? { 'background-color': 'yellow' } : {}}>
+          <Highlight key={`highlight-${i}`} active={part.toLowerCase() === search.toLowerCase()}>
             { part }
-          </span>
+          </Highlight>
         ))}
         </span>
       );
@@ -86,15 +55,15 @@ const Review = ({ review, search }) => {
   function displayShowMore() {
     if (minimizedBody) {
       return (
-        <button type="button" style={{ width: 'fit-content', 'border-bottom': 'solid 1px black' }} onClick={() => setMinimizedBody(false)}>
+        <ReviewShowButton type="button" onClick={() => setMinimizedBody(false)}>
           Show More
-        </button>
+        </ReviewShowButton>
       );
     }
     return (
-      <button type="button" style={{ width: 'fit-content', 'border-bottom': 'solid 1px black' }} onClick={() => setMinimizedBody(true)}>
+      <ReviewShowButton type="button" onClick={() => setMinimizedBody(true)}>
         Show Less
-      </button>
+      </ReviewShowButton>
     );
   }
 
@@ -145,7 +114,7 @@ const Review = ({ review, search }) => {
 
   return (
     <StyledReview>
-      <div style={{ display: 'flex', 'justify-content': 'space-between' }}>
+      <div className="spaced-form-content">
         <StarRating ratingObj={{ average: review.rating }} />
         {parseDate()}
       </div>
@@ -157,7 +126,7 @@ const Review = ({ review, search }) => {
       <ReviewPhotos>
         {review.photos.map((photo, index) => <img key={`img-${review.review_id}-${index}`} alt="review submitted" src={photo.url} />)}
       </ReviewPhotos>
-      <div style={{ display: 'flex', 'justify-content': 'space-between', 'margin-top': '10px' }}>
+      <div className="spaced-form-content">
         <span>
           by {review.reviewer_name}
         </span>

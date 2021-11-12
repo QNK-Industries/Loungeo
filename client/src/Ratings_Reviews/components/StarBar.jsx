@@ -1,40 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
-import styled from 'styled-components';
-
-const $highlightColor = 'lightgrey';
-
-const IndividualStarBar = styled.div`
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  width: 400px;
-  height: 20px;
-  align-items: center;
-  cursor: pointer;
-  background-color: ${(props) => (props.selected ? 'yellow' : 'white')};
-
-  & :hover {
-    background-color: ${(props) => (props.selected ? 'darkgrey' : `${$highlightColor}`)};
-  }
-`;
-
-const BarDisplay = styled.div`
-  width: 200px;
-  height: 10px;
-  background-color: grey;
-`;
-
-const FilledBar = styled.div`
-  height: 100%;
-  width: ${(props) => props.filled}%;
-  background-color: green;
-`;
-
-const TextSegment = styled.span`
-width: 50px;
-margin 0 auto;
-`;
+import { IndividualStarBar, TextSegment, BarDisplay, FilledBar } from '../ReviewsStyles.js';
 
 const StarBar = ({ stars, amount, total, selected, toggleSelected }) => (
   <IndividualStarBar selected={selected} onClick={() => toggleSelected(stars)}>

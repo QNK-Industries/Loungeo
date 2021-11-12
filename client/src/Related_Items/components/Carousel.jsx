@@ -31,7 +31,7 @@ const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
 
   function getItems() {
     if (type === 'RELATED') {
-      return data.map((product) => <CardWrapper key={product}><ItemCard type="RELATED" key={`itemCard-${product}`} item={product} action={action} /></CardWrapper>);
+      return data.map((product) => <CardWrapper key={`cardWrapper-${product}`}><ItemCard type="RELATED" item={product} action={action} /></CardWrapper>);
     }
     return outfit
       .map((product, index) => {
@@ -45,7 +45,7 @@ const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
           );
         }
         if (outfitBucket[product]) {
-          return <CardWrapper key={`cardWrapper-${product}`}><ItemCard type="OUTFIT" key={`itemCard-${product}`} item={outfitBucket[product]} action={action} /></CardWrapper>;
+          return <CardWrapper key={`cardWrapper-${product}`}><ItemCard type="OUTFIT" item={outfitBucket[product]} action={action} /></CardWrapper>;
         }
         return null;
       });
