@@ -1,8 +1,8 @@
 import React from 'react';
 
 const SortBar = ({ changeSorting }) => (
-  <div style={{ display: 'flex' }}>
-    <h4 style={{ margin: '0 5px' }}>
+  <div>
+    <h4>
       Sort by
     </h4>
     <select name="sort" id="sort" onChange={(event) => changeSorting(event.target.value)}>

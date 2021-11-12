@@ -8,6 +8,7 @@ import ReviewButton from './components/ReviewButton.jsx';
 import ReviewSearch from './components/ReviewSearch.jsx';
 import RatingsSlideBar from './components/RatingsSlideBar.jsx';
 import ReviewsContainer from './components/ReviewsContainer.jsx';
+import { RatingsAndReviewsWrapper } from './ReviewsStyles.js';
 import starAverage from '../Shared/StarAverage.jsx';
 
 const characteristicList = {
@@ -132,28 +133,28 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
 
   if (starAverageData.total) {
     return (
-      <section className="ratings-module" style={{ display: 'flex', 'justify-content': 'center' }}>
-        <div className="ratings-left-section" style={{ width: '400px' }}>
+      <RatingsAndReviewsWrapper className="ratings-module">
+        <div className="ratings-left-section">
           {checkIfModalOpen()}
-          <h2 style={{ 'font-size': '16px' }}>
+          <h2>
             RATINGS & REVIEWS
           </h2>
           <RatingsTable ratingData={ratingData} starAverageData={starAverageData} filter={(values) => setRatingFilter(values)} />
           <RatingsSlideBar characteristics={ratingData.characteristics} characteristicList={characteristicList} />
-          <div className="review-button-container" style={{ display: 'flex', 'justify-content': 'space-evenly' }}>
+          <div className="review-button-container">
             <ReviewButton type="ADD A REVIEW +" action={() => setWritingReview(true)} />
             {checkIfMoreReviews()}
           </div>
         </div>
-        <div className="ratings-right-section" style={{ width: '800px', border: 'solid 1px red' }}>
-          <div className="reviews-nav-bar" style={{ display: 'flex', 'justify-content': 'space-between', 'margin-bottom': '10px' }}>
+        <div className="ratings-right-section">
+          <div className="reviews-nav-bar">
             <SortBar changeSorting={(type) => changeSort(type)} />
             <ReviewSearch search={(query) => setSearchConstraint(query)} />
           </div>
           {displayReviewModal()}
           <ReviewsContainer reviews={filteredReviewData} reviewLimit={reviewLimit} search={searchConstraint} />
         </div>
-      </section>
+      </RatingsAndReviewsWrapper>
     );
   }
   return 'Loading...';

@@ -1,36 +1,9 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { ReveiwScoreHeader, RemoveFilterBox } from '../ReviewsStyles.js';
 import StarBar from './StarBar.jsx';
 import StarRating from '../../Shared/StarRating.jsx';
-
-const ReveiwScoreHeader = styled.div`
-  width:100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  & h1 {
-    font-size: 36px;
-    margin: .5em;
-  }
-
-  & .review-star-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const RemoveFilterBox = styled.div`
-  width: 150px;
-  height: 25px;
-  margin: 0 auto;
-  cursor: pointer;
-  text-align: center;
-  padding-top: 5px;
-`;
 
 const RatingsTable = ({ ratingData, starAverageData, filter }) => {
   const [selectedStar, setSelectedStar] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false });
@@ -99,7 +72,7 @@ const RatingsTable = ({ ratingData, starAverageData, filter }) => {
         {displayStarBars()}
         {removeAllFilters()}
       </div>
-      <h4 style={{ 'text-align': 'center' }}>
+      <h4>
         {displayRecommendedPercent()}% of reviewers would recommend this product
       </h4>
     </div>

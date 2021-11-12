@@ -1,22 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { StyledHelpful, Votes } from '../ReviewsStyles.js';
 import utils from '../../Shared/serverUtils.js';
-
-const StyledHelpful = styled.div`
-  & span {
-    margin-left: 5px;
-  }
-`;
-
-const Votes = styled.span`
-  color: ${(props) => (props.selectedThis ? props.color : 'black')};
-  cursor: pointer;
-
-  & :hover {
-    color: ${(props) => (!props.selectedOne || props.selectedThis ? props.color : 'black')};
-    ${(props) => (props.selectedOne ? '' : 'border-bottom: 1px black solid;')}
-  }
-`;
 
 const HelpfulBar = ({ reviewId, helpfulness }) => {
   const [selectedVote, setSelectedVote] = useState('');

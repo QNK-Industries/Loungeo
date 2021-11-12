@@ -12,15 +12,20 @@ const RelatedItems = (props) => {
   const [currentCompare, setCurrentCompare] = useState(null);
   const [outfit, setOutfit] = useState({ ids: [], bucket: {} });
 
+  useEffect(() => utils.getRelatedProducts(mainProduct.id)
+    .then((newData) => setData(newData.data)).catch((err) => console.log(err)), []);
+
   useEffect(() => {
-    utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data));
     utils.getItemDetails(mainProduct.id).then((mainDetails) => {
       utils.getRating(mainProduct.id).then((newData) => {
         const newProduct = { ...mainDetails.data };
         newProduct.ratings = newData.data.ratings;
         setMainProduct(newProduct);
       });
-    });
+    }).catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
     utils.getCurrentOutfit().then((storedOutfit) => {
       const outfitBucket = {
         bucket: storedOutfit.data,
@@ -31,7 +36,7 @@ const RelatedItems = (props) => {
         outfitBucket.ids = [...Object.keys(storedOutfit.data), 'ADD TO OUTFIT'];
       }
       setOutfit(outfitBucket);
-    });
+    }).catch((err) => console.log(err));
   }, []);
 
   function addOutfit() {

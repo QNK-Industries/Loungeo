@@ -5,9 +5,9 @@ import { ModalContainer, ModalContent } from '../RelatedItemsStyles.js';
 const ComparisonModal = ({ product, compare, modalOff, modal }) => {
   const [turningOff, setTurningOff] = useState(false);
 
-  function comparisonModel(left, middle, right) {
+  function comparisonModel(left, middle, right, key) {
     return (
-      <div className="comparison-container">
+      <div key={key} className="comparison-container">
         <span className="compare-left">{left ? <img alt="selected" src="../../images/checkmark.svg" /> : ''}</span>
         <span className="compare-middle">{middle}</span>
         <span className="compare-right">{right ? <img alt="selected" src="../../images/checkmark.svg" /> : ''}</span>
@@ -41,13 +41,13 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
     }
     // Build out the comparisons from bins
     for (let i = 0; i < matchedFeatureKeys.length; i += 1) {
-      resultDisplay.push(comparisonModel(true, `${matchedFeatures[matchedFeatureKeys[i]] || ''} ${matchedFeatureKeys[i]}`, true));
+      resultDisplay.push(comparisonModel(true, `${matchedFeatures[matchedFeatureKeys[i]] || ''} ${matchedFeatureKeys[i]}`, true, `matched-${i}`));
     }
     for (let i = 0; i < productFeatureKeys.length; i += 1) {
-      resultDisplay.push(comparisonModel(true, `${productFeatures[productFeatureKeys[i]] || ''} ${productFeatureKeys[i]}`));
+      resultDisplay.push(comparisonModel(true, `${productFeatures[productFeatureKeys[i]] || ''} ${productFeatureKeys[i]}`, false, `product-${i}`));
     }
     for (let i = 0; i < compareFeatureKeys.length; i += 1) {
-      resultDisplay.push(comparisonModel(false, `${compareFeatures[compareFeatureKeys[i]] || ''} ${compareFeatureKeys[i]}`, true));
+      resultDisplay.push(comparisonModel(false, `${compareFeatures[compareFeatureKeys[i]] || ''} ${compareFeatureKeys[i]}`, true, `compare-${i}`));
     }
     return resultDisplay;
   }
@@ -89,7 +89,7 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
       className={`${(modal && !turningOff ? 'modal-container' : '')} ${turningOff ? 'close' : ''}`}
     >
       <div className="modal-background">
-        <ModalContent>
+        <ModalContent key="modal-loading">
           <h2>
             Loading...
           </h2>
