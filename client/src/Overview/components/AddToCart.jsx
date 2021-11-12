@@ -4,7 +4,7 @@ import utils from '../../Shared/serverUtils.js';
 // import Button from '../../Questions_Answers/stylings/Button.js';
 
 const CartSpan = styled.span`
-  height: 15vh;
+  height: 12vh;
   width: 35vw;
   position: relative;
   display: flex;
@@ -45,7 +45,7 @@ const CartButton = styled.button`
   }`;
 
 const Select = styled.select`
-font-size: 2rem;
+font-size: 1.7rem;
 width: 5vw;
 height: 7vh;
 text-align: center;

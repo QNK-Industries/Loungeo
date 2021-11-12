@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const StyleSpan = styled.span`
+  margin: 3vh 3vh 0vh 0vh;
+  position: relative;
+  display: inline-flex;
+`;
+
 const Thumbnail = styled.img`
-  margin: 5px 5px 10px 10px;
   position: relative;
   height: 10vh;
   width: 5vw;
@@ -25,22 +30,18 @@ export default function Style({
   return (
     style.style_id === currentStyle.style_id
       ? (
-        <span key={style.style_id} id={style.style_id} style={{ position: 'relative', display: 'inline-flex' }}>
+        <StyleSpan key={style.style_id} id={style.style_id}>
           <ClickedThumbnail src={style.photos[0].thumbnail_url} alt="" />
-        </span>
+        </StyleSpan>
       ) : (
-        <span
-          key={style.style_id}
-          id={style.style_id}
-          style={{ position: 'relative', display: 'inline-flex' }}
-        >
+        <StyleSpan key={style.style_id} id={style.style_id}>
           <UnclickedThumbnail
             src={style.photos[0].thumbnail_url}
             alt=""
             onClick={() => { setCurrentStyle(style); setImageIndex(0); }}
             onKeyPress={() => { setCurrentStyle(style); setImageIndex(0); }}
           />
-        </span>
+        </StyleSpan>
       )
   );
 }
