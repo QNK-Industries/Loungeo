@@ -51,7 +51,7 @@ const Review = ({ review, search }) => {
       const parts = text.split(new RegExp(`(${search})`, 'gi'));
       return (
         <span className={type}> { parts.map((part, i) => (
-          <span key={i} style={part.toLowerCase() === search.toLowerCase() ? { 'background-color': 'yellow' } : {}}>
+          <span key={`highlight-${i}`} style={part.toLowerCase() === search.toLowerCase() ? { 'background-color': 'yellow' } : {}}>
             { part }
           </span>
         ))}
@@ -155,7 +155,7 @@ const Review = ({ review, search }) => {
       </div>
       {displaySellerResponse()}
       <ReviewPhotos>
-        {review.photos.map((photo) => <img alt="review submitted" src={photo.url} />)}
+        {review.photos.map((photo, index) => <img key={`img-${review.review_id}-${index}`} alt="review submitted" src={photo.url} />)}
       </ReviewPhotos>
       <div style={{ display: 'flex', 'justify-content': 'space-between', 'margin-top': '10px' }}>
         <span>

@@ -11,8 +11,13 @@ const ItemCard = ({ type, item, action }) => {
 
   useEffect(() => {
     if (type === 'RELATED') {
-      utils.getItemDetails(item).then(({ data }) => setProduct(data));
-      utils.getRating(item).then(({ data }) => setRating(StarAverage(data.ratings)));
+      utils.getItemDetails(item)
+        .then(({ data }) => setProduct(data))
+        .catch((err) => console.log(err));
+
+      utils.getRating(item)
+        .then(({ data }) => setRating(StarAverage(data.ratings)))
+        .catch((err) => console.log(err));
     }
   }, []);
 
