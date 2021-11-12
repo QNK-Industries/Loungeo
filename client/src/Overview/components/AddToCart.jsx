@@ -24,36 +24,41 @@ export default function AddToCart({ currentStyle }) {
         {sizesNums.map((sizeNum, index) => {
           if (sizeNum.quantity === 0) {
             return (
-              <span
+              <switch
                 key={index.toString()}
                 style={{
                   padding: '10px', textDecoration: 'line-through', width: '10px', height: '10px',
                 }}
               >{sizeNum.size}
-              </span>
+              </switch>
             );
           } if (currentSize === sizeNum.size) {
             return (
-              <span
+              <switch
                 key={index.toString()}
                 style={{
                   width: '10px', height: '10px', padding: '10px', borderRadius: '50%', backgroundColor: 'black', color: 'white',
                 }}
               >{sizeNum.size}
-              </span>
+              </switch>
             );
           }
           return (
-            <span
+            <switch
               key={index.toString()}
               onClick={() => {
                 setCurrentSize(sizeNum.size);
                 setCurrentQuantity(sizeNum.quantity);
                 setCurrentID(Number(sizeNum.id));
               }}
+              onKeyPress={() => {
+                setCurrentSize(sizeNum.size);
+                setCurrentQuantity(sizeNum.quantity);
+                setCurrentID(Number(sizeNum.id));
+              }}
               style={{ padding: '10px' }}
             >{sizeNum.size}
-            </span>
+            </switch>
           );
         })}
       </div>

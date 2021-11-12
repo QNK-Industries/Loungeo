@@ -19,7 +19,9 @@ const ClickedThumbnail = styled(Thumbnail)`
   box-shadow: 2px 2px 5px yellow;
 `;
 
-export default function Style({ style, currentStyle, setCurrentStyle, setImageIndex }) {
+export default function Style({
+  style, currentStyle, setCurrentStyle, setImageIndex,
+}) {
   return (
     style.style_id === currentStyle.style_id
       ? (
@@ -27,7 +29,7 @@ export default function Style({ style, currentStyle, setCurrentStyle, setImageIn
           <ClickedThumbnail src={style.photos[0].thumbnail_url} alt="" />
         </span>
       ) : (
-        <span onClick={() => { setCurrentStyle(style); setImageIndex(0)}} key={style.style_id} id={style.style_id} style={{ position: 'relative', display: 'inline-flex' }}>
+        <span onClick={() => { setCurrentStyle(style); setImageIndex(0); }} key={style.style_id} id={style.style_id} style={{ position: 'relative', display: 'inline-flex' }}>
           <UnclickedThumbnail src={style.photos[0].thumbnail_url} alt="" />
         </span>
       )
