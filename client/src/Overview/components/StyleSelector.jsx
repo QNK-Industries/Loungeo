@@ -3,7 +3,9 @@ import Style from './Style.jsx';
 
 // const GH_TOKEN = require('../../../tokens.js');
 
-export default function StyleSelector({ styles, currentStyle, setCurrentStyle }) {
+export default function StyleSelector({
+  styles, currentStyle, setCurrentStyle, setImageIndex,
+}) {
   return (
     <>
       <div>---------</div>
@@ -11,12 +13,26 @@ export default function StyleSelector({ styles, currentStyle, setCurrentStyle })
       {styles.map((style, index) => (
         (index + 1) % 4 === 0
           ? (
-            <>
-              <Style style={style} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} />
+            <span key={index.toString()}>
+              <Style
+                style={style}
+                currentStyle={currentStyle}
+                setCurrentStyle={setCurrentStyle}
+                setImageIndex={setImageIndex}
+                key={index.toString()}
+              />
               <br />
-            </>
+            </span>
           )
-          : <Style style={style} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} />
+          : (
+            <Style
+              style={style}
+              currentStyle={currentStyle}
+              setCurrentStyle={setCurrentStyle}
+              setImageIndex={setImageIndex}
+              key={index.toString()}
+            />
+          )
       ))}
     </>
   );
