@@ -25,14 +25,6 @@ const RelatedItems = (props) => {
     }).catch((err) => console.log(err));
   }, []);
 
-  function checkIfModalOpen() {
-    if (modal === true) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }
-
   useEffect(() => {
     utils.getCurrentOutfit().then((storedOutfit) => {
       const outfitBucket = {
@@ -113,7 +105,6 @@ const RelatedItems = (props) => {
           />
         </section>
         <section>
-          {checkIfModalOpen()}
           {displayModal()}
           <CarousolHeader>
             <CarousolText>
