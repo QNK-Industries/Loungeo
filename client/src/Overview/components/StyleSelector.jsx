@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Style from './Style.jsx';
 
 const StyleDiv = styled.div`
-  height: 40vh;
+  height: 37vh;
   width: 35vw;
   position: relative;
   border-top: 2px solid #8D0801;
