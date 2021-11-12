@@ -101,11 +101,11 @@ class QuestionsAnswers extends React.Component {
     return (
       <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
         <div data-testid="QAStyleDiv" style={{ display: 'block', margin: '0 auto', width: '70vw' }}>
-          <h1 data-testid="QAHeading">{product_id
-            ? 'Product something'
-            : 'Hello World'}
-          </h1>
+            <h2 data-testid="QAHeading" style={{ 'font-size': '16px' }}>
+            QUESTIONS & ANSWERS
+          </h2>
           <AnswerSearch search={this.handleSearch} />
+          <br />
           <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
 
