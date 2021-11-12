@@ -40,7 +40,7 @@ const Questions = ({
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
       <div style={Object.keys(answers).length
-        ? { overflowY: 'scroll', height: '200px', backgroundColor: darkRed }
+        ? { overflowY: 'auto', height: '150px', backgroundColor: darkRed }
         : null}
       >
         {Object.keys(answers).slice(0, answerCount).map((answer) => (
