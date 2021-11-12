@@ -4,8 +4,8 @@ import moment from 'moment';
 import utils from '../../Shared/serverUtils.js';
 
 const AnswerStyle = {
-  border: '1px solid black',
-  marginTop: '15px',
+  marginLeft: '15px',
+  fontFamily: 'Hind sans-serif',
 };
 
 // const GH_TOKEN = require('../../../../tokens.js');
@@ -35,9 +35,10 @@ const Answers = ({
       <br />
       By {asker === 'Seller' ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  Helpful? {
         wasHelpful
-          ? <span> Yes ({helpful}) </span>
+          ? <span style={{ fontFamily: 'Hind sans-serif' }}> Yes ({helpful}) </span>
           : (
             <span
+              style={{ fontFamily: 'Hind sans-serif' }}
               role="button"
               tabIndex={0}
               onClick={() => {
@@ -50,8 +51,8 @@ const Answers = ({
             </span>
           )
       } | { wasReported
-        ? <span role="button" tabIndex={0} onClick={() => alert('This Answer Has Already Been Reported')} onKeyDown={(e) => console.log(e)}>Report</span>
-        : <span role="button" tabIndex={0} onClick={() => { reportAnswer(id); setReported(true); alert('Answer Reported'); }} onKeyDown={(e) => console.log(e)}>Report</span>}
+        ? <span role="button" style={{ fontFamily: 'Hind sans-serif' }} tabIndex={0} onClick={() => alert('This Answer Has Already Been Reported')} onKeyDown={(e) => console.log(e)}>Report</span>
+        : <span role="button" style={{ fontFamily: 'Hind sans-serif' }} tabIndex={0} onClick={() => { reportAnswer(id); setReported(true); alert('Answer Reported'); }} onKeyDown={(e) => console.log(e)}>Report</span>}
     </div>
   );
 };

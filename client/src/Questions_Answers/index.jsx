@@ -106,7 +106,6 @@ class QuestionsAnswers extends React.Component {
             QUESTIONS & ANSWERS
           </h2>
           <AnswerSearch search={this.handleSearch} />
-          <button onClick={() => console.log(this.props.mainProduct.id)}>Props</button>
           <br />
           <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
@@ -157,6 +156,7 @@ class QuestionsAnswers extends React.Component {
               />
             ))}
           </div>
+          <br />
           <div data-testid="BottomSection">
             <button data-testid="LoadQuestions" type="button" onClick={this.addQuestionCount}>  Load more questions </button>
             {' '}
