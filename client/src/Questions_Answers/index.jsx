@@ -38,7 +38,8 @@ class QuestionsAnswers extends React.Component {
   }
 
   getQuestions(qNum) {
-    utils.getQuestions(61575, qNum).then((response) => {
+    const { mainProduct } = this.props;
+    utils.getQuestions(mainProduct.id, qNum).then((response) => {
       this.setState({
         questions: response.data.results,
         product_id: parseInt(response.data.product_id, 10),
@@ -101,11 +102,11 @@ class QuestionsAnswers extends React.Component {
     return (
       <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
         <div data-testid="QAStyleDiv" style={{ display: 'block', margin: '0 auto', width: '70vw' }}>
-          <h1 data-testid="QAHeading">{product_id
-            ? 'Product something'
-            : 'Hello World'}
-          </h1>
+            <h2 data-testid="QAHeading" style={{ 'font-size': '16px' }}>
+            QUESTIONS & ANSWERS
+          </h2>
           <AnswerSearch search={this.handleSearch} />
+          <br />
           <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
 
@@ -133,14 +134,12 @@ class QuestionsAnswers extends React.Component {
               : null}
             {/* <Questions showModal={this.showModal} state={this.state} /> */}
             <div data-testid="QuestionsDiv" />
-            {questions.filter((question, { question_body }) => {
+            {questions.filter((question) => {
               if (query === '') {
                 return question;
-              }
-              if (question_body.toLowerCase().includes(query.toLowerCase())) {
+              } else if (question.question_body.toLowerCase().includes(query.toLowerCase())) {
                 return question;
               }
-              return question;
             }).map(({
               question_id, question_body, answers, question_helpfulness
             }) => (
@@ -157,6 +156,7 @@ class QuestionsAnswers extends React.Component {
               />
             ))}
           </div>
+          <br />
           <div data-testid="BottomSection">
             <button data-testid="LoadQuestions" type="button" onClick={this.addQuestionCount}>  Load more questions </button>
             {' '}

@@ -17,7 +17,7 @@ const App = ({ mainProduct }) => {
         <Overview />
         <RelatedItemsModule mainProduct={mainProduct} />
         <RatingsAndReviewsModule mainProduct={mainProduct} />
-        <QuestionsAnswers />
+        <QuestionsAnswers mainProduct={mainProduct} />
       </Body>
     );
   }

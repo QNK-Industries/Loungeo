@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers.jsx';
 import utils from '../../Shared/serverUtils.js';
+import Button from '../stylings/Button.js';
 
 // const GH_TOKEN = require('../../../../tokens.js');
 
@@ -12,6 +13,7 @@ const RightBar = {
 const Questions = ({
   id, questionBody, answers, showModal, helpful, getQuestions, count,
 }) => {
+  const darkRed = '8D0801';
   const [answerCount, setAnswerCount] = useState(2);
   const putRequest = 'questions';
   const [markedHelpful, setMarkedHelpful] = useState(false);
@@ -32,13 +34,13 @@ const Questions = ({
       <div style={RightBar}>
         Helpful? {markedHelpful
         ? <span> Yes ({helpful})</span>
-        : <span role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => {addHelpful(id, putRequest); setMarkedHelpful(true)}}>Yes ({helpful})</span>} |
-        <button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</button>
+        : <span role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</span>} |{' '}
+        <Button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</Button>
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
       <div style={Object.keys(answers).length
-        ? { overflowY: 'scroll', height: '200px' }
+        ? { overflowY: 'auto', height: '150px', backgroundColor: darkRed }
         : null}
       >
         {Object.keys(answers).slice(0, answerCount).map((answer) => (
@@ -54,6 +56,7 @@ const Questions = ({
           />
         )).sort((a, b) => (b.helpfulness - a.helpfulness))}
       </div>
+      <br />
       {Object.keys(answers).length
         ? (
           <button
