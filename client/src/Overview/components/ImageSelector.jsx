@@ -25,7 +25,7 @@ const UnclickedThumbnail = styled(Thumbnail)`
 `;
 
 const ClickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px yellow;
+  box-shadow: 2px 2px 5px #3D2645;
 `;
 
 export default function ImageSelector({

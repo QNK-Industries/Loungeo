@@ -1,15 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
 import Style from './Style.jsx';
 
-// const GH_TOKEN = require('../../../tokens.js');
+const StyleDiv = styled.div`
+  height: 37vh;
+  width: 35vw;
+  position: relative;
+  border-top: 2px solid #8D0801;
+  border-bottom: 2px solid #8D0801;
+`;
+
+const StyleType = styled.div`
+  position: relative;
+  color: #262730;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: flex-end;
+  height: 6vh;
+`;
 
 export default function StyleSelector({
   styles, currentStyle, setCurrentStyle, setImageIndex,
 }) {
   return (
-    <>
-      <div>---------</div>
-      <div id={currentStyle.style_id}>{currentStyle.name}</div>
+    <StyleDiv>
+      <StyleType id={currentStyle.style_id}>
+        <strong>Style:</strong> &nbsp; {currentStyle.name}
+      </StyleType>
       {styles.map((style, index) => (
         (index + 1) % 4 === 0
           ? (
@@ -34,6 +51,6 @@ export default function StyleSelector({
             />
           )
       ))}
-    </>
+    </StyleDiv>
   );
 }

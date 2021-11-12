@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const MainDiv = styled.div`
@@ -15,7 +15,6 @@ const Img = styled.img`
   object-fit: cover;
   cursor: -webkit-zoom-out;
 `;
-  // transform-origin: ${mouseLocation[0] * 2.5 ** 2}px ${mouseLocation[1] * 2.5 ** 2}px;
 
 const Box = styled.span`
   position: absolute;
@@ -33,30 +32,22 @@ const Box = styled.span`
 export default function ExpandedView({
   currentStyle, setImageClick, imageIndex, imageClick, mouseLocation, setMouseLocation,
 }) {
+  const zoomHandler = (e) => {
+    const offset = e.currentTarget.getBoundingClientRect();
+    const boxOffsetX = offset.width / 5;
+    const boxOffsetY = offset.height / 5;
+    let x = e.clientX - offset.x - boxOffsetX < 0 ? boxOffsetX : e.clientX - offset.x;
+    x = x - offset.width > -boxOffsetX ? offset.width - boxOffsetX : x;
+    let y = e.clientY - offset.y - boxOffsetY < 0 ? boxOffsetY : e.clientY - offset.y;
+    y = y - offset.height > -boxOffsetY ? offset.height - boxOffsetY : y;
+    setMouseLocation([x, y]);
+  };
   return (
     <span>
       <MainDiv
         data-testid="ExpandedImageDiv"
-        onMouseOver={(e) => {
-          const offset = e.currentTarget.getBoundingClientRect();
-          const boxOffsetX = offset.width / 5;
-          const boxOffsetY = offset.height / 5;
-          let x = e.clientX - offset.x - boxOffsetX < 0 ? boxOffsetX : e.clientX - offset.x;
-          x = x - offset.width > -boxOffsetX ? offset.width - boxOffsetX : x;
-          let y = e.clientY - offset.y - boxOffsetY < 0 ? boxOffsetY : e.clientY - offset.y;
-          y = y - offset.height > -boxOffsetY ? offset.height - boxOffsetY : y;
-          setMouseLocation([x, y]);
-        }}
-        onPointerMove={(e) => {
-          const offset = e.currentTarget.getBoundingClientRect();
-          const boxOffsetX = offset.width / 5;
-          const boxOffsetY = offset.height / 5;
-          let x = e.clientX - offset.x - boxOffsetX < 0 ? boxOffsetX : e.clientX - offset.x;
-          x = x - offset.width > -boxOffsetX ? offset.width - boxOffsetX : x;
-          let y = e.clientY - offset.y - boxOffsetY < 0 ? boxOffsetY : e.clientY - offset.y;
-          y = y - offset.height > -boxOffsetY ? offset.height - boxOffsetY : y;
-          setMouseLocation([x, y]);
-        }}
+        onMouseOver={zoomHandler}
+        onPointerMove={zoomHandler}
         onMouseLeave={() => { setImageClick(!imageClick); }}
       >
         <Img
@@ -71,9 +62,6 @@ export default function ExpandedView({
           onClick={() => { setImageClick(!imageClick); }}
         />
       </MainDiv>
-      {/* <ZoomDiv>
-        <ZoomImg src={currentStyle.photos[imageIndex].url} />
-      </ZoomDiv> */}
     </span>
   );
 }
