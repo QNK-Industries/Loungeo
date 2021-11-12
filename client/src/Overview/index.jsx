@@ -6,7 +6,7 @@ import StyleSelector from './components/StyleSelector.jsx';
 import AddToCart from './components/AddToCart.jsx';
 import DefaultView from './components/DefaultView.jsx';
 import ExpandedView from './components/ExpandedView.jsx';
-// import ZoomedView from './components/ZoomedView.jsx';
+import ZoomedView from './components/ZoomedView.jsx';
 import utils from '../Shared/serverUtils.js';
 
 const id = 61575;
@@ -17,15 +17,14 @@ const Section = styled.section`
   width: 80vw;
   position: relative;
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 const Div = styled.div`
-  margin: 10px 10px 10px 100px;
-  height: 100vh;
-  width: 40vw;
+  height: 90vh;
+  width: 35vw;
   position: relative;
-  justify-content: right;
-  float: right;
 `;
 
 export default function Overview() {
@@ -78,6 +77,7 @@ export default function Overview() {
             currentStyle={currentStyle}
             rating={rating}
             setCurrentStyle={setCurrentStyle}
+            setImageIndex={setImageIndex}
             data-testid="StyleSelector"
           />
           <AddToCart item={item} currentStyle={currentStyle} data-testid="AddToCart" />
@@ -99,9 +99,19 @@ export default function Overview() {
           setImageClick={setImageClick}
           imageIndex={imageIndex}
           setImageIndex={setImageIndex}
-          setMouseLocation={setMouseLocation}
-          mouseLocation={mouseLocation}
           data-testid="ExpandedView"
+          mouseLocation={mouseLocation}
+          setMouseLocation={setMouseLocation}
+        />
+        <ZoomedView
+          currentStyle={currentStyle}
+          imageClick={imageClick}
+          setImageClick={setImageClick}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
+          data-testid="ExpandedView"
+          mouseLocation={mouseLocation}
+          setMouseLocation={setMouseLocation}
         />
       </Section>
     );

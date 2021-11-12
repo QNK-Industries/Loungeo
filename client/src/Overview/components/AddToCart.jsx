@@ -21,26 +21,31 @@ export default function AddToCart({ currentStyle }) {
   return (
     <div>
       <div>
-        {sizesNums.map((sizeNum) => {
+        {sizesNums.map((sizeNum, index) => {
           if (sizeNum.quantity === 0) {
             return (
-              <span style={{
-                padding: '10px', textDecoration: 'line-through', width: '10px', height: '10px',
-              }}
+              <span
+                key={index.toString()}
+                style={{
+                  padding: '10px', textDecoration: 'line-through', width: '10px', height: '10px',
+                }}
               >{sizeNum.size}
               </span>
             );
           } if (currentSize === sizeNum.size) {
             return (
-              <span style={{
-                width: '10px', height: '10px', padding: '10px', borderRadius: '50%', backgroundColor: 'black', color: 'white',
-              }}
+              <span
+                key={index.toString()}
+                style={{
+                  width: '10px', height: '10px', padding: '10px', borderRadius: '50%', backgroundColor: 'black', color: 'white',
+                }}
               >{sizeNum.size}
               </span>
             );
           }
           return (
             <span
+              key={index.toString()}
               onClick={() => {
                 setCurrentSize(sizeNum.size);
                 setCurrentQuantity(sizeNum.quantity);
