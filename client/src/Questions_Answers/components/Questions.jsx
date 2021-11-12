@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers.jsx';
 import utils from '../../Shared/serverUtils.js';
+import Button from '../stylings/Button.js';
 
 // const GH_TOKEN = require('../../../../tokens.js');
 
@@ -33,8 +34,8 @@ const Questions = ({
       <div style={RightBar}>
         Helpful? {markedHelpful
         ? <span> Yes ({helpful})</span>
-        : <span role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</span>} |
-        <button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</button>
+        : <span role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</span>} |{' '}
+        <Button type="button" onClick={() => showModal(id, questionBody)}>Add Answer</Button>
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}

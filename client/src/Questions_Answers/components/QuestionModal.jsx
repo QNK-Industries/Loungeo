@@ -146,9 +146,11 @@ const QuestionModal = ({ question, showQuestion, productId }) => {
                   Question Body
                   <br />
                   <textarea
+                    style={{ resize: 'none' }}
                     data-testid="TextArea"
                     onChange={(e) => setQuestionBody(e.target.value)}
-                    width='200px'
+                    rows='5'
+                    cols='50'
                   />
                 </label>
                 <br />

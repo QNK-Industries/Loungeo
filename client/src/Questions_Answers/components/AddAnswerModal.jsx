@@ -47,7 +47,7 @@ const formStyle = {
 };
 
 const Modal = ({
-  modal, showModal, qBody, questionID, getQuestions, questionNumber
+  modal, showModal, qBody, questionID, getQuestions, questionNumber,
 }) => {
   const [answerBody, setAnswerBody] = useState('');
   const [nickname, setNickname] = useState('');
@@ -147,8 +147,11 @@ const Modal = ({
                   Answer Body
                   <br />
                   <textarea
+                    style={{resize: 'none'}}
                     onChange={(e) => setAnswerBody(e.target.value)}
-                    width='200px' />
+                    width='300px'
+                    height='500px'
+                  />
                 </label>
                 <br />
                 <button>Upload Photos</button> {' '}<button>Submit</button>
