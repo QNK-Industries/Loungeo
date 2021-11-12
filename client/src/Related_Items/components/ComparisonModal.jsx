@@ -56,7 +56,7 @@ const ComparisonModal = ({ product, compare, modalOff, modal }) => {
 
   function turningOffAnimation() {
     setTurningOff(true);
-    setTimeout( () => {
+    setTimeout(() => {
       modalOff();
       setTurningOff(false);
     }, 500);

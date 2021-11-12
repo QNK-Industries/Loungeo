@@ -49,7 +49,7 @@ const roadRunnerOut = keyframes`
     transform:translateX(-50%) translateY(-50%) skewX(0deg) scaleX(1);
   }
   30% {
-    transform:translateX(-40%) translateY(-50%) skewX(0deg) scaleX(.9)
+    transform:translateX(-60%) translateY(-50%) skewX(0deg) scaleX(.9)
   }
   100% {
     transform:translateX(1500px) translateY(-50%) skewX(30deg) scaleX(1.3);
