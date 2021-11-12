@@ -38,7 +38,8 @@ class QuestionsAnswers extends React.Component {
   }
 
   getQuestions(qNum) {
-    utils.getQuestions(61575, qNum).then((response) => {
+    const { mainProduct } = this.props;
+    utils.getQuestions(mainProduct.id, qNum).then((response) => {
       this.setState({
         questions: response.data.results,
         product_id: parseInt(response.data.product_id, 10),
@@ -105,6 +106,7 @@ class QuestionsAnswers extends React.Component {
             QUESTIONS & ANSWERS
           </h2>
           <AnswerSearch search={this.handleSearch} />
+          <button onClick={() => console.log(this.props.mainProduct.id)}>Props</button>
           <br />
           <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
             {console.log(this.state)}
