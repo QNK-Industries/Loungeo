@@ -16,6 +16,14 @@ const RelatedItems = ({ mainProduct }) => {
 
   useEffect(() => utils.getRelatedProducts(mainProduct.id).then((newData) => setData(newData.data)), []);
 
+  function checkIfModalOpen() {
+    if (modal === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }
+
   function addOutfit(outfitId) {
     if (outfit.indexOf(outfitId) === -1) {
       setOutfit([outfitId, ...outfit.slice(0, -1)]);
@@ -55,6 +63,7 @@ const RelatedItems = ({ mainProduct }) => {
         <Carousel type="OUTFIT" key="OUTFIT" action={(selectedProduct) => removeOutfit(selectedProduct)} outfit={outfit} mainProduct={mainProduct} addOutfit={(addToOutfit) => addOutfit(addToOutfit)} />
       </section>
       <section>
+        {checkIfModalOpen()}
         {displayModal()}
         <CarousolHeader>
           <CarousolText>
