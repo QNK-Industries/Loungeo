@@ -1,13 +1,31 @@
 /* eslint-disable object-curly-newline */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemCarousel from 'react-items-carousel';
 import ItemCard from './ItemCard.jsx';
+import useWindowDimensions from '../../Shared/customHooks.js';
 import AddToOutfitCard from './AddToOutfitCard.jsx';
 import { StyledCarousel, CarousolButton, CardWrapper } from '../RelatedItemsStyles.js';
 
+function determineSize(height, width) {
+  if (width < 900) {
+    return 1;
+  }
+  if (width < 1200) {
+    return 2;
+  }
+  if (width < 1500) {
+    return 3;
+  }
+  return 4;
+}
+
 const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
+  const { height, width } = useWindowDimensions();
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselLimit, setCarouselLimit] = useState(determineSize(height, width));
   const bucketSize = type === 'RELATED' ? data.length : outfit.length + 1;
+
+  useEffect(() => setCarouselLimit(determineSize(height, width)), [width]);
 
   function displayLeftArrow() {
     return (
@@ -52,12 +70,12 @@ const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
   }
 
   return (
-    <StyledCarousel bucket={bucketSize <= 4}>
+    <StyledCarousel bucket={bucketSize <= carouselLimit}>
       <ItemCarousel
         key={type}
         activePosition="right"
         chevronWidth={60}
-        numberOfCards={bucketSize.length < 4 ? bucketSize.length : 4}
+        numberOfCards={bucketSize.length < carouselLimit ? bucketSize.length : carouselLimit}
         slidesToScroll={1}
         outsideChevron
         firstAndLastGutter
