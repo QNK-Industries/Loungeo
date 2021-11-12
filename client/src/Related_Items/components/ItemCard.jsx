@@ -40,6 +40,7 @@ const ItemCard = ({ type, item, action }) => {
   if (product.id && rating) {
     return (
       <StyledItemCard>
+        {console.log(product)}
         <div className="card-image-container">
           <img alt="product" src={getDefaultImageUrl()} className="card-image" />
         </div>

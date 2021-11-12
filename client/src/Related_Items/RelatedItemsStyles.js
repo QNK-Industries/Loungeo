@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 const focalWhite = '#FFF';
 const focalDark = '#262730';
-const offWhite = '#F8F0FB';
+const magnolia = '#F8F0FB';
 const offGrey = '#7D8491';
 const accentColor = '#8D0801';
 
@@ -81,7 +81,7 @@ export const CarousolText = styled.span`
     position: absolute;
     top: 50%;
     width: 70em;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid ${offGrey};
   }
 
   &:before {
@@ -301,7 +301,7 @@ export const StyledItemCard = styled.div`
   }
 
   &:hover .card-text .card-category > span{
-    border:2px solid ${accentColor};
+    border:2px solid rgba(141, 8, 1, 0.88);
     box-shadow: none;
     padding: 11px 28px;
   }
@@ -493,6 +493,6 @@ export const ActionImage = styled.img`
 
   &:hover {
     transform: scale(1.15);
-    background-color: ${(props) => (props.type === 'RELATED' ? 'lightblue' : 'rgba(141, 8, 1, 0.88)')}
+    background-color: ${(props) => (props.type === 'RELATED' ? magnolia : 'rgba(141, 8, 1, 0.88)')}
   }
 `;
