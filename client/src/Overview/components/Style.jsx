@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Thumbnail = styled.img`
   margin: 5px 5px 10px 10px;
   position: relative;
-  height: 7vh;
-  width: 3vw;
+  height: 10vh;
+  width: 5vw;
   cursor: pointer;
   z-index: 10;
   object-fit: cover;
@@ -16,7 +16,7 @@ const UnclickedThumbnail = styled(Thumbnail)`
 `;
 
 const ClickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px yellow;
+  box-shadow: 2px 2px 5px #8D0801;
 `;
 
 export default function Style({
@@ -29,8 +29,17 @@ export default function Style({
           <ClickedThumbnail src={style.photos[0].thumbnail_url} alt="" />
         </span>
       ) : (
-        <span onClick={() => { setCurrentStyle(style); setImageIndex(0); }} key={style.style_id} id={style.style_id} style={{ position: 'relative', display: 'inline-flex' }}>
-          <UnclickedThumbnail src={style.photos[0].thumbnail_url} alt="" />
+        <span
+          key={style.style_id}
+          id={style.style_id}
+          style={{ position: 'relative', display: 'inline-flex' }}
+        >
+          <UnclickedThumbnail
+            src={style.photos[0].thumbnail_url}
+            alt=""
+            onClick={() => { setCurrentStyle(style); setImageIndex(0); }}
+            onKeyPress={() => { setCurrentStyle(style); setImageIndex(0); }}
+          />
         </span>
       )
   );
