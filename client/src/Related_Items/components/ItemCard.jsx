@@ -5,13 +5,20 @@ import ActionButton from './ActionButton.jsx';
 import StarRating from '../../Shared/StarRating.jsx';
 import StarAverage from '../../Shared/StarAverage.jsx';
 
-const ItemCard = (props) => {
-  const [product, setProduct] = useState({});
-  const [rating, setRating] = useState({});
+const ItemCard = ({ type, item, action }) => {
+  const [product, setProduct] = useState(type === 'RELATED' ? {} : item);
+  const [rating, setRating] = useState(type === 'RELATED' ? {} : StarAverage(item.ratings));
 
   useEffect(() => {
-    utils.getItemDetails(props.item).then(({ data }) => setProduct(data));
-    utils.getRating(props.item).then(({ data }) => setRating(StarAverage(data.ratings)));
+    if (type === 'RELATED') {
+      utils.getItemDetails(item)
+        .then(({ data }) => setProduct(data))
+        .catch((err) => console.log(err));
+
+      utils.getRating(item)
+        .then(({ data }) => setRating(StarAverage(data.ratings)))
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   function getDefaultImageUrl() {
@@ -30,7 +37,7 @@ const ItemCard = (props) => {
     }
   }
 
-  if (product.id) {
+  if (product.id && rating) {
     return (
       <StyledItemCard>
         <div className="card-image-container">
@@ -57,7 +64,7 @@ const ItemCard = (props) => {
             </div>
 
             <div className="card-right">
-              <ActionButton type={props.type} product={product} actionFunc={props.action} />
+              <ActionButton type={type} product={product} actionFunc={action} />
             </div>
           </div>
         </div>
@@ -65,7 +72,11 @@ const ItemCard = (props) => {
     );
   }
   return (
-    <StyledItemCard url="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47d23nnjrd24i8d7pt8wtvxse5rkasd8v30moj9rv1&rid=giphy.gif&ct=g" />
+    <StyledItemCard url="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47d23nnjrd24i8d7pt8wtvxse5rkasd8v30moj9rv1&rid=giphy.gif&ct=g">
+      <div className="card-image-container">
+        <img alt="product" src={getDefaultImageUrl()} className="card-image" />
+      </div>
+    </StyledItemCard>
   );
 };
 

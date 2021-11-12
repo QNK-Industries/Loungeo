@@ -6,9 +6,18 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'client', 'dist'),
+    sourceMapFilename: '[name].js.map',
   },
 
+  devtool: 'source-map',
+
   mode: 'production',
+
+  resolve: {
+    alias: {
+      'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
+    },
+  },
 
   module: {
     rules: [

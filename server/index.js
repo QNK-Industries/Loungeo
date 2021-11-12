@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const { GH_TOKEN } = require('../tokens.js');
+const { outfitData } = require('./clientOutfit.js');
 
 const app = express();
 const PORT = 3000 || process.env.PORT;
@@ -11,6 +12,8 @@ const HEADERS = { headers: { Authorization: GH_TOKEN } };
 app.use(express.static('./client'));
 app.use(express.json());
 app.use(cors());
+
+const customerOutfit = outfitData;
 
 app.get('/products', (req, res) => {
   const { page, count } = req.query;
@@ -80,6 +83,28 @@ app.get('/products/:id/related', (req, res) => {
     .catch((err) => {
       res.status(err.response.status).send(err.response.data);
     });
+});
+
+app.get('/myoutfit', (req, res) => {
+  res.status(200).send(customerOutfit);
+});
+
+app.post('/myoutfit/add', (req, res) => {
+  if (!customerOutfit[req.body.id]) {
+    customerOutfit[req.body.id] = req.body;
+    res.status(201);
+  } else {
+    res.status(400);
+  }
+});
+
+app.post('/myoutfit/delete', (req, res) => {
+  if (customerOutfit[req.body.id]) {
+    delete customerOutfit[req.body.id];
+    res.status(200);
+  } else {
+    res.status(400);
+  }
 });
 
 app.get('/reviews/', (req, res) => {

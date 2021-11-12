@@ -50,6 +50,10 @@ margin-bottom: 10px;
   justify-content: center;
   flex-wrap: wrap;
 }
+
+& remaining-characters {
+  width: 70%;
+}
 `;
 
 const InputContainer = styled.div`
@@ -84,6 +88,11 @@ const PhotoUploadContainer = styled.div`
 
   & img {
     max-width: 100px;
+  }
+
+  & .photo-bucket {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -131,13 +140,13 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
   function displayRemainingCharacters() {
     if (body.length < 50) {
       return (
-        <div style={{ width: '70%' }}>
+        <div className="remaining-characters">
           <span>Minimum required characters left: [{50 - body.length}]</span>
         </div>
       );
     }
     return (
-      <div style={{ width: '70%' }}>
+      <div className="remaining-characters">
         <span>Minimum reached.</span>
       </div>
     );
@@ -171,7 +180,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
   function displayImageBucket() {
     return (
       <PhotoUploadContainer>
-        <div style={{ display: 'flex', 'flex-direction': 'column' }}>
+        <div className="photo-bucket">
           <span>Upload Photos:</span>
           <span>{imageBucket.length}/5</span>
         </div>
@@ -244,8 +253,9 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
           </div>
         </RatingAndRecommend>
         <CharacteristicsContainer>
-          {Object.keys(characteristics).map((characteristic) => (
+          {Object.keys(characteristics).map((characteristic, index) => (
             <CharacteristicSelection
+              key={`characteristic-${index + 1}`}
               type={characteristic}
               details={characteristicList[characteristic]}
             />

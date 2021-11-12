@@ -13,7 +13,7 @@ const ReviewsContainer = ({ reviews, reviewLimit, search }) => {
   function displayReviews() {
     return reviews
       .filter((review, index) => index < reviewLimit)
-      .map((review) => <Review review={review} search={search} />);
+      .map((review) => <Review key={`review-${review.review_id}`} review={review} search={search} />);
   }
 
   return (
