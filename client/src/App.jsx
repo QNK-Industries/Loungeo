@@ -15,7 +15,7 @@ const App = ({ mainProduct }) => {
     return (
       <Body data-testid="app">
         <Overview />
-        {/* <RelatedItemsModule mainProduct={mainProduct} /> */}
+        <RelatedItemsModule mainProduct={mainProduct} />
         <RatingsAndReviewsModule mainProduct={mainProduct} />
         <QuestionsAnswers mainProduct={mainProduct} />
       </Body>
