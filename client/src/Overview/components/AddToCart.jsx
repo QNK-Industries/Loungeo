@@ -40,6 +40,7 @@ const SizeSwitch = styled(Switch)`
 `;
 
 const SizeSwitchEmpty = styled(Switch)`
+  background-color: #F8F0FB;
   text-decoration: line-through;
 `;
 

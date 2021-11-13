@@ -17,17 +17,17 @@ const Img = styled.img`
 `;
 
 const Box = styled.span`
-  position: absolute;
-  height: 36vh;
-  width: 14vw;
-  top: -18vh;
-  left: -7vw;
-  cursor: -webkit-zoom-out;
-  z-index: 10;
-  border: solid 1px white;
-  opacity: .4;
-  background-color: white;
-`;
+      position: absolute;
+      height: 36vh;
+      width: 14vw;
+      top: -18vh;
+      left: -7vw;
+      cursor: -webkit-zoom-out;
+      z-index: 10;
+      border: solid 1px white;
+      opacity: .4;
+      background-color: white;
+    `;
 
 export default function ExpandedView({
   currentStyle, setImageClick, imageIndex, imageClick, mouseLocation, setMouseLocation,
