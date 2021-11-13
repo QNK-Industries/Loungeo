@@ -27,6 +27,10 @@ const Button = styled(FontAwesomeIcon)`
   z-index: 10;
   color: #F8F0FB;
   -webkit-text-stroke: 1vh white;
+  opacity: 50%;
+  &:hover {
+    opacity: 100;
+  }
   `;
 
 const LeftButton = styled(Button)`
@@ -43,8 +47,9 @@ export default function DefaultView({
   currentStyle, setImageClick, imageIndex, setImageIndex, imageClick,
 }) {
   let button = null;
+  const styleImgCount = Object.keys(currentStyle).length;
 
-  if (Object.keys(currentStyle).length === 0) {
+  if (styleImgCount === 0) {
     return (<div>Loading Image</div>);
   }
 
@@ -63,7 +68,7 @@ export default function DefaultView({
   return (
     <>
       <Div data-testid="DefaultImageDiv">
-        {button}
+        {currentStyle.photos.length > 1 ? button : null}
         <Img
           data-testid="DefaultImageImg"
           src={currentStyle.photos[imageIndex].url}

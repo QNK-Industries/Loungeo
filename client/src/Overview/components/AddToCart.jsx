@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import utils from '../../Shared/serverUtils.js';
@@ -25,12 +26,12 @@ const Switch = styled.button`
   font-size: 1.5rem;
   height: 10vh;
   width: 10vh;
+  border: none;
   border-radius: 50%;
 `;
 
 const SizeSwitch = styled(Switch)`
   color: black;
-  border: none;
   background-color: #F8F0FB;
   cursor: pointer;
   &:hover {
@@ -38,11 +39,11 @@ const SizeSwitch = styled(Switch)`
   }
 `;
 
-const SizeSwitchEmpty = styled(SizeSwitch)`
+const SizeSwitchEmpty = styled(Switch)`
   text-decoration: line-through;
 `;
 
-const SizeSwitchClicked = styled(SizeSwitch)`
+const SizeSwitchClicked = styled(Switch)`
   background-color: #262730;
   color: white;
 `;

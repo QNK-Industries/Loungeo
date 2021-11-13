@@ -6,7 +6,7 @@ import StarRating from '../../Shared/StarRating.jsx';
 import StarAverage from '../../Shared/StarAverage.jsx';
 
 const ItemCard = ({
-  type, item, action, changeProduct,
+  type, item, action, setId,
 }) => {
   const [product, setProduct] = useState(type === 'RELATED' ? {} : item);
   const [rating, setRating] = useState(type === 'RELATED' ? {} : StarAverage(item.ratings));
@@ -45,8 +45,8 @@ const ItemCard = ({
         <div
           role="button"
           tabIndex="0"
-          onClick={() => changeProduct(product.id)}
-          onKeyDown={() => changeProduct(product.id)}
+          onClick={() => setId(product.id)}
+          onKeyDown={() => setId(product.id)}
           className="card-image-container"
         >
           <img alt="product" src={getDefaultImageUrl()} className="card-image" />
@@ -58,8 +58,8 @@ const ItemCard = ({
             className="card-category"
             role="button"
             tabIndex="0"
-            onClick={() => changeProduct(product.id)}
-            onKeyDown={() => changeProduct(product.id)}
+            onClick={() => setId(product.id)}
+            onKeyDown={() => setId(product.id)}
           >
             <span>{product.category}</span>
           </div>

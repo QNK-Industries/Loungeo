@@ -102,7 +102,7 @@ const RelatedItems = (props) => {
             outfitBucket={outfit.bucket}
             mainProduct={mainProduct}
             addOutfit={(addToOutfit) => addOutfit(addToOutfit)}
-            changeProduct={props.changeProduct}
+            setId={props.setId}
           />
         </section>
         <section>
@@ -117,7 +117,7 @@ const RelatedItems = (props) => {
             key="Carousel-RELATED"
             action={(selectedProduct) => turnOnModal(selectedProduct)}
             data={data}
-            changeProduct={props.changeProduct}
+            setId={props.setId}
           />
         </section>
       </section>
