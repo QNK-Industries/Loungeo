@@ -11,7 +11,7 @@ const starShapes = [
 ];
 
 const StarImage = styled.img`
-  width: 30px;
+  width: 2vw;
 `;
 
 const StarImageContainer = styled.div`

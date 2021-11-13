@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import MainLogo from './MainLogo.jsx';
 
-const Span = styled.div`
+const Span = styled.span`
   margin-left: -1vw;
   width: 101vw;
   height: 5vh;
@@ -18,7 +18,7 @@ const Span = styled.div`
 
 `;
 
-const ActiveSpan = styled.div`
+const ActiveSpan = styled.span`
   width: 100vw;
   height: 5vh;
   position: fixed;
@@ -39,9 +39,8 @@ cursor: pointer;
   border-bottom: white;
   text-decoration: underline;
 }
-position: absolute;
-bottom:20%;
-left: 92%;
+  left: 92vw;
+  position: absolute;
 `;
 
 const BagDiv = styled.div`
@@ -55,7 +54,7 @@ const FontAwesomeBag = styled(FontAwesomeIcon)`
   color: #F8F0FB;
   font-size: 4.3vh;
   position: absolute;
-  bottom: 18%;
+  bottom: 1.5vh;
 `;
 
 const ActiveFontAwesomeBag = styled(FontAwesomeIcon)`
@@ -69,8 +68,8 @@ const FontAwesomeCount = styled.span`
   color: #8D0801;
   font-size: 2.2vh;
   position: absolute;
-  bottom: 18%;
-  left: 17%;
+  bottom: 1.4vh;
+  left: .6vw;
 `;
 
 const ActiveFontAwesomeCount = styled.span`
@@ -116,7 +115,9 @@ export default function NavBar({ cart }) {
       : (
         <Span>
           <MainLogo />
-          <Div>Sign In</Div>
+          <Div>
+            Sign In
+            </Div>
           {/* <Div>New</Div>
       <Div>Contact</Div>
       <Div>About</Div> */}
