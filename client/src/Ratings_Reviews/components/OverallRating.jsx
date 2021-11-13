@@ -51,7 +51,7 @@ const OverallRating = () => {
   return (
     <FormOverallRating>
       <span>
-        Overall Rating:
+        Overall Rating: *
       </span>
       <label htmlFor="review-rating">
         <HiddenRadio
