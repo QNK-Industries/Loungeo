@@ -25,7 +25,8 @@ const UnclickedThumbnail = styled(Thumbnail)`
 `;
 
 const ClickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px #3D2645;
+  box-shadow: 6px 6px 6px 6px black;
+  cursor: auto;
 `;
 
 export default function ImageSelector({
