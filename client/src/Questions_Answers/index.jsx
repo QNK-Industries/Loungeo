@@ -103,12 +103,12 @@ class QuestionsAnswers extends React.Component {
     } = this.state;
     return (
       <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
+        <SectionSplitHeader>
+          <SectionSplitText>
+            Q & A
+          </SectionSplitText>
+        </SectionSplitHeader>
         <div data-testid="QAStyleDiv" style={{ padding: '5px', display: 'block', margin: '0 auto', width: '70vw' }}>
-          <SectionSplitHeader>
-            <SectionSplitText>
-              Q & A
-            </SectionSplitText>
-          </SectionSplitHeader>
 
           <AnswerSearch search={this.handleSearch} />
           <br />
