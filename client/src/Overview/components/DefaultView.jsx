@@ -73,7 +73,7 @@ export default function DefaultView({
           data-testid="DefaultImageImg"
           src={currentStyle.photos[imageIndex].url}
           alt=""
-          onClick={() => { setImageClick(!imageClick); }}
+          onClick={() => setImageClick(!imageClick)}
         />
       </Div>
     </>

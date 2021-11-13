@@ -27,7 +27,7 @@ const Div = styled.div`
 export default function Overview({
   item, styles, currentStyle, setCurrentStyle, rating, setCart, cart,
 }) {
-  const [imageClick, setImageClick] = useState(0);
+  const [imageClick, setImageClick] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   const [mouseLocation, setMouseLocation] = useState([0, 0]);
 
