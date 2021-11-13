@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import moment from 'moment';
 import utils from '../../Shared/serverUtils.js';
+import AddHelpful from '../stylings/AddHelpful.js';
 
 const AnswerStyle = {
   marginLeft: '15px',
@@ -35,10 +36,10 @@ const Answers = ({
       <br />
       By {asker === 'Seller' ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  Helpful? {
         wasHelpful
-          ? <span style={{ cursor: 'pointer', fontFamily: 'Hind sans-serif' }}> Yes ({helpful}) </span>
+          ? <AddHelpful> Yes ({helpful}) </AddHelpful>
           : (
-            <span
-              style={{ fontFamily: 'Hind sans-serif' }}
+            <AddHelpful
+              // style={{ fontFamily: 'Hind sans-serif' }}
               role="button"
               tabIndex={0}
               onClick={() => {
@@ -48,7 +49,7 @@ const Answers = ({
               onKeyDown={(e) => console.log(e)}
             >
               Yes ({helpful})
-            </span>
+            </AddHelpful>
           )
       } | { wasReported
         ? <span role="button" style={{ fontFamily: 'Hind sans-serif' }} tabIndex={0} onClick={() => alert('This Answer Has Already Been Reported')} onKeyDown={(e) => console.log(e)}>Report</span>

@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import Answers from './Answers.jsx';
 import utils from '../../Shared/serverUtils.js';
 import AddAnswerButtonStyling from '../stylings/AddAnswerButtonStyling.js';
+import AddHelpful from '../stylings/AddHelpful.js';
 
 // const GH_TOKEN = require('../../../../tokens.js');
 
 const RightBar = {
   float: 'right',
+  fontFamily: 'Hind sans-serif',
 };
 
 const Questions = ({
@@ -32,8 +34,8 @@ const Questions = ({
     <div>
       <div style={RightBar}>
         Helpful? {markedHelpful
-        ? <span> Yes ({helpful})</span>
-        : <span role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</span>} |{' '}
+        ? <AddHelpful> Yes ({helpful})</AddHelpful>
+        : <AddHelpful role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</AddHelpful>} |{' '}
         <span type="button" onClick={() => showModal(id, questionBody)}>Add Answer</span>
       </div>
       <h2>Q. {questionBody}</h2>
