@@ -112,7 +112,7 @@ class QuestionsAnswers extends React.Component {
 
           <AnswerSearch search={this.handleSearch} />
           <br />
-          <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
+          <div data-testid="QuestionSearch">
 
             {showModal
               ? (

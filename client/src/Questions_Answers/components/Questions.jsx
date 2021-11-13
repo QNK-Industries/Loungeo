@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers.jsx';
 import utils from '../../Shared/serverUtils.js';
+import AddAnswerButtonStyling from '../stylings/AddAnswerButtonStyling.js';
 
 // const GH_TOKEN = require('../../../../tokens.js');
 
@@ -37,10 +38,7 @@ const Questions = ({
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
-      <div style={Object.keys(answers).length
-        ? { overflowY: 'auto', height: '150px' }
-        : null}
-      >
+      <div>
         {Object.keys(answers).slice(0, answerCount).map((answer) => (
           <Answers
             showModal={showModal}
@@ -57,14 +55,14 @@ const Questions = ({
       <br />
       {Object.keys(answers).length
         ? (
-          <button
+          <AddAnswerButtonStyling
             data-testid="AddAnswerButton"
             type="button"
             onClick={() => setAnswerCount(answerCount + 2)}
-          >Add More Answers
-          </button>
+          >MORE ANSWERS
+          </AddAnswerButtonStyling>
         )
-        : null}
+        : <div> Be The First To Add A Question!</div>}
     </div>
   );
 };

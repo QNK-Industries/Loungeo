@@ -35,7 +35,7 @@ const Answers = ({
       <br />
       By {asker === 'Seller' ? <strong>{asker}</strong> : asker}, {moment(date).utc().format('MMMM D, YYYY')} |  Helpful? {
         wasHelpful
-          ? <span style={{ fontFamily: 'Hind sans-serif' }}> Yes ({helpful}) </span>
+          ? <span style={{ cursor: 'pointer', fontFamily: 'Hind sans-serif' }}> Yes ({helpful}) </span>
           : (
             <span
               style={{ fontFamily: 'Hind sans-serif' }}
