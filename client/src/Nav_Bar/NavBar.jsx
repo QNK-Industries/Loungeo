@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
-import utils from '../Shared/serverUtils.js';
+import MainLogo from './MainLogo.jsx';
 
 const Span = styled.span`
   width: 100vw;
@@ -29,7 +29,8 @@ cursor: pointer;
 `;
 
 const BagDiv = styled.div`
-  position: relative;
+  position: absolute;
+  right: 0;
   height: 7vh;
   width: 7vh;
 `;
@@ -39,7 +40,6 @@ const FontAwesomeBag = styled(FontAwesomeIcon)`
   font-size: 5.5vh;
   position: absolute;
   bottom: 10%;
-  left: 50%;
 `;
 
 const FontAwesomeCount = styled.span`
@@ -47,7 +47,7 @@ const FontAwesomeCount = styled.span`
   font-size: 2.5vh;
   position: absolute;
   bottom: 10%;
-  right: 4%;
+  left: 22%;
 `;
 
 export default function NavBar({ cart }) {
@@ -61,11 +61,11 @@ export default function NavBar({ cart }) {
 
   return (
     <Span>
-      <Div>Home</Div>
+      <MainLogo />
       <Div>Sign In</Div>
-      <Div>New</Div>
+      {/* <Div>New</Div>
       <Div>Contact</Div>
-      <Div>About</Div>
+      <Div>About</Div> */}
       <BagDiv>
         <FontAwesomeBag icon={faShoppingBag} />
         <FontAwesomeCount>{cart}</FontAwesomeCount>

@@ -102,7 +102,7 @@ class QuestionsAnswers extends React.Component {
     } = this.state;
     return (
       <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
-        <div data-testid="QAStyleDiv" style={{ padding: '5px', border: '5px solid #7d8491', display: 'block', margin: '0 auto', width: '70vw' }}>
+        <div data-testid="QAStyleDiv" style={{ padding: '5px', display: 'block', margin: '0 auto', width: '70vw' }}>
           <h2 data-testid="QAHeading" style={{ 'fontSize': '16px' }}>
             QUESTIONS & ANSWERS
           </h2>
