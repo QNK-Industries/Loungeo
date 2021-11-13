@@ -16,22 +16,23 @@ const Img = styled.img`
   cursor: -webkit-zoom-out;
 `;
 
-const Box = styled.span`
-  position: absolute;
-  height: 36vh;
-  width: 14vw;
-  top: -18vh;
-  left: -7vw;
-  cursor: -webkit-zoom-out;
-  z-index: 10;
-  border: solid 1px white;
-  opacity: .4;
-  background-color: white;
-`;
-
 export default function ExpandedView({
   currentStyle, setImageClick, imageIndex, imageClick, mouseLocation, setMouseLocation,
 }) {
+  const Box = styled.span`
+    position: absolute;
+    height: 36vh;
+    width: 14vw;
+    top: -18vh;
+    left: -7vw;
+    cursor: -webkit-zoom-out;
+    z-index: 10;
+    border: solid 1px white;
+    opacity: .4;
+    background-color: white;
+    transform: translate(${mouseLocation[0]}px, ${mouseLocation[1]}px)
+  `;
+  
   const zoomHandler = (e) => {
     const offset = e.currentTarget.getBoundingClientRect();
     const boxOffsetX = offset.width / 5;
@@ -48,18 +49,17 @@ export default function ExpandedView({
         data-testid="ExpandedImageDiv"
         onMouseOver={zoomHandler}
         onPointerMove={zoomHandler}
-        onMouseLeave={() => { setImageClick(!imageClick); }}
+        onMouseLeave={() => setImageClick(!imageClick)}
       >
         <Img
           src={currentStyle.photos[imageIndex].url}
           alt=""
-          onClick={() => { setImageClick(!imageClick); }}
+          onClick={() => setImageClick(!imageClick)}
           data-testid="ExpandedImageImg"
         />
         <Box
           data-testid="ExpandedImageBox"
-          style={{ transform: `translate(${mouseLocation[0]}px, ${mouseLocation[1]}px)` }}
-          onClick={() => { setImageClick(!imageClick); }}
+          onClick={() => setImageClick(!imageClick)}
         />
       </MainDiv>
     </span>
