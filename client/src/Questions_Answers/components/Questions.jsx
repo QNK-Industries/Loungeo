@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers.jsx';
 import utils from '../../Shared/serverUtils.js';
-import ButtonStyling from '../stylings/ButtonStyling.js';
 
 // const GH_TOKEN = require('../../../../tokens.js');
 
@@ -58,12 +57,12 @@ const Questions = ({
       <br />
       {Object.keys(answers).length
         ? (
-          <ButtonStyling
+          <button
             data-testid="AddAnswerButton"
             type="button"
             onClick={() => setAnswerCount(answerCount + 2)}
           >Add More Answers
-          </ButtonStyling>
+          </button>
         )
         : null}
     </div>
