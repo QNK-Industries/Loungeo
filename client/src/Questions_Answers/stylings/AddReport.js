@@ -5,7 +5,7 @@ font-family: 'Hind sans-serif';
 cursor: pointer;
 
 & :hover {
-  color: red;
+  color: #8d0801;
 }
 
 `;
