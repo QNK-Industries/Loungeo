@@ -1,12 +1,11 @@
 import React from 'react';
 
 const logoStyles = {
-  height: '100%',
+  height: '90%',
   position: 'absolute',
-  // top: '0',
-  left: '0',
+  left: '1vw',
+  bottom: '1.8vh',
   color: '#f8f0fb',
-  marginBottom: '5px',
 };
 
 const MainLogo = () => (

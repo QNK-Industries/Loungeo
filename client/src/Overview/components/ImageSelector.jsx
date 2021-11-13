@@ -21,11 +21,11 @@ const Thumbnail = styled.img`
 `;
 
 const UnclickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px black;
+box-shadow: 2px 2px 5px darkgrey;
 `;
 
 const ClickedThumbnail = styled(Thumbnail)`
-  box-shadow: 6px 6px 6px 6px black;
+  box-shadow: 3px 3px 6px black;
   cursor: auto;
 `;
 

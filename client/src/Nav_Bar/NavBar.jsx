@@ -5,12 +5,13 @@ import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import MainLogo from './MainLogo.jsx';
 
 const Span = styled.div`
-  width: 100vw;
+  margin-left: -1vw;
+  width: 101vw;
   height: 5vh;
   background-color: #3D2645;
   position: fixed;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   top: 0;
   z-index: 100;
@@ -39,7 +40,7 @@ cursor: pointer;
   text-decoration: underline;
 }
 position: absolute;
-bottom:30%;
+bottom:20%;
 left: 92%;
 `;
 
@@ -52,21 +53,21 @@ const BagDiv = styled.div`
 
 const FontAwesomeBag = styled(FontAwesomeIcon)`
   color: #F8F0FB;
-  font-size: 4.5vh;
+  font-size: 4.3vh;
   position: absolute;
   bottom: 18%;
 `;
 
 const ActiveFontAwesomeBag = styled(FontAwesomeIcon)`
   color: #3d2645;
-  font-size: 5vh;
+  font-size: 4.3vh;
   position: absolute;
   bottom: 10%;
 `;
 
 const FontAwesomeCount = styled.span`
   color: #8D0801;
-  font-size: 2.5vh;
+  font-size: 2.2vh;
   position: absolute;
   bottom: 18%;
   left: 17%;
@@ -74,10 +75,10 @@ const FontAwesomeCount = styled.span`
 
 const ActiveFontAwesomeCount = styled.span`
   color: #F8F0FB;
-  font-size: 2.5vh;
+  font-size: 2.2vh;
   position: absolute;
   bottom: 12%;
-  left: 20%;
+  left: 18%;
 `;
 
 export default function NavBar({ cart }) {

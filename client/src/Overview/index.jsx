@@ -9,7 +9,7 @@ import ExpandedView from './components/ExpandedView.jsx';
 import ZoomedView from './components/ZoomedView.jsx';
 
 const Section = styled.section`
-  margin: 5vw 5vw 5vw 8vw;
+  margin: 4vw 5vw 5vw 8vw;
   height: 90vh;
   width: 80vw;
   position: relative;
