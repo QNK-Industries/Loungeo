@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Div = styled.div`
   height: 90vh;
@@ -18,16 +20,14 @@ const Img = styled.img`
   cursor: -webkit-zoom-in;
 `;
 
-const Button = styled.span`
+const Button = styled(FontAwesomeIcon)`
   position: absolute;
-  height: 10px;
-  width: 10px;
+  font-size: 4.5vh;
   cursor: pointer;
   z-index: 10;
-  color: rgb(104,104,104);
-  font-size: 40px;
-  -webkit-text-stroke: 1px white;
-`;
+  color: #F8F0FB;
+  -webkit-text-stroke: 1vh white;
+  `;
 
 const LeftButton = styled(Button)`
   left: 0%;
@@ -35,7 +35,7 @@ const LeftButton = styled(Button)`
 `;
 
 const RightButton = styled(Button)`
-  right: 4.2%;
+  right: 0;
   bottom: 50%;
 `;
 
@@ -49,14 +49,14 @@ export default function DefaultView({
   }
 
   if (imageIndex === 0) {
-    button = <RightButton type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</RightButton>;
+    button = <RightButton type="button" icon={faArrowRight} onClick={() => { setImageIndex(imageIndex + 1); }} />;
   } else if (imageIndex === currentStyle.photos.length - 1) {
-    button = <LeftButton type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</LeftButton>;
+    button = <LeftButton type="button" icon={faArrowLeft} onClick={() => { setImageIndex(imageIndex - 1); }} />;
   } else {
     button = (
       <>
-        <LeftButton type="button" onClick={() => { setImageIndex(imageIndex - 1); }}>&#8592;</LeftButton>
-        <RightButton type="button" onClick={() => { setImageIndex(imageIndex + 1); }}>&#8594;</RightButton>
+        <RightButton type="button" icon={faArrowRight} onClick={() => { setImageIndex(imageIndex + 1); }} />
+        <LeftButton type="button" icon={faArrowLeft} onClick={() => { setImageIndex(imageIndex - 1); }} />
       </>
     );
   }
