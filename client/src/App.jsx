@@ -55,7 +55,6 @@ const App = () => {
           />
           <RelatedItemsModule
             key={`related-module-${product.id}`}
-            // changeProduct={(id) => changeProduct(id)}
             setId={setId}
             mainProduct={product}
           />

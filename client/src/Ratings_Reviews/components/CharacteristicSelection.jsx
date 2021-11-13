@@ -4,7 +4,7 @@ import { SelectionContainer, StyledLabel } from '../ReviewsStyles.js';
 const CharacteristicSelection = ({ type, details }) => {
   function creatAllRadios() {
     return Object.keys(details).map((index) => (
-      <StyledLabel key={`label-${type}-${index}`} htmlFor={`radio-${type.toLowerCase()}-${index}`}>
+      <StyledLabel className="radio-label" key={`label-${type}-${index}`} htmlFor={`radio-${type.toLowerCase()}-${index}`}>
         <input id={`radio-${type.toLowerCase()}-${index}`} type="radio" name={`${type}`} value={index} required />
         <span>{details[index]}</span>
       </StyledLabel>
@@ -16,7 +16,7 @@ const CharacteristicSelection = ({ type, details }) => {
       <div>
         <h3>
           <span>
-            *{type}:
+            {type}: *
           </span>
         </h3>
       </div>

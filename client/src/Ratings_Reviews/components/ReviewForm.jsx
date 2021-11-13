@@ -14,6 +14,7 @@ import {
   CharacteristicsContainer,
   PersonalInformationContainer,
   RatingAndRecommend,
+  SubmitButton,
 } from '../ReviewsStyles.js';
 import CharacteristicSelection from './CharacteristicSelection.jsx';
 
@@ -21,7 +22,6 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
   const [imageBucket, setImageBucket] = useState([]);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
-  const [justSubmittedForm, setJustSubmittedForm] = useState(false);
 
   function textCount(type) {
     if (type === 'body') {
@@ -83,15 +83,17 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
       <PhotoUploadContainer>
         <div className="photo-bucket">
           <span>Upload Photos:</span>
-          <span>{imageBucket.length}/5</span>
+          <span className="photo-bucket-limit">{imageBucket.length}/5</span>
         </div>
-        {imageBucket.map((image, index) => (
-          <div>
-            <img alt="review upload" src={image} />
-            <button type="button" onClick={() => removeImage(index)}>X</button>
-          </div>
-        ))}
-        {displayAddImage()}
+        <div className="photo-bucket-list">
+          {imageBucket.map((image, index) => (
+            <div className="photo-bucket-upload">
+              <img alt="review upload" src={image} />
+              <button type="button" onClick={() => removeImage(index)}>X</button>
+            </div>
+          ))}
+          {displayAddImage()}
+        </div>
       </PhotoUploadContainer>
     );
   }
@@ -112,23 +114,10 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
     Object.keys(characteristics).forEach((element) => {
       newReview.characteristics[characteristics[element].id] = Number(event.target[element].value);
     });
-    setJustSubmittedForm(true);
     setTimeout(() => {
       modalOff();
       utils.submitReview(newReview);
-    }, 1000);
-  }
-
-  if (justSubmittedForm) {
-    return (
-      <ModalContent submitted>
-        <Title>
-          <h1>
-            Thank you for your submission!
-          </h1>
-        </Title>
-      </ModalContent>
-    );
+    }, 2700);
   }
 
   return (
@@ -143,7 +132,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
           <OverallRating />
           <div className="do-you-recommend">
             <span>Do you recommend this product? *</span>
-            <label htmlFor="recommend-yes">
+            <label className="radio-label" htmlFor="recommend-yes">
               <input id="recommend-yes" type="radio" name="recommendProduct" value="true" required />
               Yes
             </label>
@@ -164,7 +153,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
         </CharacteristicsContainer>
         <FieldContainer>
           <label htmlFor="summary-input">
-            Summary:
+            Summary: *
             <InputContainer inputType="summary">
               <input
                 type="text"
@@ -175,6 +164,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
                 onChange={(event) => {
                   setSummary(event.target.value);
                 }}
+                required
               />
               {textCount('summary')}
             </InputContainer>
@@ -182,7 +172,7 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
         </FieldContainer>
         <FieldContainer>
           <label htmlFor="body-input">
-            *Review:
+            Review: *
             <InputContainer inputType="body">
               <textarea
                 id="body-input"
@@ -202,8 +192,8 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
         </FieldContainer>
         {displayImageBucket()}
         <PersonalInformationContainer>
-          <label htmlFor="review-username">
-            *Username:
+          <label className="review-username" htmlFor="review-username">
+            Username: *
             <input
               id="review-username"
               name="reviewUsername"
@@ -213,11 +203,11 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
               required
             />
             <div>
-              <span>For privacy reasons, do not use your full name.</span>
+              <span>For privacy reasons, do not use your full name. *</span>
             </div>
           </label>
           <label htmlFor="review-email">
-            *Email:
+            Email: *
             <input
               id="review-email"
               name="reviewEmail"
@@ -227,11 +217,18 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
               required
             />
             <div>
-              <span>For authentication reasons, you will not be emailed.</span>
+              <span>For authentication reasons, you will not be emailed. *</span>
             </div>
           </label>
         </PersonalInformationContainer>
-        <input type="submit" value="Submit Review" />
+        <SubmitButton>
+          <button type="submit">
+            <span>Submit Review</span>
+            <svg width="24" height="24" fill="#262730" viewBox="0 0 24 24">
+              <path d="M0 11c2.761.575 6.312 1.688 9 3.438 3.157-4.23 8.828-8.187 15-11.438-5.861 5.775-10.711 12.328-14 18.917-2.651-3.766-5.547-7.271-10-10.917z" />
+            </svg>
+          </button>
+        </SubmitButton>
       </form>
     </ModalContent>
   );
