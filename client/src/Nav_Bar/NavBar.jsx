@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +17,20 @@ const Span = styled.span`
 
 `;
 
+const ActiveSpan = styled.span`
+  width: 100vw;
+  height: 7vh;
+  background-color: #3D2645;
+  opacity: 80%;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  top: 0;
+  z-index: 100;
+
+`;
+
 const Div = styled.div`
 color: #F8F0FB;
 font-size: 1rem;
@@ -26,6 +40,9 @@ cursor: pointer;
   border-bottom: white;
   text-decoration: underline;
 }
+position: absolute;
+bottom:30%;
+left: 92%;
 `;
 
 const BagDiv = styled.div`
@@ -59,18 +76,43 @@ export default function NavBar({ cart }) {
   //     });
   // }, []);
 
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
   return (
-    <Span>
-      <MainLogo />
-      <Div>Sign In</Div>
-      {/* <Div>New</Div>
+    colorChange
+      ? (
+        <ActiveSpan>
+          <MainLogo />
+          <Div>Sign In</Div>
+          {/* <Div>New</Div>
       <Div>Contact</Div>
       <Div>About</Div> */}
-      <BagDiv>
-        <FontAwesomeBag icon={faShoppingBag} />
-        <FontAwesomeCount>{cart}</FontAwesomeCount>
-      </BagDiv>
-    </Span>
+          <BagDiv>
+            <FontAwesomeBag icon={faShoppingBag} />
+            <FontAwesomeCount>{cart}</FontAwesomeCount>
+          </BagDiv>
+        </ActiveSpan>
+      )
+      : (
+        <Span>
+          <MainLogo />
+          <Div>Sign In</Div>
+          {/* <Div>New</Div>
+      <Div>Contact</Div>
+      <Div>About</Div> */}
+          <BagDiv>
+            <FontAwesomeBag icon={faShoppingBag} />
+            <FontAwesomeCount>{cart}</FontAwesomeCount>
+          </BagDiv>
+        </Span>
+      )
 
   );
 }
