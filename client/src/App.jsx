@@ -13,9 +13,9 @@ const Body = styled.div`
 
 `;
 
-const App = ({ mainProduct }) => {
+const App = () => {
   const [id, setId] = useState(61575);
-  const [product, setProduct] = useState(mainProduct);
+  const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [rating, setRating] = useState({});

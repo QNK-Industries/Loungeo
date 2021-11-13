@@ -34,9 +34,9 @@ const ReviewDiv = styled.div`
   color: #7D8491;
 `;
 
-const CategoryDiv = styled.div`
-  color: #7D8491;
-`;
+// const CategoryDiv = styled.div`
+//   color: #7D8491;
+// `;
 
 const NameDiv = styled.div`
   color: #262730;
