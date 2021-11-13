@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../images/Loungeo.svg';
 
 const logoStyles = {
   height: '100%',
@@ -12,7 +11,7 @@ const logoStyles = {
 
 const MainLogo = () => (
   <div style={logoStyles}>
-    <img src={logo} alt="logo" />
+    <img src="../../images/Loungeo.svg" alt="logo" />
   </div>
 );
 
