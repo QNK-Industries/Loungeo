@@ -227,6 +227,7 @@ export const StyledItemCard = styled.div`
     transition: all 0.2s ease-in-out;
     border-radius:6px;
     object-fit: cover;
+    cursor: pointer;
   }
 
   &:hover .card-image-container{
@@ -249,6 +250,7 @@ export const StyledItemCard = styled.div`
     transition: all 0.2s ease-in-out;
     bottom: 31%;
     left: 50%;
+    cursor: pointer;
     transform:translate(-50%);
     -webkit-transform:translate(-50%);
     -ms-transform:translate(-50%);

@@ -19,7 +19,7 @@ function determineSize(height, width) {
   return 4;
 }
 
-const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
+const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit, changeProduct }) => {
   const { height, width } = useWindowDimensions();
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carouselLimit, setCarouselLimit] = useState(determineSize(height, width));
@@ -51,7 +51,7 @@ const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
     if (type === 'RELATED') {
       return data.map((product) => (
         <CardWrapper key={`cardWrapper-${product}`}>
-          <ItemCard type="RELATED" item={product} action={action} />
+          <ItemCard type="RELATED" item={product} action={action} changeProduct={changeProduct} />
         </CardWrapper>
       ));
     }
@@ -67,7 +67,11 @@ const Carousel = ({ type, data, outfit, outfitBucket, action, addOutfit }) => {
           );
         }
         if (outfitBucket[product]) {
-          return <CardWrapper key={`cardWrapper-${product}`}><ItemCard type="OUTFIT" item={outfitBucket[product]} action={action} /></CardWrapper>;
+          return (
+            <CardWrapper key={`cardWrapper-${product}`}>
+              <ItemCard type="OUTFIT" item={outfitBucket[product]} action={action} changeProduct={changeProduct} />
+            </CardWrapper>
+          );
         }
         return null;
       });

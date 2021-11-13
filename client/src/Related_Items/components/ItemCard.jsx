@@ -5,7 +5,9 @@ import ActionButton from './ActionButton.jsx';
 import StarRating from '../../Shared/StarRating.jsx';
 import StarAverage from '../../Shared/StarAverage.jsx';
 
-const ItemCard = ({ type, item, action }) => {
+const ItemCard = ({
+  type, item, action, changeProduct,
+}) => {
   const [product, setProduct] = useState(type === 'RELATED' ? {} : item);
   const [rating, setRating] = useState(type === 'RELATED' ? {} : StarAverage(item.ratings));
 
@@ -40,14 +42,25 @@ const ItemCard = ({ type, item, action }) => {
   if (product.id && rating) {
     return (
       <StyledItemCard>
-        {console.log(product)}
-        <div className="card-image-container">
+        <div
+          role="button"
+          tabIndex="0"
+          onClick={() => changeProduct(product.id)}
+          onKeyDown={() => changeProduct(product.id)}
+          className="card-image-container"
+        >
           <img alt="product" src={getDefaultImageUrl()} className="card-image" />
         </div>
 
         <div className="card-text">
 
-          <div className="card-category">
+          <div
+            className="card-category"
+            role="button"
+            tabIndex="0"
+            onClick={() => changeProduct(product.id)}
+            onKeyDown={() => changeProduct(product.id)}
+          >
             <span>{product.category}</span>
           </div>
 
