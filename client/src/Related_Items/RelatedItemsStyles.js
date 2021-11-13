@@ -286,8 +286,8 @@ export const StyledItemCard = styled.div`
 
   .card-text .card-title h3{
     font-size:20px;
-    font-weight:bold;
-    margin:25px auto 5px;
+    font-weight:normal;
+    margin:50px auto 5px;
     overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -394,7 +394,7 @@ export const OutfitDiv = styled.div`
 
   h1 {
     font-size: 30px;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .outfit-card .enclosed {
@@ -417,7 +417,7 @@ export const OutfitDiv = styled.div`
     margin-top: calc(-1 * var(--bw));
     margin-left: calc(-1 * var(--bw));
     background: transparent;
-    transform: translateX(-30px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    transform: translateX(-20px) rotateY(-30deg) rotateX(15deg) scale(1.03);
     pointer-events: none;
     border: var(--bw) solid #000;
     box-sizing: content-box;
