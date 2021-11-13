@@ -17,7 +17,7 @@ const Thumbnail = styled.img`
 `;
 
 const UnclickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px black;
+  box-shadow: 2px 2px 5px #3D2645;
 `;
 
 const ClickedThumbnail = styled(Thumbnail)`

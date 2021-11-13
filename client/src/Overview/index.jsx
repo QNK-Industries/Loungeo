@@ -12,7 +12,7 @@ import utils from '../Shared/serverUtils.js';
 const id = 61575;
 
 const Section = styled.section`
-  margin: 30px 30px 30px 30px;
+  margin: 5vw 5vw 5vw 8vw;
   height: 90vh;
   width: 80vw;
   position: relative;
@@ -27,7 +27,7 @@ const Div = styled.div`
   position: relative;
 `;
 
-export default function Overview() {
+export default function Overview({ setCart, cart }) {
   const [item, setItem] = useState({});
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
@@ -80,7 +80,13 @@ export default function Overview() {
             setImageIndex={setImageIndex}
             data-testid="StyleSelector"
           />
-          <AddToCart item={item} currentStyle={currentStyle} data-testid="AddToCart" />
+          <AddToCart
+            item={item}
+            currentStyle={currentStyle}
+            cart={cart}
+            setCart={setCart}
+            data-testid="AddToCart"
+          />
         </Div>
       </Section>
     );
