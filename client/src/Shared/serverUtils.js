@@ -8,6 +8,8 @@ const getRating = (id) => axios.get(`/reviews/meta?id=${id}`);
 
 const getReviews = (id, page, sortBy) => axios.get(`/reviews?page=${page}&count=100&sort=${sortBy}&id=${id}`);
 
+const getCart = () => axios.get('/cart');
+
 const voteHelpful = (id) => axios.put(`/reviews/${id}/helpful`);
 
 const reportPost = (id) => axios.put(`/reviews/${id}/report`);
@@ -44,6 +46,7 @@ export default {
   getItemDetails,
   getRating,
   getReviews,
+  getCart,
   voteHelpful,
   reportPost,
   submitReview,

@@ -8,7 +8,7 @@ position: relative;
 `;
 
 const Img = styled.img`
-  box-shadow: 2px 2px 5px black;
+  box-shadow: 2px 2px 5px #3D2645;
   position: absolute;
   height: 90vh;
   width: 35vw;

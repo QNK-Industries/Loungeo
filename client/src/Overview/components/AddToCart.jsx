@@ -12,6 +12,15 @@ const CartSpan = styled.span`
   justify-content: center;
 `;
 
+const CartForm = styled.form`
+  height: 12vh;
+  width: 35vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const SizeSwitch = styled.button`
   font-size: 1.5rem;
   height: 10vh;
@@ -20,7 +29,7 @@ const SizeSwitch = styled.button`
   background-color: white;
   border-radius: 50%;
   border: none;
-
+  background-color: #F8F0FB;
 `;
 
 const SizeSwitchEmpty = styled(SizeSwitch)`
@@ -32,7 +41,7 @@ const SizeSwitchClicked = styled(SizeSwitch)`
   color: white;
 `;
 
-const CartButton = styled.button`
+const CartButton = styled.input`
   font-size: 2rem;
   border: none;
   color: white;
@@ -51,7 +60,7 @@ height: 7vh;
 text-align: center;
 `;
 
-export default function AddToCart({ currentStyle }) {
+export default function AddToCart({ currentStyle, setCart, cart }) {
   if (Object.keys(currentStyle).length === 0) {
     return (
       <div>Loading Sizes</div>
@@ -60,6 +69,7 @@ export default function AddToCart({ currentStyle }) {
   const [currentQuantity, setCurrentQuantity] = useState(null);
   const [currentID, setCurrentID] = useState(null);
   const [currentSize, setCurrentSize] = useState('');
+  const [addCartValue, setAddCartValue] = useState(1);
 
   const sizesNums = [];
   const skusKeys = Object.keys(currentStyle.skus);
@@ -67,7 +77,8 @@ export default function AddToCart({ currentStyle }) {
     currentStyle.skus[key].id = key;
     sizesNums.push(currentStyle.skus[key]);
   });
-  sizesNums[5].size = sizesNums[5].size === 'XL' ? 'XXL' : sizesNums[5].size;
+  const end = sizesNums.length - 1;
+  sizesNums[end].size = sizesNums[end].size === 'XL' ? 'XXL' : sizesNums[end].size;
 
   if (!currentSize) {
     setCurrentSize(sizesNums[0].size);
@@ -115,19 +126,22 @@ export default function AddToCart({ currentStyle }) {
         </CartSpan>
       </div>
       <div>
-        <CartSpan>
-          <Select>
-            <option selected="selected">1 </option>
+        <CartForm onSubmit={(e) => {
+          e.preventDefault();
+          utils.postToCart({ count: addCartValue, sku_id: currentID });
+          setCart(cart + addCartValue);
+        }}
+        >
+          <Select defaultValue="1" value={addCartValue} onChange={(e) => { setAddCartValue(e.target.value); }}>
             {[...Array(currentQuantity).keys()].map((quantity) => (
-              <option>{quantity + 2}</option>
+              <option>{quantity + 1}</option>
             ))}
           </Select>
           <CartButton
-            type="button"
-            onClick={() => utils.postToCart({ count: currentQuantity, sku_id: currentID })}
-          >Add to Cart
-          </CartButton>
-        </CartSpan>
+            type="submit"
+            value="Add to Cart"
+          />
+        </CartForm>
       </div>
     </>
   );
