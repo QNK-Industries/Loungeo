@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import utils from '../../Shared/serverUtils.js';
