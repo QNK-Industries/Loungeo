@@ -56,24 +56,19 @@ const RatingsTable = ({ ratingData, starAverageData, filter }) => {
   }, [selectedStar]);
 
   return (
-    <div data-testid="ratingstable">
+    <div className="ratings-table" data-testid="ratingstable">
       <ReveiwScoreHeader>
-        <h1>
-          {starAverageData.average}
-        </h1>
-        <div className="review-star-header">
-          <StarRating ratingObj={starAverageData} />
-          <span>
-            {starAverageData.total === 1 ? '1 review' : `${starAverageData.total} reviews`}
-          </span>
-        </div>
+        <StarRating ratingObj={starAverageData} />
+        <span>
+          {starAverageData.total === 1 ? '1 review' : `${starAverageData.total} reviews`}
+        </span>
       </ReveiwScoreHeader>
       <div className="rating-sorter">
         {displayStarBars()}
         {removeAllFilters()}
       </div>
       <h4>
-        {displayRecommendedPercent()}% of reviewers would recommend this product
+        <span>{displayRecommendedPercent()}%</span> of reviewers would recommend this product
       </h4>
     </div>
   );

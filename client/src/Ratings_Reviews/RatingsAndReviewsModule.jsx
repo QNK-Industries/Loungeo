@@ -9,6 +9,7 @@ import ReviewSearch from './components/ReviewSearch.jsx';
 import RatingsSlideBar from './components/RatingsSlideBar.jsx';
 import ReviewsContainer from './components/ReviewsContainer.jsx';
 import { RatingsAndReviewsWrapper } from './ReviewsStyles.js';
+import { SectionSplitHeader, SectionSplitText } from '../Shared/SharedStyles.js';
 import starAverage from '../Shared/StarAverage.jsx';
 
 const characteristicList = {
@@ -133,28 +134,32 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
 
   if (starAverageData.total) {
     return (
-      <RatingsAndReviewsWrapper className="ratings-module">
-        <div className="ratings-left-section">
-          {checkIfModalOpen()}
-          <h2>
-            RATINGS & REVIEWS
-          </h2>
-          <RatingsTable ratingData={ratingData} starAverageData={starAverageData} filter={(values) => setRatingFilter(values)} />
-          <RatingsSlideBar characteristics={ratingData.characteristics} characteristicList={characteristicList} />
-          <div className="review-button-container">
-            <ReviewButton type="ADD A REVIEW +" action={() => setWritingReview(true)} />
-            {checkIfMoreReviews()}
+      <div>
+        <SectionSplitHeader>
+          <SectionSplitText>
+            REVIEWS
+          </SectionSplitText>
+        </SectionSplitHeader>
+        <RatingsAndReviewsWrapper className="ratings-module">
+          <div className="ratings-left-section">
+            {checkIfModalOpen()}
+            <RatingsTable ratingData={ratingData} starAverageData={starAverageData} filter={(values) => setRatingFilter(values)} />
+            <RatingsSlideBar characteristics={ratingData.characteristics} characteristicList={characteristicList} />
+            <div className="review-button-container">
+              <ReviewButton type="ADD A REVIEW +" action={() => setWritingReview(true)} />
+              {checkIfMoreReviews()}
+            </div>
           </div>
-        </div>
-        <div className="ratings-right-section">
-          <div className="reviews-nav-bar">
-            <SortBar changeSorting={(type) => changeSort(type)} />
-            <ReviewSearch search={(query) => setSearchConstraint(query)} />
+          <div className="ratings-right-section">
+            <div className="reviews-nav-bar">
+              <SortBar changeSorting={(type) => changeSort(type)} />
+              <ReviewSearch search={(query) => setSearchConstraint(query)} />
+            </div>
+            {displayReviewModal()}
+            <ReviewsContainer reviews={filteredReviewData} reviewLimit={reviewLimit} search={searchConstraint} />
           </div>
-          {displayReviewModal()}
-          <ReviewsContainer reviews={filteredReviewData} reviewLimit={reviewLimit} search={searchConstraint} />
-        </div>
-      </RatingsAndReviewsWrapper>
+        </RatingsAndReviewsWrapper>
+      </div>
     );
   }
   return 'Loading...';
