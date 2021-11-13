@@ -27,6 +27,10 @@ const Button = styled(FontAwesomeIcon)`
   z-index: 10;
   color: #F8F0FB;
   -webkit-text-stroke: 1vh white;
+  opacity: 50%;
+  &:hover {
+    opacity: 100;
+  }
   `;
 
 const LeftButton = styled(Button)`
