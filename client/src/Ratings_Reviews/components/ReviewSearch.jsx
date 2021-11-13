@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledReviewSearch } from '../ReviewsStyles.js';
 
 const ReviewSearch = ({ search }) => {
   function searchFilter({ target }) {
@@ -11,9 +12,12 @@ const ReviewSearch = ({ search }) => {
   }
 
   return (
-    <div>
-      <input placeholder="Search Reviews" onChange={(event) => searchFilter(event)} />
-    </div>
+    <StyledReviewSearch>
+      <div className="search-container">
+        <input placeholder="Search Reviews" onChange={searchFilter} />
+        <img className="search-button" alt="search" src="../../../images/search.svg" />
+      </div>
+    </StyledReviewSearch>
   );
 };
 

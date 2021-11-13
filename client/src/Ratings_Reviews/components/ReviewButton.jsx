@@ -3,9 +3,9 @@ import { StyledReviewButton } from '../ReviewsStyles.js';
 
 const ReviewButton = ({ type, action }) => (
   <StyledReviewButton onClick={() => action()}>
-    <h5>
+    <span>
       {type}
-    </h5>
+    </span>
   </StyledReviewButton>
 );
 

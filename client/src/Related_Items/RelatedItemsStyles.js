@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 const focalWhite = '#FFF';
 const focalDark = '#262730';
 const magnolia = '#F8F0FB';
-const offGrey = '#7D8491';
 const accentColor = '#8D0801';
 
 // RELATED ITEMS MODULE
@@ -59,37 +58,6 @@ const roadRunnerOut = keyframes`
   }
   100% {
     transform:translateX(1500px) translateY(-50%) skewX(30deg) scaleX(1.3);
-  }
-`;
-
-export const CarousolHeader = styled.h2`
-  position: relative;
-  text-align: center;
-  padding: .2rem 0;
-  overflow: hidden;
-  margin-bottom: 0;
-`;
-
-export const CarousolText = styled.span`
-  display: inline-block;
-  position: relative;
-  padding: 0 0.5em;
-
-  &:before, &:after {
-    display: block;
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 70em;
-    border-top: 1px solid ${offGrey};
-  }
-
-  &:before {
-    right: 100%;
-  }
-
-  &:after {
-    left: 100%;
   }
 `;
 
@@ -195,7 +163,7 @@ export const ModalContent = styled.div`
 
   & .comparison-container span {
     width: 33.33%;
-    white-space: no-wrap;
+    white-space: nowrap;
   }
 
   & .comparison-container .compare-middle {
@@ -259,6 +227,7 @@ export const StyledItemCard = styled.div`
     transition: all 0.2s ease-in-out;
     border-radius:6px;
     object-fit: cover;
+    cursor: pointer;
   }
 
   &:hover .card-image-container{
@@ -281,6 +250,7 @@ export const StyledItemCard = styled.div`
     transition: all 0.2s ease-in-out;
     bottom: 31%;
     left: 50%;
+    cursor: pointer;
     transform:translate(-50%);
     -webkit-transform:translate(-50%);
     -ms-transform:translate(-50%);
