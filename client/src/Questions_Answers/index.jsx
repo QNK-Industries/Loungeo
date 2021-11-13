@@ -4,6 +4,7 @@ import AnswerSearch from './components/AnswerSearch.jsx';
 import Questions from './components/Questions.jsx';
 import Modal from './components/AddAnswerModal.jsx';
 import utils from '../Shared/serverUtils.js';
+import Button from './stylings/Button.js';
 
 class QuestionsAnswers extends React.Component {
   constructor(props) {
@@ -101,8 +102,8 @@ class QuestionsAnswers extends React.Component {
     } = this.state;
     return (
       <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
-        <div data-testid="QAStyleDiv" style={{ display: 'block', margin: '0 auto', width: '70vw' }}>
-            <h2 data-testid="QAHeading" style={{ 'font-size': '16px' }}>
+        <div data-testid="QAStyleDiv" style={{ padding: '5px', border: '5px solid #7d8491', display: 'block', margin: '0 auto', width: '70vw' }}>
+          <h2 data-testid="QAHeading" style={{ 'fontSize': '16px' }}>
             QUESTIONS & ANSWERS
           </h2>
           <AnswerSearch search={this.handleSearch} />
@@ -158,10 +159,10 @@ class QuestionsAnswers extends React.Component {
           </div>
           <br />
           <div data-testid="BottomSection">
-            <button data-testid="LoadQuestions" type="button" onClick={this.addQuestionCount}>  Load more questions </button>
+            <Button data-testid="LoadQuestions" type="button" onClick={this.addQuestionCount}>  Load more questions </Button>
             {' '}
             {' '}
-            <button data-testid="QuestionButton" type="button" onClick={this.addQuestion}> Add a question + </button>
+            <Button data-testid="QuestionButton" type="button" onClick={this.addQuestion}> Add a question + </Button>
           </div>
         </div>
       </section>
