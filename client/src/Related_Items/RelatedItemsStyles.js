@@ -163,7 +163,7 @@ export const ModalContent = styled.div`
 
   & .comparison-container span {
     width: 33.33%;
-    white-space: no-wrap;
+    white-space: nowrap;
   }
 
   & .comparison-container .compare-middle {

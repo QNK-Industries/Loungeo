@@ -14,7 +14,7 @@ const ReviewSearch = ({ search }) => {
   return (
     <StyledReviewSearch>
       <div className="search-container">
-        <input placeholder="Search Reviews" onChange={(event) => searchFilter(event)} />
+        <input placeholder="Search Reviews" onChange={searchFilter} />
         <img className="search-button" alt="search" src="../../../images/search.svg" />
       </div>
     </StyledReviewSearch>
