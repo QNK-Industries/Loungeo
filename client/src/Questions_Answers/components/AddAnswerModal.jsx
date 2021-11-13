@@ -154,7 +154,7 @@ const Modal = ({
                   />
                 </label>
                 <br />
-                <button>Upload Photos</button> {' '}<button>Submit</button>
+                <button>Submit</button>
               </form>
             </div>
           </div>

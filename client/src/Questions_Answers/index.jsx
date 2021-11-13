@@ -4,7 +4,7 @@ import AnswerSearch from './components/AnswerSearch.jsx';
 import Questions from './components/Questions.jsx';
 import Modal from './components/AddAnswerModal.jsx';
 import utils from '../Shared/serverUtils.js';
-import ReviewButton from '../Ratings_Reviews/components/ReviewButton.jsx';
+import { StyledReviewButton } from '../Ratings_Reviews/ReviewsStyles.js';
 import { SectionSplitHeader, SectionSplitText } from '../Shared/SharedStyles.js';
 
 class QuestionsAnswers extends React.Component {
@@ -162,10 +162,10 @@ class QuestionsAnswers extends React.Component {
           </div>
           <br />
           <div data-testid="BottomSection">
-            <ReviewButton data-testid="QuestionButton" type="Add a question +" onClick={this.addQuestion} />
+            <StyledReviewButton data-testid="QuestionButton" type="Add a question +" onClick={this.addQuestion}> Add a question +</StyledReviewButton>
             {' '}
             {' '}
-            <ReviewButton data-testid="LoadQuestions" type="More questions" onClick={this.addQuestionCount} />
+            <StyledReviewButton data-testid="LoadQuestions" type="More questions" onClick={this.addQuestionCount}> More questions </StyledReviewButton>
           </div>
         </div>
       </section>
