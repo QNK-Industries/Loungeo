@@ -5,7 +5,9 @@ import { IndividualStarBar, TextSegment, BarDisplay, FilledBar } from '../Review
 const StarBar = ({ stars, amount, total, selected, toggleSelected }) => (
   <IndividualStarBar selected={selected} onClick={() => toggleSelected(stars)}>
     <TextSegment>
-      {stars === 1 ? '1 star' : `${stars} stars`}
+      <span className="star-bar-stars">
+        {stars === 1 ? '1 star' : `${stars} stars`}
+      </span>
     </TextSegment>
     <BarDisplay>
       <FilledBar filled={Math.floor((amount / total) * 100)} />

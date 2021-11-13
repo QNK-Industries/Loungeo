@@ -17,23 +17,29 @@ const IndividualSlider = ({ characteristic, characteristicDetails, rating }) => 
 
   return (
     <div className="slidebar-section">
-      <span>
+      <h5>
         {characteristic}
-      </span>
+      </h5>
       <StyledSlider>
         {displayBreakpoints()}
         <RatingDot position={(rating.value - 1) * 25} />
       </StyledSlider>
       <SliderDetailText>
-        <span position="left">
-          {characteristicDetails[1]}
-        </span>
-        <span position="center">
-          {characteristicDetails[3]}
-        </span>
-        <span position="right">
-          {characteristicDetails[5]}
-        </span>
+        <div className="slider-text-left">
+          <small>
+            {characteristicDetails[1]}
+          </small>
+        </div>
+        <div className="slider-text-center">
+          <small>
+            {characteristicDetails[3]}
+          </small>
+        </div>
+        <div className="slider-text-right">
+          <small>
+            {characteristicDetails[5]}
+          </small>
+        </div>
       </SliderDetailText>
     </div>
   );

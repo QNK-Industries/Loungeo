@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+// const focalWhite = '#FFF';
+const focalDark = '#262730';
+const magnolia = '#F8F0FB';
+const accentColor = '#8D0801';
+const offGrey = '#7D8491';
+
 export const RatingsAndReviewsWrapper = styled.section`
   display: flex;
   justify-content: center;
@@ -30,10 +36,31 @@ export const RatingsAndReviewsWrapper = styled.section`
   & .ratings-slide-bar-wrapper {
     width: 300px;
     margin: 0 auto;
+
+    .slidebar-section {
+      margin-bottom: 20px;
+    }
+
+    h5 {
+      transform: translateX(-3%);
+      font-size: 1rem;
+      margin: 10px 0;
+    }
   }
 
   & h4 {
     text-align: center;
+  }
+
+  & .ratings-table {
+    h4 {
+      width: 70%;
+      margin: 0 auto;
+
+      span {
+        font-weight: 700px;
+      }
+    }
   }
 `;
 
@@ -42,13 +69,8 @@ export const RatingsAndReviewsWrapper = styled.section`
 export const ReveiwScoreHeader = styled.div`
   width:100%;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  & h1 {
-    font-size: 36px;
-    margin: .5em;
-  }
+  justify-content: space-between;
+  padding: 25px;
 
   & .review-star-header {
     display: flex;
@@ -59,28 +81,46 @@ export const ReveiwScoreHeader = styled.div`
 
 export const RemoveFilterBox = styled.div`
   width: 150px;
-  height: 25px;
+  height: 33px;
   margin: 0 auto;
   cursor: pointer;
   text-align: center;
-  padding-top: 5px;
+
+  & span {
+    font-size: 10px;
+  }
 `;
 
 export const StyledSlider = styled.div`
   width: 300px;
-  border-bottom: 5px solid black;
+  border-bottom: 3px solid ${offGrey};
   margin: 10px 0;
   position: relative;
 `;
 
 export const SliderDetailText = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 300px;
+  width: 105%;
+  transform: translateX(-2.5%);
 
-  & span {
+  & div {
     width: 33.33%;
-    text-align: ${(props) => props.position};
+
+    &.slider-text-center {
+      text-align: center;
+    }
+
+    &.slider-text-right {
+      text-align: right;
+    }
+
+    &.slider-text-left {
+      text-align: left;
+    }
+  }
+
+  & small {
+    font-size: 10px;
   }
 `;
 
@@ -88,37 +128,75 @@ export const StyleDot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: black;
+  background-color: ${offGrey};
   position: absolute;
   left: ${(props) => props.position}%;
-  transform: translateY(-25%) translateX(-25%);
+  transform: translateY(-33%) translateX(-50%);
 `;
 
 export const RatingDot = styled.div`
-  width: 15px;
-  height: 15px;
-  background-color: purple;
+  width: 12.5px;
+  height: 12.5px;
+  background-color: ${focalDark};
   position: absolute;
   left: ${(props) => props.position}%;
-  transform: translateY(-25%) translateX(-25%) rotate(45deg);
+  transform: translateY(-42%) translateX(-50%) rotate(45deg);
 `;
 
-export const StyledReviewButton = styled.div`
-  width: 150px;
-  height: 50px;
-  border: 1px solid black;
+export const StyledReviewButton = styled.button`
+  margin: 20px;
+  outline: none;
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
   cursor: pointer;
-  text-align: center;
-  line-height: 50px;
-  transition: all 0.2s ease-in;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  background: ${focalDark};
+  color: ${magnolia};
+  line-height: 42px;
+  padding: 0;
+  border: none;
 
-  & h5 {
-    margin: 0;
+  &:hover {
+    background: transparent;
+    color: ${focalDark};
+    box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #8d080147,
+    4px 4px 5px 1px #8d080140;
   }
 
-  & :hover {
-    transform: scale(1.05);
+  &:before, &:after {
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: ${focalDark};
+    transition:400ms ease all;
   }
+
+  &:after {
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    width:100%;
+    transition:800ms ease all;
+}
+
 `;
 
 export const IndividualStarBar = styled.div`
@@ -129,7 +207,8 @@ export const IndividualStarBar = styled.div`
   height: 20px;
   align-items: center;
   cursor: pointer;
-  background-color: ${(props) => (props.selected ? 'yellow' : 'white')};
+  padding: 15px 0;
+  background-color: ${(props) => (props.selected ? 'lightgrey' : 'transparent')};
 
   & :hover {
     background-color: ${(props) => (props.selected ? 'darkgrey' : 'lightgrey')};
@@ -138,19 +217,27 @@ export const IndividualStarBar = styled.div`
 
 export const BarDisplay = styled.div`
   width: 200px;
-  height: 10px;
-  background-color: grey;
+  height: 15px;
+  background-color: #e3e3e3;
 `;
 
 export const FilledBar = styled.div`
   height: 100%;
   width: ${(props) => props.filled}%;
-  background-color: green;
+  background-color: ${accentColor};
 `;
 
 export const TextSegment = styled.span`
 width: 50px;
 margin 0 auto;
+white-space: nowrap;
+text-align: center;
+padding-bottom: 2px;
+
+& .star-bar-stars {
+  border-bottom: solid 1px black;
+  padding-bottom: 1px;
+}
 `;
 
 // ------------------    RIGHT SIDE STYLES    ----------------------
