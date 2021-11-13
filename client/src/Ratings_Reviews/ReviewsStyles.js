@@ -59,6 +59,7 @@ export const RatingsAndReviewsWrapper = styled.section`
       transform: translateX(-3%);
       font-size: 1rem;
       margin: 10px 0;
+      font-weight: 500;
     }
   }
 
@@ -70,9 +71,10 @@ export const RatingsAndReviewsWrapper = styled.section`
     h4 {
       width: 70%;
       margin: 0 auto;
+      font-weight: 500;
 
       span {
-        font-weight: 700px;
+        font-weight: 700;
       }
     }
   }
@@ -295,7 +297,7 @@ export const StyledReviewSearch = styled.div`
     background: #fff;
     color: #6A5D4F;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 500;
     padding: 0px;
     border: 0;
     border-radius: 5px;
@@ -422,7 +424,7 @@ export const StyledReview = styled.div`
 
   & .review-summary {
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 5px;
   }
 
