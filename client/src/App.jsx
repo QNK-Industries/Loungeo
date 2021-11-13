@@ -23,30 +23,20 @@ const App = ({ mainProduct }) => {
 
   if (product.id) {
     return (
-<<<<<<< HEAD
       <div>
         <Body data-testid="app">
           <NavBar cart={cart} />
-          <Overview setCart={setCart} cart={cart} />
-          <RelatedItemsModule mainProduct={mainProduct} />
-          <RatingsAndReviewsModule mainProduct={mainProduct} />
-          <QuestionsAnswers mainProduct={mainProduct} />
+          <Overview key={`overview-module-${product.id}`} setCart={setCart} cart={cart} />
+          <RelatedItemsModule
+            key={`related-module-${product.id}`}
+            changeProduct={(id) => changeProduct(id)}
+            mainProduct={product}
+          />
+          <RatingsAndReviewsModule key={`ratings-module-${product.id}`} mainProduct={product} />
+          <QuestionsAnswers key={`questions-module-${product.id}`} mainProduct={product} />
         </Body>
         <Footer />
       </div>
-=======
-      <Body data-testid="app">
-        <NavBar cart={cart} />
-        <Overview key={`overview-module-${product.id}`} setCart={setCart} cart={cart} />
-        <RelatedItemsModule
-          key={`related-module-${product.id}`}
-          changeProduct={(id) => changeProduct(id)}
-          mainProduct={product}
-        />
-        <RatingsAndReviewsModule key={`ratings-module-${product.id}`} mainProduct={product} />
-        <QuestionsAnswers key={`questions-module-${product.id}`} mainProduct={product} />
-      </Body>
->>>>>>> main
     );
   }
   return 'Loading image placeholder';
