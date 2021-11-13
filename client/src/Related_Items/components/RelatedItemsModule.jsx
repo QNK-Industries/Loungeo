@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
-import { CarousolHeader, CarousolText } from '../RelatedItemsStyles.js';
+import { SectionSplitHeader, SectionSplitText } from '../../Shared/SharedStyles.js';
 import utils from '../../Shared/serverUtils.js';
 import Carousel from './Carousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
@@ -89,11 +89,11 @@ const RelatedItems = (props) => {
     return (
       <section id="related_products_and_comparison_module" data-testid="relateditems">
         <section>
-          <CarousolHeader>
-            <CarousolText>
+          <SectionSplitHeader>
+            <SectionSplitText>
               YOUR OUTFIT
-            </CarousolText>
-          </CarousolHeader>
+            </SectionSplitText>
+          </SectionSplitHeader>
           <Carousel
             type="OUTFIT"
             key="Carousel-OUTFIT"
@@ -106,11 +106,11 @@ const RelatedItems = (props) => {
         </section>
         <section>
           {displayModal()}
-          <CarousolHeader>
-            <CarousolText>
+          <SectionSplitHeader>
+            <SectionSplitText>
               WEAR IT WITH
-            </CarousolText>
-          </CarousolHeader>
+            </SectionSplitText>
+          </SectionSplitHeader>
           <Carousel
             type="RELATED"
             key="Carousel-RELATED"
