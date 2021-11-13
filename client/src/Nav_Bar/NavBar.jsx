@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import MainLogo from './MainLogo.jsx';
 
-const Span = styled.span`
+const Span = styled.div`
   width: 100vw;
-  height: 7vh;
+  height: 5vh;
   background-color: #3D2645;
   position: fixed;
   display: flex;
@@ -17,11 +17,9 @@ const Span = styled.span`
 
 `;
 
-const ActiveSpan = styled.span`
+const ActiveSpan = styled.div`
   width: 100vw;
-  height: 7vh;
-  background-color: #3D2645;
-  opacity: 80%;
+  height: 5vh;
   position: fixed;
   display: flex;
   justify-content: space-around;
@@ -54,7 +52,14 @@ const BagDiv = styled.div`
 
 const FontAwesomeBag = styled(FontAwesomeIcon)`
   color: #F8F0FB;
-  font-size: 5.5vh;
+  font-size: 4.5vh;
+  position: absolute;
+  bottom: 18%;
+`;
+
+const ActiveFontAwesomeBag = styled(FontAwesomeIcon)`
+  color: #3d2645;
+  font-size: 5vh;
   position: absolute;
   bottom: 10%;
 `;
@@ -63,8 +68,16 @@ const FontAwesomeCount = styled.span`
   color: #8D0801;
   font-size: 2.5vh;
   position: absolute;
-  bottom: 10%;
-  left: 22%;
+  bottom: 18%;
+  left: 17%;
+`;
+
+const ActiveFontAwesomeCount = styled.span`
+  color: #F8F0FB;
+  font-size: 2.5vh;
+  position: absolute;
+  bottom: 12%;
+  left: 20%;
 `;
 
 export default function NavBar({ cart }) {
@@ -89,14 +102,13 @@ export default function NavBar({ cart }) {
     colorChange
       ? (
         <ActiveSpan>
-          <MainLogo />
-          <Div>Sign In</Div>
+          {/* <MainLogo /> */}
           {/* <Div>New</Div>
       <Div>Contact</Div>
       <Div>About</Div> */}
           <BagDiv>
-            <FontAwesomeBag icon={faShoppingBag} />
-            <FontAwesomeCount>{cart}</FontAwesomeCount>
+            <ActiveFontAwesomeBag icon={faShoppingBag} />
+            <ActiveFontAwesomeCount>{cart}</ActiveFontAwesomeCount>
           </BagDiv>
         </ActiveSpan>
       )

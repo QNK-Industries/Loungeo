@@ -63,7 +63,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
   const [ratingData, setRatingData] = useState({});
   const [reviewLimit, setReviewLimit] = useState(2);
   const [ratingFilter, setRatingFilter] = useState([]);
-  const [writingReview, setWritingReview] = useState(false);
+  const [writingReview, setWritingReview] = useState(true);
   const [starAverageData, setStarAverageData] = useState({});
   const [searchConstraint, setSearchConstraint] = useState('');
   const [filteredReviewData, setFilteredReviewData] = useState([]);

@@ -1,120 +1,21 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import utils from '../../Shared/serverUtils.js';
 import OverallRating from './OverallRating.jsx';
+import {
+  RequiredCharacters,
+  PhotoUploadContainer,
+  ModalContent,
+  Title,
+  CloseButton,
+  FieldContainer,
+  InputContainer,
+  CharacteristicsContainer,
+  PersonalInformationContainer,
+  RatingAndRecommend,
+} from '../ReviewsStyles.js';
 import CharacteristicSelection from './CharacteristicSelection.jsx';
-
-const ModalContent = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background-color: #fefefe;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid yellow;
-  width: ${(props) => (props.submitted ? '30vw' : '70vw')};
-  max-width: 1200px;
-  height: ${(props) => (props.submitted ? '10vw' : '60vw')};;
-  z-index: 2;
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-`;
-
-const Title = styled.div`
-  text-align: center;
-`;
-
-const RatingAndRecommend = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const CharacteristicsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-`;
-
-const FieldContainer = styled.div`
-margin-bottom: 10px;
-
-& label {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-& remaining-characters {
-  width: 70%;
-}
-`;
-
-const InputContainer = styled.div`
-  width: 800px;
-  height: ${(props) => (props.inputType === 'body' ? '100px' : '25px')};
-  margin-left: 10px;
-  position: relative;
-
-  & input {
-    width: 800px;
-    height: 25px;
-    position: relative;
-  }
-
-  & textarea {
-    width: 800px;
-    height: 100px;
-    resize: none;
-    position: relative;
-  }
-`;
-
-const RequiredCharacters = styled.div`
-  position: absolute;
-  right: 5px;
-  bottom: 0;
-`;
-
-const PhotoUploadContainer = styled.div`
-  display: flex;
-  justify-content: center;
-
-  & img {
-    max-width: 100px;
-  }
-
-  & .photo-bucket {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const PersonalInformationContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-
-  $ label {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  & input {
-    margin-left: 5px;
-    width: 300px;
-  }
-
-  & div {
-    width: 100%;
-    text-align: end;
-  }
-`;
 
 const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) => {
   const [imageBucket, setImageBucket] = useState([]);
@@ -235,13 +136,13 @@ const ReviewForm = ({ product, modalOff, characteristics, characteristicList }) 
       <CloseButton onClick={modalOff}>Close</CloseButton>
       <Title>
         <h1>Write Your Review</h1>
-        <p>About the {product.name}</p>
+        <p>About the <span>{product.name}</span></p>
       </Title>
       <form onSubmit={(event) => handleSubmit(event)}>
         <RatingAndRecommend>
           <OverallRating />
-          <div>
-            <span>*Do you recommend this product?</span>
+          <div className="do-you-recommend">
+            <span>Do you recommend this product? *</span>
             <label htmlFor="recommend-yes">
               <input id="recommend-yes" type="radio" name="recommendProduct" value="true" required />
               Yes

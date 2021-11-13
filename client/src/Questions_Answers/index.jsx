@@ -4,7 +4,8 @@ import AnswerSearch from './components/AnswerSearch.jsx';
 import Questions from './components/Questions.jsx';
 import Modal from './components/AddAnswerModal.jsx';
 import utils from '../Shared/serverUtils.js';
-import Button from './stylings/Button.js';
+import ReviewButton from '../Ratings_Reviews/components/ReviewButton.jsx';
+import { SectionSplitHeader, SectionSplitText } from '../Shared/SharedStyles.js';
 
 class QuestionsAnswers extends React.Component {
   constructor(props) {
@@ -103,13 +104,15 @@ class QuestionsAnswers extends React.Component {
     return (
       <section data-testid="OverallSection" style={{ alignItems: 'center' }}>
         <div data-testid="QAStyleDiv" style={{ padding: '5px', display: 'block', margin: '0 auto', width: '70vw' }}>
-          <h2 data-testid="QAHeading" style={{ 'fontSize': '16px' }}>
-            QUESTIONS & ANSWERS
-          </h2>
+          <SectionSplitHeader>
+            <SectionSplitText>
+              Q & A
+            </SectionSplitText>
+          </SectionSplitHeader>
+
           <AnswerSearch search={this.handleSearch} />
           <br />
           <div data-testid="QuestionSearch" style={{ overflowY: 'auto', height: '500px' }}>
-            {console.log(this.state)}
 
             {showModal
               ? (
@@ -159,10 +162,10 @@ class QuestionsAnswers extends React.Component {
           </div>
           <br />
           <div data-testid="BottomSection">
-            <Button data-testid="LoadQuestions" type="button" onClick={this.addQuestionCount}>  Load more questions </Button>
+            <ReviewButton data-testid="QuestionButton" type="Add a question +" onClick={this.addQuestion} />
             {' '}
             {' '}
-            <Button data-testid="QuestionButton" type="button" onClick={this.addQuestion}> Add a question + </Button>
+            <ReviewButton data-testid="LoadQuestions" type="More questions" onClick={this.addQuestionCount} />
           </div>
         </div>
       </section>
