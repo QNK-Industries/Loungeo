@@ -13,7 +13,7 @@ const PriceSpan = styled.span`
 font-size: 2.2rem;
 font-weight: bold;
 color: black;
-height: 8vh;
+height: 7vh;
 width: 33.5vw;
 position: relative;
 display: flex;
@@ -24,7 +24,7 @@ align-items: flex-start;
 
 const ReviewDiv = styled.div`
   font-size: 1rem;
-  height: 8vh;
+  height: 6vh;
   width: 16vw;
   position: relative;
   display: flex;
@@ -57,8 +57,8 @@ export default function ProductInfo({ item, style, rating }) {
     style.length === 0 ? <div />
       : (
         <ProductDiv>
-          <CategoryDiv>{item.category}</CategoryDiv>
           <NameDiv>{item.name}</NameDiv>
+          {/* <CategoryDiv>{item.category}</CategoryDiv> */}
           <PriceSpan>
             {style.sale_price ? (
               <>

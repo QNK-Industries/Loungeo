@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import utils from './Shared/serverUtils.js';
 import NavBar from './Nav_Bar/NavBar.jsx';
 import Overview from './Overview/index.jsx';
 import QuestionsAnswers from './Questions_Answers/index.jsx';
@@ -13,9 +14,16 @@ const Body = styled.div`
 `;
 
 const App = ({ mainProduct }) => {
+  const [product, setProduct] = useState(mainProduct);
   const [cart, setCart] = useState(0);
-  if (mainProduct.id) {
+
+  function changeProduct(id) {
+    utils.getItem(id).then((result) => setProduct(result.data));
+  }
+
+  if (product.id) {
     return (
+<<<<<<< HEAD
       <div>
         <Body data-testid="app">
           <NavBar cart={cart} />
@@ -26,6 +34,19 @@ const App = ({ mainProduct }) => {
         </Body>
         <Footer />
       </div>
+=======
+      <Body data-testid="app">
+        <NavBar cart={cart} />
+        <Overview key={`overview-module-${product.id}`} setCart={setCart} cart={cart} />
+        <RelatedItemsModule
+          key={`related-module-${product.id}`}
+          changeProduct={(id) => changeProduct(id)}
+          mainProduct={product}
+        />
+        <RatingsAndReviewsModule key={`ratings-module-${product.id}`} mainProduct={product} />
+        <QuestionsAnswers key={`questions-module-${product.id}`} mainProduct={product} />
+      </Body>
+>>>>>>> main
     );
   }
   return 'Loading image placeholder';

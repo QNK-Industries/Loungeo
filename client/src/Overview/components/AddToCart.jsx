@@ -21,15 +21,21 @@ const CartForm = styled.form`
   justify-content: center;
 `;
 
-const SizeSwitch = styled.button`
+const Switch = styled.button`
   font-size: 1.5rem;
   height: 10vh;
   width: 10vh;
-  color: black;
-  background-color: white;
   border-radius: 50%;
+`;
+
+const SizeSwitch = styled(Switch)`
+  color: black;
   border: none;
   background-color: #F8F0FB;
+  cursor: pointer;
+  &:hover {
+    background-color: #EFDCF6;
+  }
 `;
 
 const SizeSwitchEmpty = styled(SizeSwitch)`
