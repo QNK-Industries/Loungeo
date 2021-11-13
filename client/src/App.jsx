@@ -10,7 +10,8 @@ import Footer from './Nav_Bar/Footer.jsx';
 
 // add global styles here
 const Body = styled.div`
-
+  margin: 0;
+  padding: 0;
 `;
 
 const App = () => {
@@ -39,7 +40,7 @@ const App = () => {
 
   if (product.id) {
     return (
-      <div>
+      <>
         <Body data-testid="app">
           <NavBar cart={cart} />
           <Overview
@@ -62,7 +63,7 @@ const App = () => {
           <QuestionsAnswers key={`questions-module-${product.id}`} mainProduct={product} />
         </Body>
         <Footer />
-      </div>
+      </>
     );
   }
   return 'Loading image placeholder';
