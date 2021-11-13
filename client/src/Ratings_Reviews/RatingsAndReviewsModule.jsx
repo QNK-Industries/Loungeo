@@ -157,6 +157,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
             </div>
             {displayReviewModal()}
             <ReviewsContainer reviews={filteredReviewData} reviewLimit={reviewLimit} search={searchConstraint} />
+            <div className="review-fade" />
           </div>
         </RatingsAndReviewsWrapper>
       </div>

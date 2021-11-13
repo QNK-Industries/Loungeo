@@ -1,14 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
-import styled from 'styled-components';
+import { ReviewsWrapper } from '../ReviewsStyles.js';
 import Review from './Review.jsx';
 
-const Container = styled.div`
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: scroll;
-
-`;
 const ReviewsContainer = ({ reviews, reviewLimit, search }) => {
   function displayReviews() {
     return reviews
@@ -17,9 +11,9 @@ const ReviewsContainer = ({ reviews, reviewLimit, search }) => {
   }
 
   return (
-    <Container>
+    <ReviewsWrapper>
       {displayReviews()}
-    </Container>
+    </ReviewsWrapper>
   );
 };
 

@@ -20,12 +20,26 @@ export const RatingsAndReviewsWrapper = styled.section`
 
   & .ratings-right-section {
     width: 800px;
+    position: relative;
+
+    .review-fade {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: linear-gradient(to bottom,rgb(248 240 251 / 0%),hsl(284deg 58% 96% / 90%) 90%);
+      width: 100%;
+      height: 4em;
+    }
   }
 
   & .reviews-nav-bar {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    padding: 15px 25px;
   }
 
   & .review-button-container {
@@ -242,6 +256,140 @@ padding-bottom: 2px;
 
 // ------------------    RIGHT SIDE STYLES    ----------------------
 
+export const StyledReviewSearch = styled.div`
+  outline: none;
+
+  .search-container {
+    overflow: hidden;
+    float: right;
+    height: 4em;
+    width: 4em;
+    border-radius: 2em;
+    box-shadow: 0 0 5px #26273069;
+    -moz-transition: all 0.35s;
+    -webkit-transition: all 0.35s;
+  }
+
+  .search-container:hover, .search-container:focus, .search-container:focus-within {
+    width: 25em;
+    border-radius: 5px 2em 2em 5px;
+    outline: none;
+  }
+
+  .search-container:hover input, .search-container:focus input,
+  .search-container:focus-within input {
+    display: inline-block;
+    width: 19em;
+    padding: 10px;
+  }
+
+  input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    float: left;
+    width: 0em;
+    height: 2em;
+    margin: 1em;
+    margin-right: -4.5em;
+    background: #fff;
+    color: #6A5D4F;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) inset;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    -moz-transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  width: 1.75em;
+  height: 1.75em;
+  margin: 0.125em;
+  background: ${focalDark};
+  text-align: center;
+  font-size: 2em;
+  color: #FDF6E3;
+  border-radius: 50%;
+  box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 1px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .search-button:active {
+  border: 0;
+  text-shadow: 0 0 0;
+  }
+
+  .search-button {
+    padding: 8px;
+  }
+`;
+
+export const StyledSortBar = styled.div`
+  margin-bottom: 5px;
+  transform: translateY(18%);
+
+  h4 {
+    margin: 0;
+    text-align: left;
+    padding-bottom: 2px;
+    font-size: 12px;
+  }
+
+  .review-select {
+    position: relative;
+    min-width: 200px;
+  }
+
+  .review-select select {
+    -webkit-appearance: none;
+    padding: 7px 40px 7px 12px;
+    width: 100%;
+    border: 1px solid #e8eaed;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+  }
+
+  .review-select select option {
+    color: #223254;
+  }
+  .review-select select option[value=""][disabled] {
+    display: none;
+  }
+  .review-select select:focus {
+    outline: none;
+    border-color: ${accentColor};
+
+  }
+  .review-select select:hover + svg {
+    stroke: ${accentColor};
+  }
+  .sprites {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+`;
+
 export const StyledHelpful = styled.div`
   & span {
     margin-left: 5px;
@@ -258,19 +406,34 @@ export const Votes = styled.span`
   }
 `;
 
+export const ReviewsWrapper = styled.div`
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+
+`;
+
 // ------------------    FORM STYLES    ----------------------
 
 export const StyledReview = styled.div`
   margin-bottom: 30px;
-  padding: 0 15px;
+  padding: 0 50px;
 
   & .review-summary {
-    font-size: 24px;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 5px;
   }
 
-  & spaced-form-content {
+  & .review-body {
+    font-size: 14px;
+  }
+
+  & .spaced-form-content {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
   }
 `;
 
@@ -288,29 +451,38 @@ export const ColumnDiv = styled.div`
 
 export const SellerResponse = styled.div`
   width: 80%;
-  padding: 5px 20px;
-  margin: 0 auto;
-  background-color: lightgreen;
+  padding: 1px 36px;
+  border-radius: 5px;
+  margin: 10px auto;
+  background-color: #8d080191;
 `;
 
 export const ReviewPhotos = styled.div`
-  padding: 20px;
+  padding-bottom: 20px;
   display: flex;
+  justify-content: center;
 
   & img {
     max-width: 150px;
     max-height: 150px;
     margin-right: 10px;
+    margin-top: 5px;
+    object-fit: cover;
   }
 `;
 
 export const ReviewShowButton = styled.button`
+  background: transparent;
+  border: none;
+  padding: 5px 0 2px 0;
+  margin: 0;
   width: fit-content;
-  border-bottom: solid-1px black;
+  border-bottom: solid 1px black;
+  cursor: pointer;
 `;
 
 export const Highlight = styled.span`
-  background-color: ${(props) => (props.active ? 'yellow' : 'transparent')}
+  background-color: ${(props) => (props.active ? '#8d080191' : 'transparent')}
 `;
 
 export const SelectionContainer = styled.div`

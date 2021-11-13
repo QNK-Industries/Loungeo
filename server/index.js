@@ -108,8 +108,8 @@ app.post('/myoutfit/delete', (req, res) => {
 });
 
 app.get('/reviews/', (req, res) => {
-  const { page, sortBy, id } = req.query;
-  const url = `${URL}/reviews/?page=${page}&count=100&sort=${sortBy}&product_id=${id}`;
+  const { page, sort, id } = req.query;
+  const url = `${URL}/reviews/?page=${page}&count=100&sort=${sort}&product_id=${id}`;
 
   axios.get(url, HEADERS)
     .then((response) => {
