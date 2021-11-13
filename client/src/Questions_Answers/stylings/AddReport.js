@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const AddHelpful = styled.span`
+const AddReport = styled.span`
 font-family: 'Hind sans-serif';
 cursor: pointer;
 
 & :hover {
-  color: green;
+  color: red;
 }
 
 `;
 
-export default AddHelpful;
+export default AddReport;

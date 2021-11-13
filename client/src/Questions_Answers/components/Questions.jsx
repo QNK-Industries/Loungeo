@@ -34,9 +34,9 @@ const Questions = ({
     <div>
       <div style={RightBar}>
         Helpful? {markedHelpful
-        ? <AddHelpful> Yes ({helpful})</AddHelpful>
+        ? <span style={{ color: 'green', fontFamily: 'Hind sans-serif' }}> Yes ({helpful})</span>
         : <AddHelpful role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</AddHelpful>} |{' '}
-        <span type="button" onClick={() => showModal(id, questionBody)}>Add Answer</span>
+        <AddHelpful type="button" onClick={() => showModal(id, questionBody)}>Add Answer</AddHelpful>
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
