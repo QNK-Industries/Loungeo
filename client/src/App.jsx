@@ -21,10 +21,6 @@ const App = () => {
   const [rating, setRating] = useState({});
   const [cart, setCart] = useState(0);
 
-  // function changeProduct(id) {
-  //   utils.getItem(id).then((result) => setProduct(result.data));
-  // }
-
   useEffect(() => {
     utils.getItem(id)
       .then((res) => {

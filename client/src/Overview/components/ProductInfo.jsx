@@ -23,7 +23,7 @@ align-items: flex-start;
 `;
 
 const ReviewDiv = styled.div`
-  font-size: 1rem;
+  font-size: .8rem;
   height: 6vh;
   width: 16vw;
   position: relative;
