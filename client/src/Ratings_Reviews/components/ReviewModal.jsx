@@ -6,7 +6,7 @@ import ReviewForm from './ReviewForm.jsx';
 
 const ModalBackground = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
