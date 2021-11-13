@@ -14,7 +14,11 @@ const CharacteristicSelection = ({ type, details }) => {
   return (
     <SelectionContainer>
       <div>
-        <h3>*{type}:</h3>
+        <h3>
+          <span>
+            *{type}:
+          </span>
+        </h3>
       </div>
       {creatAllRadios()}
     </SelectionContainer>

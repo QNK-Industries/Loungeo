@@ -23,7 +23,7 @@ align-items: flex-start;
 `;
 
 const ReviewDiv = styled.div`
-  font-size: 1rem;
+  font-size: .8rem;
   height: 6vh;
   width: 16vw;
   position: relative;
@@ -34,9 +34,9 @@ const ReviewDiv = styled.div`
   color: #7D8491;
 `;
 
-const CategoryDiv = styled.div`
-  color: #7D8491;
-`;
+// const CategoryDiv = styled.div`
+//   color: #7D8491;
+// `;
 
 const NameDiv = styled.div`
   color: #262730;

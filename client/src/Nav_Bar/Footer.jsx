@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Span = styled.span`
-  width: 100%;
+const Span = styled.div`
+  margin-left: -1vw;
+  width: 101vw;
   height: 3vh;
   background-color: #3D2645;
   display: flex;
@@ -22,7 +23,7 @@ cursor: pointer;
   border-bottom: white;
   text-decoration: underline;
 }
-margin-right: 10px;
+margin-right: 2vw;
 
 `;
 
@@ -35,7 +36,7 @@ cursor: pointer;
   border-bottom: white;
   text-decoration: underline;
 }
-margin-left: 10px;
+margin-left: 2vw;
 flex: 1;
 
 `;

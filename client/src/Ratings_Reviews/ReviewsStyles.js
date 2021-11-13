@@ -59,6 +59,7 @@ export const RatingsAndReviewsWrapper = styled.section`
       transform: translateX(-3%);
       font-size: 1rem;
       margin: 10px 0;
+      font-weight: 500;
     }
   }
 
@@ -70,9 +71,10 @@ export const RatingsAndReviewsWrapper = styled.section`
     h4 {
       width: 70%;
       margin: 0 auto;
+      font-weight: 500;
 
       span {
-        font-weight: 700px;
+        font-weight: 700;
       }
     }
   }
@@ -295,7 +297,7 @@ export const StyledReviewSearch = styled.div`
     background: #fff;
     color: #6A5D4F;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 500;
     padding: 0px;
     border: 0;
     border-radius: 5px;
@@ -422,7 +424,7 @@ export const StyledReview = styled.div`
 
   & .review-summary {
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 5px;
   }
 
@@ -488,25 +490,28 @@ export const Highlight = styled.span`
 export const SelectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   height: 75px;
   width: 45%;
+  margin-top: 25px;
 
   & label, div {
     width: 16.66%;
   }
 
   & label {
+    padding: 0;
     align-items: center;
     font-size: 12px;
   }
 
   & div {
     text-align: end;
-    parring-right: 5px;
+    padding-right: 5px;
   }
 
   & h3 {
-    line-height: 75px;
+    margin: 0;
   }
 `;
 
@@ -522,17 +527,161 @@ export const StyledLabel = styled.label`
 `;
 
 export const FormOverallRating = styled.div`
+  display: flex;
+  align-items: center;
+
+  & span {
+    margin-right: 15px;
+    font-size: 15px;
+  }
+
   & label {
     position: relative;
+  }
+
+  & .star img {
+    transform: translateY(12.5%);
   }
 `;
 
 export const HiddenRadio = styled.input`
   position: absolute;
   opacity: 0;
-  top: 50%;
-  left: 50%;
+  top: 70%;
+  left: 45.5%;
   transform: translateX(-50%) translateY(-50%);
   padding: 0;
   margin: 0;
+`;
+
+export const ModalContent = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 10px 45px;
+  border: 1px solid yellow;
+  width: ${(props) => (props.submitted ? '30vw' : '80vw')};
+  max-width: 1200px;
+  height: ${(props) => (props.submitted ? '10vh' : '90vh')};;
+  z-index: 2;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
+
+export const Title = styled.div`
+  text-align: center;
+
+  h1 {
+    margin: 5px;
+  }
+
+  p {
+    margin-bottom: 10px;
+    font-size: 12.5px;
+
+    span {
+      font-weight: 700;
+    }
+  }
+`;
+
+export const RatingAndRecommend = styled.div`
+  display: flex;
+  justify-content: space-between;
+  & .do-you-recommend {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-right: 15px;
+      font-size: 15px;
+    }
+  }
+`;
+
+export const CharacteristicsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+export const FieldContainer = styled.div`
+margin-bottom: 10px;
+
+& label {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+& remaining-characters {
+  width: 70%;
+}
+`;
+
+export const InputContainer = styled.div`
+  width: 800px;
+  height: ${(props) => (props.inputType === 'body' ? '100px' : '25px')};
+  margin-left: 10px;
+  position: relative;
+
+  & input {
+    width: 800px;
+    height: 25px;
+    position: relative;
+  }
+
+  & textarea {
+    width: 800px;
+    height: 100px;
+    resize: none;
+    position: relative;
+  }
+`;
+
+export const RequiredCharacters = styled.div`
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+`;
+
+export const PhotoUploadContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & img {
+    max-width: 100px;
+  }
+
+  & .photo-bucket {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const PersonalInformationContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  $ label {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & input {
+    margin-left: 5px;
+    width: 300px;
+  }
+
+  & div {
+    width: 100%;
+    text-align: end;
+  }
 `;

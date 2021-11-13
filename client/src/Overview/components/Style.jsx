@@ -17,11 +17,12 @@ const Thumbnail = styled.img`
 `;
 
 const UnclickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px #3D2645;
+  box-shadow: 2px 2px 5px darkgrey;
 `;
 
 const ClickedThumbnail = styled(Thumbnail)`
-  box-shadow: 2px 2px 5px #8D0801;
+  box-shadow: 3px 3px 6px black;
+  cursor: auto;
 `;
 
 export default function Style({
