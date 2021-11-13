@@ -133,6 +133,18 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
+app.get('/cart', (req, res) => {
+  const url = `${URL}/cart`;
+
+  axios.get(url, HEADERS)
+    .then((response) => {
+      res.status(response.status).send(response.data);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err.response.data);
+    });
+});
+
 app.put('/reviews/:id/helpful', (req, res) => {
   const url = `${URL}/reviews/${req.params.id}/helpful`;
   axios.put(url, null, HEADERS)

@@ -8,8 +8,9 @@ const Div = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Img = styled.img`
-  box-shadow: 2px 2px 5px black;
+  box-shadow: 2px 2px 5px darkgrey;
   position: absolute;
   height: 90vh;
   width: 35vw;
