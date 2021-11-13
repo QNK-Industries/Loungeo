@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import Answers from './Answers.jsx';
 import utils from '../../Shared/serverUtils.js';
+import AddAnswerButtonStyling from '../stylings/AddAnswerButtonStyling.js';
+import AddHelpful from '../stylings/AddHelpful.js';
 
 // const GH_TOKEN = require('../../../../tokens.js');
 
 const RightBar = {
   float: 'right',
+  fontFamily: 'Hind sans-serif',
 };
 
 const Questions = ({
@@ -31,16 +34,13 @@ const Questions = ({
     <div>
       <div style={RightBar}>
         Helpful? {markedHelpful
-        ? <span> Yes ({helpful})</span>
-        : <span role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</span>} |{' '}
-        <span type="button" onClick={() => showModal(id, questionBody)}>Add Answer</span>
+        ? <span style={{ color: 'green', fontFamily: 'Hind sans-serif' }}> Yes ({helpful})</span>
+        : <AddHelpful role="button" tabIndex={0} onKeyDown={(e) => console.log(e)} onClick={() => { addHelpful(id, putRequest); setMarkedHelpful(true); }}>Yes ({helpful})</AddHelpful>} |{' '}
+        <AddHelpful type="button" onClick={() => showModal(id, questionBody)}>Add Answer</AddHelpful>
       </div>
       <h2>Q. {questionBody}</h2>
       {/* <Answers showModal={props.showModal} /> */}
-      <div style={Object.keys(answers).length
-        ? { overflowY: 'auto', height: '150px' }
-        : null}
-      >
+      <div>
         {Object.keys(answers).slice(0, answerCount).map((answer) => (
           <Answers
             showModal={showModal}
@@ -57,14 +57,14 @@ const Questions = ({
       <br />
       {Object.keys(answers).length
         ? (
-          <button
+          <AddAnswerButtonStyling
             data-testid="AddAnswerButton"
             type="button"
             onClick={() => setAnswerCount(answerCount + 2)}
-          >Add More Answers
-          </button>
+          >MORE ANSWERS
+          </AddAnswerButtonStyling>
         )
-        : null}
+        : <div> Be The First To Add A Question!</div>}
     </div>
   );
 };

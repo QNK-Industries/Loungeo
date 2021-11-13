@@ -39,6 +39,14 @@ const RelatedItems = (props) => {
     }).catch((err) => console.log(err));
   }, []);
 
+  // Function to see if Review Model is Open
+  function checkIfModalOpen() {
+    if (modal === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }
   function addOutfit() {
     if (outfit.ids.indexOf(mainProduct.id) === -1) {
       const newBucket = { ...outfit.bucket };
@@ -106,6 +114,7 @@ const RelatedItems = (props) => {
           />
         </section>
         <section>
+          {checkIfModalOpen()}
           {displayModal()}
           <SectionSplitHeader>
             <SectionSplitText>
