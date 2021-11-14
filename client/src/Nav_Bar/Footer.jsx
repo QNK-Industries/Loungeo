@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Span = styled.div`
   margin-left: -1vw;
   width: 101vw;
-  height: 3vh;
+  height: 10vh;
   background-color: #3D2645;
   display: flex;
   justify-content: flex-end;

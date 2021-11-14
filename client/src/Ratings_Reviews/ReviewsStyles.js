@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // const focalWhite = '#FFF';
 const focalDark = '#262730';
@@ -507,11 +507,16 @@ export const SelectionContainer = styled.div`
 
   & div {
     text-align: end;
-    padding-right: 5px;
+    transform: translateX(-20%);
   }
 
   & h3 {
+    font-weight: 500;
     margin: 0;
+
+    span {
+      white-space: nowrap;
+    }
   }
 `;
 
@@ -522,7 +527,7 @@ export const StyledLabel = styled.label`
   padding-top: 20px;
 
   & input {
-    margin: 3px 3px 0 3px;
+    margin: 3px 3px 5px 3px;
   }
 `;
 
@@ -554,6 +559,18 @@ export const HiddenRadio = styled.input`
   margin: 0;
 `;
 
+export const ModalBackground = styled.div`
+  position: fixed;
+  z-index: 199;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+`;
+
 export const ModalContent = styled.div`
   position: fixed;
   top: 50%;
@@ -562,17 +579,74 @@ export const ModalContent = styled.div`
   background-color: #fefefe;
   margin: 0 auto;
   padding: 10px 45px;
-  border: 1px solid yellow;
+  border-radius: 25px;
+  border: 1px solid ${accentColor};
   width: ${(props) => (props.submitted ? '30vw' : '80vw')};
   max-width: 1200px;
   height: ${(props) => (props.submitted ? '10vh' : '90vh')};;
-  z-index: 2;
+  z-index: 200;
+  overflow-y: auto;
+
+  & input[type="text"], input[type="email"], & textarea {
+    border: solid #7D8491 1px;
+    border-radius: 4px;
+    height: 30px;
+    padding: 5px;
+  }
+
+  & input[type="text"]:focus-visible, input[type="email"]:focus-visible, & textarea:focus-visible{
+    outline-color: ${focalDark};
+  }
+
+  & input[type="radio"] {
+    -webkit-appearance: none;
+    margin: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    vertical-align: middle;
+    box-shadow: hsla(0,0%,100%,.15) 0 1px 1px, inset hsla(0,0%,0%,.5) 0 0 0 1px;
+    background-color: #e3e3e3;
+    background-image: -webkit-radial-gradient( hsla(3,99%,40%,1) 0%,hsla(3,99%,30%,1) 15%,hsl(3deg 99% 30% / 90%) 28%,hsla(3,99%,30%,0) 70% );
+    background-repeat: no-repeat;
+    -webkit-transition: background-position .15s cubic-bezier(.8, 0, 1, 1),
+      -webkit-transform .25s cubic-bezier(.8, 0, 1, 1);
+    outline: none;
+  }
+  & input[type="radio"]:checked {
+    -webkit-transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1),
+      -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+  }
+  & input[type="radio"]:active {
+    -webkit-transform: scale(1.5);
+    -webkit-transition: -webkit-transform .1s cubic-bezier(0, 0, .2, 1);
+  }
+
+  & input[type="radio"],
+  & input[type="radio"]:active {
+    background-position: 0 24px;
+  }
+  & input[type="radio"]:checked {
+    background-position: 0 0;
+  }
+  & input[type="radio"]:checked ~ & input[type="radio"],
+  & input[type="radio"]:checked ~ & input[type="radio"]:active {
+    background-position: 0 -24px;
+  }
+
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: white;
+  border-bottom: 1px solid black;
+  padding: 0;
+  padding-bottom: 3px;
+  cursor: pointer;
 `;
 
 export const Title = styled.div`
@@ -610,6 +684,7 @@ export const CharacteristicsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 15px;
 `;
 
 export const FieldContainer = styled.div`
@@ -617,58 +692,101 @@ margin-bottom: 10px;
 
 & label {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   flex-wrap: wrap;
+  margin-right: 12%;
+  margin-bottom: 5px;
 }
 
-& remaining-characters {
-  width: 70%;
+& .remaining-characters {
+  width: 82%;
+  font-size: 12px;
 }
 `;
 
 export const InputContainer = styled.div`
   width: 800px;
-  height: ${(props) => (props.inputType === 'body' ? '100px' : '25px')};
+  height: ${(props) => (props.inputType === 'body' ? '100px' : '30px')};
   margin-left: 10px;
   position: relative;
 
   & input {
-    width: 800px;
-    height: 25px;
+    width: 100%;
     position: relative;
   }
 
   & textarea {
-    width: 800px;
+    width: 100%;
     height: 100px;
     resize: none;
     position: relative;
+    padding: 5px;
+    padding-bottom: 20px;
+    box-shadow: -7px -7px 7px 4px #fff;
   }
 `;
 
 export const RequiredCharacters = styled.div`
   position: absolute;
-  right: 5px;
-  bottom: 0;
+  right: 20px;
+  bottom: 5px;
+  & span {
+    background: white;
+    padding: 2px 6px;
+    border-radius: 5px 0 0 0;
+  }
 `;
 
 export const PhotoUploadContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin: 25px 0;
 
   & img {
-    max-width: 100px;
+    width: 50px;
+    object-fit: cover;
   }
 
   & .photo-bucket {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+
+    .photo-bucket-limit {
+      font-size: 12px;
+    }
+  }
+
+  & .photo-bucket-list {
+    width: 58%;
+    display: flex;
+  }
+
+  & .photo-bucket-upload {
+    position: relative;
+    margin-right: 25px;
+
+    button {
+      cursor: pointer;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      border-radius: 50%;
+      border: 1px ${focalDark} solid;
+      background-color: white;
+    }
   }
 `;
 
 export const PersonalInformationContainer = styled.div`
   display: flex;
   justify-content: space-around;
+
+  .review-username {
+    transform: translateX(-20%);
+  }
 
   $ label {
     display: flex;
@@ -683,5 +801,68 @@ export const PersonalInformationContainer = styled.div`
   & div {
     width: 100%;
     text-align: end;
+  }
+
+  & span {
+    font-size: 11px;
+  }
+`;
+
+const spin = keyframes`
+  80% {
+    background: #262730;
+  }
+  100% {
+    transform: rotate(1080deg);
+    background: transparent;
+  }
+`;
+
+const check = keyframes`
+  to {
+    fill: #17b978;
+  }
+`;
+
+export const SubmitButton = styled.div`
+
+  button {
+    width: 150px;
+    height: 50px;
+    background: #262730;
+    border: 4px solid #262730;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 100ms;
+    margin: 0 auto;
+  }
+
+  span,
+  img {
+    position: absolute;
+    color: white;
+    fill: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+
+  button:focus {
+    outline: none;
+    border: 2px solid #1e2a78;
+    width: 50px;
+    border: 4px solid #262730;
+    animation: ${spin} 2s 500ms forwards;
+  }
+
+  button:focus span {
+    color: transparent;
+  }
+
+  button:focus img {
+    animation: ${check} 500ms 2300ms forwards;
   }
 `;
