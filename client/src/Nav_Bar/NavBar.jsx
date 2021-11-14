@@ -44,7 +44,7 @@ cursor: pointer;
   border-bottom: white;
   text-decoration: underline;
 }
-  left: 92vw;
+  left: 90vw;
   position: absolute;
 `;
 
@@ -122,7 +122,7 @@ export default function NavBar({ cart }) {
           <MainLogo />
           <Div>
             Sign In
-            </Div>
+          </Div>
           {/* <Div>New</Div>
       <Div>Contact</Div>
       <Div>About</Div> */}
