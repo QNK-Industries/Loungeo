@@ -6,7 +6,7 @@ import MainLogo from './MainLogo.jsx';
 
 const Span = styled.div`
   margin-left: -1vw;
-  width: 101vw;
+  width: 100%;
   height: 5vh;
   background-color: #3D2645;
   position: fixed;
@@ -27,6 +27,11 @@ const ActiveSpan = styled.div`
   align-items: center;
   top: 0;
   z-index: 100;
+
+  & div {
+    top: 10px;
+    right: 20px;
+  }
 
 `;
 
