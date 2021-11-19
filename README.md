@@ -1,5 +1,5 @@
 # Loungeo
-Loungeo is a single page e-commerce web application created utilizing React and Node/Express. This projected was created by a team of three engineers at QNK Industries. 
+Loungeo is a single page e-commerce web application created utilizing React and Node/Express. This project was created by a team of three engineers at QNK Industries. 
 
 ## Features
 
