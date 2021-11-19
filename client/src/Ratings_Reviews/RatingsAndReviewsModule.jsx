@@ -106,7 +106,7 @@ const RatingsAndReviewsModule = ({ mainProduct }) => {
         setReviewData([...reviewData, ...data.results]);
       }
 
-      if (reviewData.length === apiPage * 100) {
+      if (reviewData.length === apiPage * 100 && apiPage <= 5) {
         fetchReviewData(apiPage + 1, sort);
       }
     });
