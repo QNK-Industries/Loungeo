@@ -20,98 +20,12 @@ const productsRoutes = require('./products/routes.js');
 
 app.use('/products', productsRoutes);
 
-app.get('/myoutfit', (req, res) => {
-  res.status(200).send(customerOutfit);
-});
+// Reviews Service
+const reviewsRoutes = require('./reviews/routes.js');
 
-app.post('/myoutfit/add', (req, res) => {
-  if (!customerOutfit[req.body.id]) {
-    customerOutfit[req.body.id] = req.body;
-    res.status(201);
-  } else {
-    res.status(400);
-  }
-});
+app.use('/reviews', reviewsRoutes);
 
-app.post('/myoutfit/delete', (req, res) => {
-  if (customerOutfit[req.body.id]) {
-    delete customerOutfit[req.body.id];
-    res.status(200);
-  } else {
-    res.status(400);
-  }
-});
-
-app.get('/reviews/', (req, res) => {
-  const { page, sort, id } = req.query;
-  const url = `${URL}/reviews/?page=${page}&count=100&sort=${sort}&product_id=${id}`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.get('/reviews/meta', (req, res) => {
-  const { id } = req.query;
-  const url = `${URL}/reviews/meta/?product_id=${id}`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.get('/cart', (req, res) => {
-  const url = `${URL}/cart`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.put('/reviews/:id/helpful', (req, res) => {
-  const url = `${URL}/reviews/${req.params.id}/helpful`;
-  axios.put(url, null, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-app.put('/reviews/:id/report', (req, res) => {
-  const url = `${URL}/reviews/${req.params.id}/report`;
-  axios.put(url, {}, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-app.post('/reviews/', (req, res) => {
-  const url = `${URL}/reviews/`;
-
-  axios.post(url, req.body, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    }).catch((error) => {
-      res.send(error);
-    });
-});
+// Questions Service
 
 app.get('/qa/questions/:id', (req, res) => {
   const { id } = req.params;
@@ -168,20 +82,6 @@ app.post('/qa/:question_id/answers', (req, res) => {
     });
 });
 
-app.post('/cart', (req, res) => {
-  const data = req.body;
-  // eslint-disable-next-line camelcase
-  const url = `${URL}/cart`;
-
-  axios.post(url, data, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((error) => {
-      res.status(error).send(error);
-    });
-});
-
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   const url = `${URL}/qa/questions/${req.params.question_id}/helpful`;
   axios.put(url, null, HEADERS)
@@ -226,6 +126,56 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     })
     .catch((error) => {
       res.status(204).send(error);
+    });
+});
+
+// remove this comment
+
+app.get('/myoutfit', (req, res) => {
+  res.status(200).send(customerOutfit);
+});
+
+app.post('/myoutfit/add', (req, res) => {
+  if (!customerOutfit[req.body.id]) {
+    customerOutfit[req.body.id] = req.body;
+    res.status(201);
+  } else {
+    res.status(400);
+  }
+});
+
+app.post('/myoutfit/delete', (req, res) => {
+  if (customerOutfit[req.body.id]) {
+    delete customerOutfit[req.body.id];
+    res.status(200);
+  } else {
+    res.status(400);
+  }
+});
+
+app.get('/cart', (req, res) => {
+  const url = `${URL}/cart`;
+
+  axios.get(url, HEADERS)
+    .then((response) => {
+      res.status(response.status).send(response.data);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err.response.data);
+    });
+});
+
+app.post('/cart', (req, res) => {
+  const data = req.body;
+  // eslint-disable-next-line camelcase
+  const url = `${URL}/cart`;
+
+  axios.post(url, data, HEADERS)
+    .then((response) => {
+      res.status(response.status).send(response.data);
+    })
+    .catch((error) => {
+      res.status(error).send(error);
     });
 });
 
