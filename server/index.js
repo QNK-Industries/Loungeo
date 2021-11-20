@@ -15,75 +15,10 @@ app.use(cors());
 
 const customerOutfit = outfitData;
 
-app.get('/products', (req, res) => {
-  const { page, count } = req.query;
-  const url = `${URL}/products/?page=${page}&count=${count}`;
+// Products Service
+const productsRoutes = require('./products/routes.js');
 
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.get('/products/:id', (req, res) => {
-  const { id } = req.params;
-  const url = `${URL}/products/${id}`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.get('/products/:id/styles', (req, res) => {
-  const { id } = req.params;
-  const url = `${URL}/products/${id}/styles`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.get('/products/:id/details', (req, res) => {
-  const { id } = req.params;
-  const url1 = `${URL}/products/${id}/`;
-  const url2 = `${URL}/products/${id}/styles`;
-
-  axios.get(url1, HEADERS)
-    .then((productInfoResponse) => {
-      axios.get(url2, HEADERS).then((stylesInfoResponse) => {
-        // eslint-disable-next-line no-param-reassign
-        productInfoResponse.data.results = stylesInfoResponse.data.results;
-        res.status(stylesInfoResponse.status).send(productInfoResponse.data);
-      });
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.get('/products/:id/related', (req, res) => {
-  const { id } = req.params;
-  const url = `${URL}/products/${id}/related`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
+app.use('/products', productsRoutes);
 
 app.get('/myoutfit', (req, res) => {
   res.status(200).send(customerOutfit);
