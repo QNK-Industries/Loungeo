@@ -26,110 +26,11 @@ const reviewsRoutes = require('./reviews/routes.js');
 app.use('/reviews', reviewsRoutes);
 
 // Questions Service
+const questionsRoutes = require('./questions/routes.js');
 
-app.get('/qa/questions/:id', (req, res) => {
-  const { id } = req.params;
-  const { count } = req.query;
-  const url = `${URL}/qa/questions/?product_id=${id}`;
-  const headers = { params: { count }, ...HEADERS };
+app.use('/qa', questionsRoutes);
 
-  axios.get(url, headers)
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
-
-app.get('/qa/:question_id/answers', (req, res) => {
-  const url = `${URL}/qa/questions/${req.params.question_id}/answers`;
-
-  axios.get(url, HEADERS)
-    .then((response) => {
-      const { results } = response.data;
-      res.status(response.status).send(results);
-    })
-    .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
-    });
-});
-
-app.post('/qa/questions', (req, res) => {
-  const { body } = req;
-  const url = `${URL}/qa/questions`;
-
-  axios.post(url, body, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-app.post('/qa/:question_id/answers', (req, res) => {
-  const { body } = req;
-  // eslint-disable-next-line camelcase
-  const url = `${URL}/qa/questions/${req.params.question_id}/answers`;
-
-  axios.post(url, body, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((error) => {
-      res.status(error).send(error);
-    });
-});
-
-app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  const url = `${URL}/qa/questions/${req.params.question_id}/helpful`;
-  axios.put(url, null, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response.data);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  const url = `${URL}/qa/answers/${req.params.answer_id}/helpful`;
-
-  axios.put(url, {}, HEADERS)
-    .then(({ status, body }) => {
-      res.status(status).send(body);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-app.put('/qa/questions/:question_id/report', (req, res) => {
-  const url = `${URL}/qa/questions/${req.params.question_id}/report`;
-
-  axios.put(url, null, HEADERS)
-    .then((response) => {
-      res.status(response.status).send(response);
-    })
-    .catch((error) => {
-      res.status(error.status).send(error);
-    });
-});
-
-app.put('/qa/answers/:answer_id/report', (req, res) => {
-  const url = `${URL}/qa/answers/${req.params.answer_id}/report`;
-
-  axios.put(url, null, HEADERS)
-    .then((response) => {
-      res.status(204).send(response);
-    })
-    .catch((error) => {
-      res.status(204).send(error);
-    });
-});
-
-// remove this comment
+// Atelier 1.0 Service
 
 app.get('/myoutfit', (req, res) => {
   res.status(200).send(customerOutfit);
