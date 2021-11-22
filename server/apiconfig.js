@@ -7,9 +7,9 @@ const reviewServiceURL = 'insert your review service URL from SDC here';
 
 if (process.env.API_MODE === 'individual') {
   // fix your individual service URL here and set the rest to baseURL
-  module.exports.productURL = 'insert productServiceURL or baseURL';
+  module.exports.productURL = baseURL;
   module.exports.qaURL = qaServiceURL;
-  module.exports.reviewURL = 'insert reviewServiceURL or baseURL';
+  module.exports.reviewURL = baseURL;
 }
 
 if (process.env.API_MODE === 'team') {
