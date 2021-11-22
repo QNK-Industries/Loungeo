@@ -19,6 +19,8 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
+    "start-ind-api": "API_MODE=individual nodemon server/index.js",
+    "start-team-api": "API_MODE=team nodemon server/index.js",
     "dev": "webpack --config webpack.config.js --watch --mode=development",
     "build-client": "webpack",
     "test": "jest"
