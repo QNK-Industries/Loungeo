@@ -1,7 +1,9 @@
 # Loungeo
 Loungeo is a single page e-commerce web application created utilizing React and Node/Express. This project was created by a team of three engineers at QNK Industries.
 
-## Features
+![Screenshot](https://imgur.com/cDKIAv3.gif)
+
+## :heavy_check_mark: Features
 
 ### Product Overview
 
@@ -30,7 +32,7 @@ Loungeo is a single page e-commerce web application created utilizing React and 
 * See answers others have posted
 * Add Answers about products
 
-## Installation
+## :heavy_check_mark: Installation
 
 ```
 npm install
@@ -52,16 +54,10 @@ open
 
 ```
 http://localhost:3000/
+
 ```
 
-## Credit
-QNK Industries is
-
-[Quinton Maki](https://github.com/maki-q)
-[Noah Lehman](https://github.com/xanzadu)
-[Khai Tran](https://github.com/solo917)
-
-## Microservices Setup
+## :heavy_check_mark: Microservices Setup
 * Input appropiate URLs to server/apiconfig.js
 * This will set the Atelier/backend service URL's based on the environment variable API_MODE
 
@@ -74,3 +70,15 @@ for individual mode or
 npm run start-team-api
 ```
 for team mode
+
+## :heavy_check_mark: Credit
+QNK Industries is
+
+[Quinton Maki](https://github.com/maki-q)
+<br>
+[Noah Lehman](https://github.com/xanzadu)
+<br>
+[Khai Tran](https://github.com/solo917)
+
+
+
